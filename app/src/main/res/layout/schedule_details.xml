@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#d4d6d8">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:background="#313f54"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/back2main"
+            android:src="@drawable/prev"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitStart"
+            android:layout_weight="1"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Schedule Details"
+            android:textColor="@color/white"
+            android:textSize="20sp"/>
+        <ImageView
+            android:id="@+id/dot"
+            android:visibility="invisible"
+            android:src="@drawable/menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitEnd"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/detail_title"
+        android:text="ASDASDAda"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:layout_marginTop="8dp"
+        android:textColor="#000"/>
+
+</LinearLayout>
