@@ -51,7 +51,7 @@
     <TextView
         android:background="#313f54"
         android:id="@+id/fullname"
-        android:text="Nerissa Ronquillo"
+        android:text="Juan Dela Cruz"
         android:padding="40dp"
         android:layout_width="match_parent"
         android:textSize="30sp"
@@ -66,7 +66,7 @@
         android:background="@color/white">
         <TextView
             android:id="@+id/course"
-            android:text="Bachelor of Science in Information Technology"
+            android:text="Bachelor of Science in Computer Science"
             android:layout_gravity="center_vertical|center_horizontal"
             android:textAlignment="center"
             android:textStyle="bold"

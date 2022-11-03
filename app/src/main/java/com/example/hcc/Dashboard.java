@@ -25,6 +25,24 @@ public class Dashboard extends AppCompatActivity {
         CardView stud_info = findViewById(R.id.stud_info);
         CardView schedule = findViewById(R.id.schedule);
         CardView course = findViewById(R.id.courses);
+        CardView bill = findViewById(R.id.bill);
+        CardView grade = findViewById(R.id.grade);
+        /* Grade */
+        grade.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent grade = new Intent(Dashboard.this, Grade.class);
+                startActivity(grade);
+            }
+        });
+        /* Bill */
+        bill.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent bill = new Intent(Dashboard.this, Bill.class);
+                startActivity(bill);
+            }
+        });
         /* Course */
         course.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -31,6 +31,8 @@
         <activity android:name=".Schedule_Detail"/>
         <activity android:name=".Course"/>
         <activity android:name=".Course_Detail"/>
+        <activity android:name=".Bill"/>
+        <activity android:name=".Grade"/>
     </application>
 
 </manifest>

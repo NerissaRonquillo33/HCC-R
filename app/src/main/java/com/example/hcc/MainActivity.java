@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (username.getText().toString().equals("admin") && password.getText().toString().equals("admin")) {
+                if (username.getText().toString().equals("student") && password.getText().toString().equals("student")) {
                     Intent dashboard = new Intent(MainActivity.this, Dashboard.class);
                     startActivity(dashboard);
                 }

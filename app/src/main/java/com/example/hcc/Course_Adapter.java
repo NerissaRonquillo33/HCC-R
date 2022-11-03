@@ -33,13 +33,13 @@ public class Course_Adapter extends RecyclerView.Adapter<Course_Adapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
-        myViewHolder.title.setText(item.get(i).getTitle());
+        myViewHolder.title.setText(item.get(i).getDescription());
         myViewHolder.img.setImageResource(item.get(i).getThumbnail());
         myViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent details = new Intent(context, Course_Detail.class);
-                details.putExtra("title",item.get(i).getTitle());
+                details.putExtra("title",item.get(i).getDescription());
                 context.startActivity(details);
             }
         });

@@ -2,14 +2,22 @@ package com.example.hcc;
 
 public class Course_Item {
     private int id;
-    private String title;
+    private String code;
+    private String description;
+    private int unit;
+    private int semester;
+    private int year;
     private int thumbnail;
 
     public Course_Item() {}
 
-    public Course_Item(int id, String title, int thumbnail) {
+    public Course_Item(int id, String code, String description, int unit, int semester, int year, int thumbnail) {
         this.id = id;
-        this.title = title;
+        this.code = code;
+        this.description = description;
+        this.unit = unit;
+        this.semester = semester;
+        this.year = year;
         this.thumbnail = thumbnail;
     }
 
@@ -17,20 +25,52 @@ public class Course_Item {
         return id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getCode() {
+        return code;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getUnit() {
+        return unit;
+    }
+
+    public int getSemester() {
+        return semester;
+    }
+
+    public int getYear() {
+        return year;
     }
 
     public int getThumbnail() {
         return thumbnail;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setUnit(int unit) {
+        this.unit = unit;
+    }
+
+    public void setSemester(int semester) {
+        this.semester = semester;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
     }
 
     public void setThumbnail(int thumbnail) {
