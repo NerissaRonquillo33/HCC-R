@@ -28,6 +28,14 @@
             android:scaleType="fitEnd"
             android:layout_weight="1"/>
     </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <LinearLayout
         android:background="#313f54"
         android:layout_width="match_parent"
@@ -74,25 +82,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="40dp"
             android:background="#d4d6d8">
-            <!-- Address -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Address"
+                android:text="Contact #"
                 android:textColor="#3e95ab"
                 android:textStyle="bold"/>
             <TextView
-                android:id="@+id/address"
-                android:text="H Concepcion SR Cab. City"
+                android:id="@+id/contact"
+                android:text="2222"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <View
@@ -100,17 +105,16 @@
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:background="#a0a0a0"/>
-            <!-- FB -->
             <TextView
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Facebook"
+                android:text="Gender"
                 android:textColor="#3e95ab"
                 android:textStyle="bold"/>
             <TextView
-                android:id="@+id/facebook"
-                android:text="facebook.com/QWERTY"
+                android:id="@+id/gender"
+                android:text="female"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <View
@@ -118,17 +122,33 @@
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:background="#a0a0a0"/>
-            <!-- Twitter -->
             <TextView
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Twitter"
+                android:text="Date of birth"
                 android:textColor="#3e95ab"
                 android:textStyle="bold"/>
             <TextView
-                android:id="@+id/twitter"
-                android:text="\@qwerty"
+                android:id="@+id/dob"
+                android:text="april"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <View
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:background="#a0a0a0"/>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Age"
+                android:textColor="#3e95ab"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/age"
+                android:text="22"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <View
@@ -137,5 +157,7 @@
                 android:layout_width="match_parent"
                 android:background="#a0a0a0"/>
         </LinearLayout>
+
+    </LinearLayout>
     </ScrollView>
 </LinearLayout>

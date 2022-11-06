@@ -27,6 +27,7 @@ public class Dashboard extends AppCompatActivity {
         CardView course = findViewById(R.id.courses);
         CardView bill = findViewById(R.id.bill);
         CardView grade = findViewById(R.id.grade);
+        String username = getIntent().getStringExtra("username");
         /* Grade */
         grade.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +49,7 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent course = new Intent(Dashboard.this, Course.class);
+                course.putExtra("username",username);
                 startActivity(course);
             }
         });
@@ -56,6 +58,7 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent schedule = new Intent(Dashboard.this, Schedule.class);
+                schedule.putExtra("username",username);
                 startActivity(schedule);
             }
         });
@@ -64,6 +67,7 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent student_info = new Intent(Dashboard.this, StudentInfo.class);
+                student_info.putExtra("username",username);
                 startActivity(student_info);
             }
         });
@@ -98,7 +102,7 @@ public class Dashboard extends AppCompatActivity {
 
                     public void onClick(DialogInterface dialog, int which) {
                         // Do nothing but close the dialog
-                        Intent login = new Intent(Dashboard.this, MainActivity.class);
+                        Intent login = new Intent(Dashboard.this, Login.class);
                         startActivity(login);
                         dialog.dismiss();
                     }
