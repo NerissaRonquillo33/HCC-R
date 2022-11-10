@@ -4,6 +4,7 @@ public class Course_Item {
     private int id;
     private String code;
     private String description;
+    private String username;
     private int unit;
     private int semester;
     private int year;
@@ -11,7 +12,7 @@ public class Course_Item {
 
     public Course_Item() {}
 
-    public Course_Item(int id, String code, String description, int unit, int semester, int year, int thumbnail) {
+    public Course_Item(int id, String code, String description, String username, int unit, int semester, int year, int thumbnail) {
         this.id = id;
         this.code = code;
         this.description = description;
@@ -19,6 +20,15 @@ public class Course_Item {
         this.semester = semester;
         this.year = year;
         this.thumbnail = thumbnail;
+        this.username = username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public int getId() {

@@ -37,6 +37,7 @@ public class Course extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent dashboard = new Intent(Course.this, Dashboard.class);
+                dashboard.putExtra("username",username);
                 startActivity(dashboard);
             }
         });
@@ -48,7 +49,7 @@ public class Course extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        new HttpRequest().doPost(Course.this, "http://192.168.1.19/api/courses.php", jsonParams, new RequestCallback() {
+        new HttpRequest().doPost(Course.this, getResources().getString(R.string.server_path) + "/api/courses.php", jsonParams, new RequestCallback() {
             @Override
             public void success(String response, JSONObject jsonObject) {
                 if (response.equals("success")) {
@@ -58,7 +59,7 @@ public class Course extends AppCompatActivity {
                         for(int n = 0; n < jsonArray.length(); n++)
                         {
                             JSONObject object = jsonArray.getJSONObject(n);
-                            lstCourses.add(new Course_Item(Integer.parseInt(object.getString("id")),object.getString("code"),object.getString("description"),Integer.parseInt(object.getString("unit")),Integer.parseInt(object.getString("semester")),Integer.parseInt(object.getString("year")),R.drawable.book_edit));
+                            lstCourses.add(new Course_Item(Integer.parseInt(object.getString("id")),object.getString("code"),object.getString("description"),username,Integer.parseInt(object.getString("unit")),Integer.parseInt(object.getString("semester")),Integer.parseInt(object.getString("year")),R.drawable.book_edit));
                         }
                     } catch (JSONException e) {
                         //todo

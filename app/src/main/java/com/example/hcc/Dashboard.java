@@ -2,6 +2,7 @@ package com.example.hcc;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,8 +13,16 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.TextView;
+
+import com.example.hcc.http_request.HttpRequest;
+import com.example.hcc.interfaces.RequestCallback;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class Dashboard extends AppCompatActivity {
     @Override
@@ -75,18 +84,7 @@ public class Dashboard extends AppCompatActivity {
         aboutus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-                View popupView = inflater.inflate(R.layout.about, null);
-                int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-                int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-                boolean focusable = true;
-                final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    popupWindow.setElevation(20);
-                }
-
-                popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+                about();
             }
         });
         /* Logout */
@@ -122,5 +120,21 @@ public class Dashboard extends AppCompatActivity {
                 alert.show();
             }
         });
+    }
+
+    public void about() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(Dashboard.this);
+        AlertDialog alertDialog;
+        View customView = getLayoutInflater().inflate( R.layout.about, null);
+        Button close = customView.findViewById(R.id.close);
+        builder.setView(customView);
+        alertDialog = builder.create();
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog.dismiss();
+            }
+        });
+        alertDialog.show();
     }
 }

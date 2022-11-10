@@ -47,7 +47,7 @@ public class Schedule extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        new HttpRequest().doPost(Schedule.this, "http://192.168.1.19/api/schedules.php", jsonParams, new RequestCallback() {
+        new HttpRequest().doPost(Schedule.this, getResources().getString(R.string.server_path) + "/api/schedules.php", jsonParams, new RequestCallback() {
             @Override
             public void success(String response, JSONObject jsonObject) {
                 Log.i("Responv", response);

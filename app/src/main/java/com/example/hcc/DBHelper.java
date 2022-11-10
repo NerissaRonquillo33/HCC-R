@@ -43,7 +43,7 @@ public class DBHelper {
             String  unit =cursor.getString(cursor.getColumnIndex(DHelper.UNIT));
             String  semester =cursor.getString(cursor.getColumnIndex(DHelper.SEMESTER));
             String  year =cursor.getString(cursor.getColumnIndex(DHelper.YEAR));
-            courseItemList.add(new Course_Item(cid,code,description,Integer.parseInt(unit),Integer.parseInt(semester),Integer.parseInt(year),R.drawable.book_edit));
+            courseItemList.add(new Course_Item(cid,code,description,"",Integer.parseInt(unit),Integer.parseInt(semester),Integer.parseInt(year),R.drawable.book_edit));
         }
         return courseItemList;
     }

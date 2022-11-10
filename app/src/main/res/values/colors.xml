@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="primary">#0f6cbf</color>
     <color name="lit">#F88379</color>
+    <color name="blush">#C2C7C8</color>
 </resources>

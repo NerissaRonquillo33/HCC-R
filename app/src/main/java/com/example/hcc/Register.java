@@ -64,7 +64,7 @@ public class Register extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                new HttpRequest().doPost(Register.this, "http://192.168.1.19/api/register.php", jsonParams, new RequestCallback() {
+                new HttpRequest().doPost(Register.this, getResources().getString(R.string.server_path) + "/api/register.php", jsonParams, new RequestCallback() {
                     @Override
                     public void success(String response, JSONObject jsonObject) {
                         status.setVisibility(View.VISIBLE);

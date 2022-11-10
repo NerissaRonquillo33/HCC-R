@@ -2,22 +2,40 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary">
-
-    <ScrollView
+    android:layout_gravity="top"
+    android:background="@color/blush"
+    android:layout_margin="16dp"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:padding="10dp"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:background="@color/primary"
+        android:text="About"/>
+    <TextView
+        android:id="@+id/abouttext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:text="Holistic Education, Compassionate Educators, Committed Graduates."
+        android:textAlignment="center"
+        android:scrollbars="vertical"
+        android:textSize="30sp"
+        />
+    <Button
+        android:id="@+id/close"
+        android:background="@drawable/button_custom"
+        android:text="Close"
+        android:layout_gravity="center"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="5dp"
+        android:textColor="@color/white"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/abouttext"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="15dp"
-            android:text="Holistic Education, Compassionate Educators, Committed Graduates."
-            android:textAlignment="center"
-            android:scrollbars="vertical"
-            android:textSize="30sp"
-            />
-    </ScrollView>
-
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

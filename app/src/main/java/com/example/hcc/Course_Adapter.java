@@ -34,12 +34,20 @@ public class Course_Adapter extends RecyclerView.Adapter<Course_Adapter.MyViewHo
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
         myViewHolder.title.setText(item.get(i).getDescription());
+        myViewHolder.code.setText(item.get(i).getCode());
+        myViewHolder.usy.setText("Unit: "+item.get(i).getUnit()+", Semester: "+item.get(i).getSemester()+", Year: "+item.get(i).getYear());
         myViewHolder.img.setImageResource(item.get(i).getThumbnail());
         myViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent details = new Intent(context, Course_Detail.class);
+                details.putExtra("code",item.get(i).getCode());
+                details.putExtra("unit",item.get(i).getUnit());
+                details.putExtra("semester",item.get(i).getSemester());
+                details.putExtra("year",item.get(i).getYear());
                 details.putExtra("title",item.get(i).getDescription());
+                details.putExtra("username",item.get(i).getUsername());
+                details.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(details);
             }
         });
@@ -54,11 +62,15 @@ public class Course_Adapter extends RecyclerView.Adapter<Course_Adapter.MyViewHo
 
         ImageView img;
         TextView title;
+        TextView code;
+        TextView usy;
         CardView cardView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.course_list_txt);
+            code = (TextView) itemView.findViewById(R.id.code);
+            usy = (TextView) itemView.findViewById(R.id.usy);
             img = (ImageView) itemView.findViewById(R.id.course_list_img);
             cardView = (CardView) itemView.findViewById(R.id.course_list_item);
         }

@@ -44,7 +44,7 @@ public class Login extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                new HttpRequest().doPost(Login.this, "http://192.168.1.19/api/login.php", jsonParams, new RequestCallback() {
+                new HttpRequest().doPost(Login.this, getResources().getString(R.string.server_path) + "/api/login.php", jsonParams, new RequestCallback() {
                     @Override
                     public void success(String response, JSONObject jsonObject) {
                         if (response.equals("success")) {
