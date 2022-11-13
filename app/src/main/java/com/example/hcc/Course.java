@@ -49,7 +49,7 @@ public class Course extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        new HttpRequest().doPost(Course.this, getResources().getString(R.string.server_path) + "/api/courses.php", jsonParams, new RequestCallback() {
+        new HttpRequest().doPost(Course.this, getResources().getString(R.string.server_path) + "courses.php", jsonParams, new RequestCallback() {
             @Override
             public void success(String response, JSONObject jsonObject) {
                 if (response.equals("success")) {

@@ -75,7 +75,7 @@ public class StudentInfo extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        new HttpRequest().doPost(StudentInfo.this, getResources().getString(R.string.server_path) + "/api/info.php", jsonParams, new RequestCallback() {
+        new HttpRequest().doPost(StudentInfo.this, getResources().getString(R.string.server_path) + "info.php", jsonParams, new RequestCallback() {
             @Override
             public void success(String response, JSONObject jsonObject) {
                 if (response.equals("success")) {
@@ -165,7 +165,7 @@ public class StudentInfo extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        new HttpRequest().doPost(StudentInfo.this, getResources().getString(R.string.server_path) + "/api/upload.php", jsonParams, new RequestCallback() {
+                        new HttpRequest().doPost(StudentInfo.this, getResources().getString(R.string.server_path) + "upload.php", jsonParams, new RequestCallback() {
                             @Override
                             public void success(String response, JSONObject jsonObject) {
                                 if (response.equals("success")) {
@@ -206,7 +206,7 @@ public class StudentInfo extends AppCompatActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    new HttpRequest().doPost(StudentInfo.this, getResources().getString(R.string.server_path) + "/api/update-password.php", jsonParams, new RequestCallback() {
+                    new HttpRequest().doPost(StudentInfo.this, getResources().getString(R.string.server_path) + "update-password.php", jsonParams, new RequestCallback() {
                         @Override
                         public void success(String response, JSONObject jsonObject) {
                             if (response.equals("success")) {

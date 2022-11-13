@@ -41,6 +41,7 @@ public class Course_Adapter extends RecyclerView.Adapter<Course_Adapter.MyViewHo
             @Override
             public void onClick(View view) {
                 Intent details = new Intent(context, Course_Detail.class);
+                details.putExtra("id",item.get(i).getId());
                 details.putExtra("code",item.get(i).getCode());
                 details.putExtra("unit",item.get(i).getUnit());
                 details.putExtra("semester",item.get(i).getSemester());

@@ -79,6 +79,7 @@
                     android:id="@+id/register"
                     android:text="Register?"
                     android:textColor="@color/primary"
+                    android:visibility="gone"
                     android:padding="10dp"
                     android:layout_margin="16dp"
                     android:layout_width="match_parent"
