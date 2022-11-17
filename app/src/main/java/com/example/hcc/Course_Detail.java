@@ -1,12 +1,9 @@
 package com.example.hcc;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -19,12 +16,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Course_Detail extends AppCompatActivity {
-    TextView detail_title;
+    TextView description;
+    TextView objectives;
+    TextView schedules;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.course_details);
-        detail_title = (TextView) findViewById(R.id.detail_title);
+        description = (TextView) findViewById(R.id.description);
+        objectives = (TextView) findViewById(R.id.objectives);
+        schedules = (TextView) findViewById(R.id.schedules);
         ImageView prev = findViewById(R.id.back2main);
         String username = getIntent().getStringExtra("username");
         int id = getIntent().getIntExtra("id",0);
@@ -56,7 +57,9 @@ public class Course_Detail extends AppCompatActivity {
                 Log.i("Ressss", response);
                 if (response.equals("success")) {
                     try {
-                        detail_title.setText(jsonObject.getString("description"));
+                        description.setText(jsonObject.getString("description"));
+                        objectives.setText(jsonObject.getString("objectives"));
+                        schedules.setText(jsonObject.getString("schedule"));
                     } catch (JSONException e) {
                         //todo
                     }

@@ -10,4 +10,5 @@
     <color name="primary">#0f6cbf</color>
     <color name="lit">#F88379</color>
     <color name="blush">#C2C7C8</color>
+    <color name="label">#215697</color>
 </resources>

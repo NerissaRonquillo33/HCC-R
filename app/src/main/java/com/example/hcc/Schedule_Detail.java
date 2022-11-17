@@ -13,7 +13,7 @@ public class Schedule_Detail extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.schedule_details);
-        TextView detail_title = (TextView) findViewById(R.id.detail_title);
+        TextView detail_title = (TextView) findViewById(R.id.description);
         ImageView prev = findViewById(R.id.back2main);
         /* Back to main */
         prev.setOnClickListener(new View.OnClickListener() {
