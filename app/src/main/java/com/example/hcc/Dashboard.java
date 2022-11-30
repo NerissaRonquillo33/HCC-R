@@ -42,6 +42,7 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent grade = new Intent(Dashboard.this, Grade.class);
+                grade.putExtra("username",username);
                 startActivity(grade);
             }
         });
@@ -50,6 +51,7 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent bill = new Intent(Dashboard.this, Bill.class);
+                bill.putExtra("username",username);
                 startActivity(bill);
             }
         });

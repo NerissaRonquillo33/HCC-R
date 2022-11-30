@@ -86,7 +86,7 @@ public class StudentInfo extends AppCompatActivity {
                         contact.setText(jsonObject.getString("contact"));
                         address.setText(jsonObject.getString("address"));
                         dob.setText(jsonObject.getString("birthday"));
-                        age.setText(getPerfectAgeInYears(jsonObject.getString("birthday")));
+                        age.setText(jsonObject.getString("age"));
                         if (jsonObject.getString("image").length() > 300) {
                             byte[] decodedString = Base64.decode(jsonObject.getString("image"), Base64.DEFAULT);
                             Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
