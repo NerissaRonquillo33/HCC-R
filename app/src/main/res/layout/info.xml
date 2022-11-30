@@ -96,12 +96,12 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Contact #"
+                android:text="Address"
                 android:textColor="#3e95ab"
                 android:textStyle="bold"/>
             <TextView
-                android:id="@+id/contact"
-                android:text="2222"
+                android:id="@+id/address_s"
+                android:text="Address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <View
@@ -113,12 +113,12 @@
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Gender"
+                android:text="Contact #"
                 android:textColor="#3e95ab"
                 android:textStyle="bold"/>
             <TextView
-                android:id="@+id/gender"
-                android:text="female"
+                android:id="@+id/contact"
+                android:text="2222"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <View

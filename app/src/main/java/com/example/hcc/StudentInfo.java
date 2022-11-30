@@ -28,6 +28,7 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Calendar;
 
 public class StudentInfo extends AppCompatActivity {
 
@@ -35,7 +36,7 @@ public class StudentInfo extends AppCompatActivity {
     TextView fullname;
     TextView course;
     TextView contact;
-    TextView gender;
+    TextView address;
     TextView dob;
     TextView age;
     ImageView profile;
@@ -48,7 +49,7 @@ public class StudentInfo extends AppCompatActivity {
         fullname = findViewById(R.id.fullname);
         course = findViewById(R.id.course);
         contact = findViewById(R.id.contact);
-        gender = findViewById(R.id.gender);
+        address = findViewById(R.id.address_s);
         dob = findViewById(R.id.dob);
         age = findViewById(R.id.age);
         profile = findViewById(R.id.profile);
@@ -80,12 +81,12 @@ public class StudentInfo extends AppCompatActivity {
             public void success(String response, JSONObject jsonObject) {
                 if (response.equals("success")) {
                     try {
-                        fullname.setText(jsonObject.getString("lastname") + ", " + jsonObject.getString("firstname") + " " + jsonObject.getString("middlename"));
-                        course.setText(jsonObject.getString("title"));
+                        fullname.setText(jsonObject.getString("lastname") + ", " + jsonObject.getString("firstname"));
+                        course.setText(jsonObject.getString("course"));
                         contact.setText(jsonObject.getString("contact"));
-                        gender.setText(jsonObject.getString("gender"));
-                        dob.setText(jsonObject.getString("dob"));
-                        age.setText(jsonObject.getString("age"));
+                        address.setText(jsonObject.getString("address"));
+                        dob.setText(jsonObject.getString("birthday"));
+                        age.setText(getPerfectAgeInYears(jsonObject.getString("birthday")));
                         if (jsonObject.getString("image").length() > 300) {
                             byte[] decodedString = Base64.decode(jsonObject.getString("image"), Base64.DEFAULT);
                             Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
@@ -100,6 +101,43 @@ public class StudentInfo extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public static int getPerfectAgeInYears(String birthday) {
+        String[] birthdayarr = birthday.split("-");
+        if (birthdayarr.length != 3) {
+            return 0;
+        }
+        int year = Integer.parseInt(birthdayarr[0]);
+        int month = Integer.parseInt(birthdayarr[1]);
+        int date = Integer.parseInt(birthdayarr[2]);
+
+        Calendar dobCalendar = Calendar.getInstance();
+
+        dobCalendar.set(Calendar.YEAR, year);
+        dobCalendar.set(Calendar.MONTH, month);
+        dobCalendar.set(Calendar.DATE, date);
+
+        int ageInteger = 0;
+
+        Calendar today = Calendar.getInstance();
+
+        ageInteger = today.get(Calendar.YEAR) - dobCalendar.get(Calendar.YEAR);
+
+        if (today.get(Calendar.MONTH) == dobCalendar.get(Calendar.MONTH)) {
+
+            if (today.get(Calendar.DAY_OF_MONTH) < dobCalendar.get(Calendar.DAY_OF_MONTH)) {
+
+                ageInteger = ageInteger - 1;
+            }
+
+        } else if (today.get(Calendar.MONTH) < dobCalendar.get(Calendar.MONTH)) {
+
+            ageInteger = ageInteger - 1;
+
+        }
+
+        return ageInteger;
     }
 
     public void showMenu(View view) {

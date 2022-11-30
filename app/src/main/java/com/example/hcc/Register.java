@@ -34,7 +34,7 @@ public class Register extends AppCompatActivity {
         EditText middlename = findViewById(R.id.middlename);
         EditText lastname = findViewById(R.id.lastname);
         EditText contact = findViewById(R.id.contact);
-        EditText gender = findViewById(R.id.gender);
+        EditText gender = findViewById(R.id.address_s);
         EditText dob = findViewById(R.id.dob);
         EditText age = findViewById(R.id.age);
         EditText course = findViewById(R.id.course_info);
