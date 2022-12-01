@@ -16,7 +16,7 @@
 
         <ImageView
             android:id="@+id/course_list_img"
-            android:src="@drawable/schedule"
+            android:src="@drawable/calendar_days_solid"
             android:layout_width="80dp"
             android:layout_height="140dp"/>
         <LinearLayout

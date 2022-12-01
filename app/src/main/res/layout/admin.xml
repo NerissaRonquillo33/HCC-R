@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/bg"
+    android:background="@drawable/background"
     android:weightSum="10"
     tools:context=".Admin">
 
@@ -53,10 +53,10 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:src="@drawable/bill_icon"
+                    android:src="@drawable/file_invoice_solid"
                     android:layout_gravity="center_horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
                 <TextView
                     android:text="Import Bills"
                     android:textAlignment="center"
@@ -90,10 +90,10 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:src="@drawable/bill_icon"
+                    android:src="@drawable/user_solid"
                     android:layout_gravity="center_horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
                 <TextView
                     android:text="Import Students"
                     android:textAlignment="center"
@@ -127,10 +127,10 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:src="@drawable/schedule"
+                    android:src="@drawable/calendar_days_solid"
                     android:layout_gravity="center_horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
                 <TextView
                     android:text="Import Schedules"
                     android:textAlignment="center"
@@ -164,10 +164,10 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:src="@drawable/grades"
+                    android:src="@drawable/chart_simple_solid"
                     android:layout_gravity="center_horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
                 <TextView
                     android:text="Import Grades"
                     android:textAlignment="center"
@@ -203,10 +203,10 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:src="@drawable/about"
+                    android:src="@drawable/address_card_solid"
                     android:layout_gravity="center_horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
                 <TextView
                     android:text="About"
                     android:textAlignment="center"

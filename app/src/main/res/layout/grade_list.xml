@@ -16,7 +16,7 @@
 
         <ImageView
             android:id="@+id/grade_list_img"
-            android:src="@drawable/grades"
+            android:src="@drawable/file_invoice_solid"
             android:layout_width="70dp"
             android:layout_height="75dp"/>
         <LinearLayout

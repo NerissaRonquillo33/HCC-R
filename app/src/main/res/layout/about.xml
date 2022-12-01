@@ -15,27 +15,36 @@
         android:textSize="20sp"
         android:background="@color/primary"
         android:text="About"/>
-    <TextView
-        android:id="@+id/abouttext"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:text="Holistic Education, Compassionate Educators, Committed Graduates."
-        android:textAlignment="center"
-        android:scrollbars="vertical"
-        android:textSize="30sp"
-        />
-    <Button
-        android:id="@+id/close"
-        android:background="@drawable/button_custom"
-        android:text="Close"
-        android:layout_gravity="center"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginRight="5dp"
-        android:textColor="@color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/abouttext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:text="Philosophy\n\nHoly cross College believes in the holistic development of individuals by providing quality education through active participation in the teaching-learning process.\n\n\nMission\n\nHoly Cross College is an institution for academic and values formation offering relevant, learner-centered and values-oriented programs that produces competent persons of character in the service of society.\n\n\nVision\n\nTo become a leading God-centered learning institution focused on holistic education that forms and educates individuals to become conscious, competent, compassionate and committed persons towards the development of a just and humane society.\n\n\nGoals\n\n•To develop a Christ-centered community;\n•To produce intellectually-competent and wholly-developed graduates;\n•To emphasize self-realization without compromising human dignity and moral values.\n\n\nObjectives\n\n•To implement a dynamic, God-centered curriculum which will meet the ever-changing circumstances and needs of the society.\n•To instill in the learner sound Christian principles, attitudes and values in dealing with interpersonal relationships.\n•To guide the students in achieving basic knowledge and skills that will make them creative, productive and relevant members of the community.\n•To make the students appreciate and value their Filipino cultural heritage."
+                android:gravity="left"
+                android:scrollbars="vertical"
+                android:textSize="18sp"
+                />
+            <Button
+                android:id="@+id/close"
+                android:background="@drawable/button_custom"
+                android:text="Close"
+                android:layout_gravity="center"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginRight="5dp"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
