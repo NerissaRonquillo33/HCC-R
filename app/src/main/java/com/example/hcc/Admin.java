@@ -17,6 +17,7 @@ import android.widget.Button;
 import com.example.hcc.abstracts.Database;
 import com.example.hcc.http_request.HttpRequest;
 import com.example.hcc.interfaces.RequestCallback;
+import com.example.hcc.models.Bills;
 import com.example.hcc.models.Grades;
 import com.example.hcc.models.Schedules;
 import com.example.hcc.models.Students;
@@ -40,6 +41,14 @@ public class Admin extends AppCompatActivity {
         CardView students = findViewById(R.id.students);
         CardView schedules = findViewById(R.id.schedules);
         CardView grades = findViewById(R.id.grades);
+        CardView bills = findViewById(R.id.bills);
+        /* bills */
+        bills.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                importCSV(203);
+            }
+        });
         /* students */
         students.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,6 +171,28 @@ public class Admin extends AppCompatActivity {
                             String[] grades = line.split(",");
                             if (grades.length == 9) {
                                 database.gradesDao().insert(new Grades(grades[0],grades[1],grades[2],grades[3],grades[4],grades[5],grades[6],grades[7],grades[8]));
+                            }
+                        }
+                    }catch (FileNotFoundException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                }
+            }
+            else if (requestCode == 203) {
+                Database database = Database.getInstance(Admin.this);
+                database.billsDao().deleteAll();
+                Uri uri = data.getData();
+                if (null != uri) {
+                    try (BufferedReader reader = new BufferedReader(new InputStreamReader(getContentResolver().openInputStream(uri)))) {
+                        while (reader.ready()) {
+                            String line = reader.readLine();
+                            String[] bill = line.split(",");
+                            if (bill.length == 15) {
+                                database.billsDao().insert(new Bills(bill[0],bill[1],bill[2],bill[3],bill[4],bill[5],bill[6],bill[7],bill[8],bill[9],bill[10],bill[11],bill[12],bill[13],bill[14]));
                             }
                         }
                     }catch (FileNotFoundException e) {

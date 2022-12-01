@@ -50,6 +50,8 @@ public class Login extends AppCompatActivity {
                         Intent dashboard = new Intent(Login.this, Dashboard.class);
                         dashboard.putExtra("username", username.getText().toString());
                         startActivity(dashboard);
+                    } else {
+                        denied.setVisibility(View.VISIBLE);
                     }
                 }
             }

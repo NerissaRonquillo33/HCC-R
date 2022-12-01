@@ -17,6 +17,10 @@ public interface StudentsDao {
     void update(Students model);
     @Delete
     void delete(Students model);
+    @Query("UPDATE students SET image = :image WHERE username = :username")
+    void updateImage(String username, byte[] image);
+    @Query("UPDATE students SET password = :password WHERE username = :username")
+    void updatePassword(String username, String password);
     @Query("DELETE FROM students")
     void deleteAll();
     @Query("DELETE FROM students WHERE username = :username")

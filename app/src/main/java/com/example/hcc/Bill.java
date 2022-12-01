@@ -11,12 +11,17 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.hcc.abstracts.Database;
 import com.example.hcc.http_request.HttpRequest;
 import com.example.hcc.interfaces.RequestCallback;
+import com.example.hcc.models.Bills;
+import com.example.hcc.models.Schedules;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
 
 
 public class Bill extends AppCompatActivity {
@@ -35,6 +40,8 @@ public class Bill extends AppCompatActivity {
     TextView na;
     TextView ccp;
     TextView ob;
+    Database database;
+    String username;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,7 +62,8 @@ public class Bill extends AppCompatActivity {
         na = findViewById(R.id.na);
         ccp = findViewById(R.id.ccp);
         ob = findViewById(R.id.ob);
-        String username = getIntent().getStringExtra("username");
+        database = Database.getInstance(Bill.this);
+        username = getIntent().getStringExtra("username");
         /* Back to main */
         prev.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,10 +73,28 @@ public class Bill extends AppCompatActivity {
                 startActivity(dashboard);
             }
         });
-        BillInfo(username);
+        BillInfo();
     }
 
-    public void BillInfo(String username) {
+    public void BillInfo() {
+        Bills bills = database.billsDao().find(username);
+        tf.setText(bills.getTuitionfee());
+        lai.setText(bills.getLearninginstructional());
+        rf.setText(bills.getRegistrationfee());
+        cpf.setText(bills.getComputerprocsngfee());
+        gac.setText(bills.getGuidancecounseling());
+        sif.setText(bills.getSchoolidfee());
+        sh.setText(bills.getStudenthand());
+        sp.setText(bills.getSchoolpublication());
+        ins.setText(bills.getInsurance());
+        ta.setText(bills.getTotalasses());
+        ds.setText(bills.getLessdiscountscholar());
+        na.setText(bills.getNetassessed());
+        ccp.setText(bills.getLesscashpayment());
+        ob.setText(bills.getOutstandingbal());
+    }
+
+    public void BillInfo2(String username) {
         /* Courses list */
         JSONObject jsonParams = new JSONObject();
         try {
