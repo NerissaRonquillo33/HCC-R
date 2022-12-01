@@ -20,8 +20,10 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import com.example.hcc.abstracts.Database;
 import com.example.hcc.http_request.HttpRequest;
 import com.example.hcc.interfaces.RequestCallback;
+import com.example.hcc.models.Students;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,6 +42,7 @@ public class StudentInfo extends AppCompatActivity {
     TextView dob;
     TextView age;
     ImageView profile;
+    Database database;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,6 +57,7 @@ public class StudentInfo extends AppCompatActivity {
         age = findViewById(R.id.age);
         profile = findViewById(R.id.profile);
         username = getIntent().getStringExtra("username");
+        database = Database.getInstance(StudentInfo.this);
 
         info();
 
@@ -69,6 +73,21 @@ public class StudentInfo extends AppCompatActivity {
     }
 
     public void info() {
+        Students students = database.studentsDao().findOne(username);
+        fullname.setText(students.getLastname() + ", " + students.getFirstname());
+        course.setText(students.getCourse());
+        contact.setText(students.getContact());
+        address.setText(students.getAddress());
+        dob.setText(students.getBirthdate());
+        age.setText("23");
+        if (students.getImage().length > 300) {
+            Bitmap decodedByte = BitmapFactory.decodeByteArray(students.getImage(), 0, students.getImage().length);
+            profile.setImageBitmap(decodedByte);
+            profile.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        }
+    }
+
+    public void info2() {
         JSONObject jsonParams = new JSONObject();
         try {
             jsonParams.put("secret_key", "secret_key");

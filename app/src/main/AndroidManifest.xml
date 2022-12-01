@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -16,6 +16,13 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".Admin"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".Login"
             android:exported="true">
             <intent-filter>
@@ -28,15 +35,15 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name=".Dashboard"/>
-        <activity android:name=".StudentInfo"/>
-        <activity android:name=".Schedule"/>
-        <activity android:name=".Schedule_Detail"/>
-        <activity android:name=".Course"/>
-        <activity android:name=".Course_Detail"/>
-        <activity android:name=".Bill"/>
-        <activity android:name=".Grade"/>
-        <activity android:name=".Register"/>
+        <activity android:name=".Dashboard" />
+        <activity android:name=".StudentInfo" />
+        <activity android:name=".Schedule" />
+        <activity android:name=".Schedule_Detail" />
+        <activity android:name=".Course" />
+        <activity android:name=".Course_Detail" />
+        <activity android:name=".Bill" />
+        <activity android:name=".Grade" />
+        <activity android:name=".Register" />
     </application>
 
 </manifest>

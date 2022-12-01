@@ -33,25 +33,11 @@ public class Course_Adapter extends RecyclerView.Adapter<Course_Adapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
-        myViewHolder.title.setText(item.get(i).getDescription());
-        myViewHolder.code.setText(item.get(i).getCode());
-        myViewHolder.usy.setText("Unit: "+item.get(i).getUnit()+", Semester: "+item.get(i).getSemester()+", Year: "+item.get(i).getYear());
-        myViewHolder.img.setImageResource(item.get(i).getThumbnail());
-        myViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent details = new Intent(context, Course_Detail.class);
-                details.putExtra("id",item.get(i).getId());
-                details.putExtra("code",item.get(i).getCode());
-                details.putExtra("unit",item.get(i).getUnit());
-                details.putExtra("semester",item.get(i).getSemester());
-                details.putExtra("year",item.get(i).getYear());
-                details.putExtra("title",item.get(i).getDescription());
-                details.putExtra("username",item.get(i).getUsername());
-                details.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(details);
-            }
-        });
+        myViewHolder.course_description.setText(item.get(i).getCourse_description());
+        myViewHolder.course.setText(item.get(i).getCourse());
+        myViewHolder.days.setText("Days: " + item.get(i).getDays());
+        myViewHolder.time.setText("Time: " + item.get(i).getTime());
+        myViewHolder.room.setText("Room: " + item.get(i).getRoom());
     }
 
     @Override
@@ -61,19 +47,19 @@ public class Course_Adapter extends RecyclerView.Adapter<Course_Adapter.MyViewHo
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView img;
-        TextView title;
-        TextView code;
-        TextView usy;
-        CardView cardView;
+        TextView course_description;
+        TextView course;
+        TextView days;
+        TextView time;
+        TextView room;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            title = (TextView) itemView.findViewById(R.id.course_list_txt);
-            code = (TextView) itemView.findViewById(R.id.code);
-            usy = (TextView) itemView.findViewById(R.id.usy);
-            img = (ImageView) itemView.findViewById(R.id.course_list_img);
-            cardView = (CardView) itemView.findViewById(R.id.course_list_item);
+            course_description = (TextView) itemView.findViewById(R.id.course_description);
+            course = (TextView) itemView.findViewById(R.id.course);
+            days = (TextView) itemView.findViewById(R.id.days);
+            time = (TextView) itemView.findViewById(R.id.time);
+            room = (TextView) itemView.findViewById(R.id.room);
         }
     }
 }

@@ -9,8 +9,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.hcc.abstracts.Database;
 import com.example.hcc.http_request.HttpRequest;
 import com.example.hcc.interfaces.RequestCallback;
+import com.example.hcc.models.Schedules;
+import com.example.hcc.models.Students;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,6 +26,8 @@ public class Course extends AppCompatActivity {
 
     List<Course_Item> lstCourses;
     DBHelper dbHelper;
+    String username;
+    Database database;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,7 +36,8 @@ public class Course extends AppCompatActivity {
         ImageView prev = findViewById(R.id.back2main);
         lstCourses = new ArrayList<>();
         dbHelper = new DBHelper(this, lstCourses);
-        String username = getIntent().getStringExtra("username");
+        username = getIntent().getStringExtra("username");
+        database = Database.getInstance(Course.this);
         /* Back to main */
         prev.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,6 +47,22 @@ public class Course extends AppCompatActivity {
                 startActivity(dashboard);
             }
         });
+        list();
+    }
+
+    public void list() {
+        List<Schedules> schedules = database.schedulesDao().find(username);
+        for(int n = 0; n < schedules.size(); n++)
+        {
+            lstCourses.add(new Course_Item(schedules.get(n).getId(),schedules.get(n).getSubject(),schedules.get(n).getCourse(),schedules.get(n).getDays(),schedules.get(n).getTime(),schedules.get(n).getRoom()));
+        }
+        RecyclerView list = findViewById(R.id.course_holder);
+        Course_Adapter adapter = new Course_Adapter(getApplicationContext(), lstCourses);
+        list.setLayoutManager(new GridLayoutManager(getApplicationContext(), 1));
+        list.setAdapter(adapter);
+    }
+
+    public void list2() {
         /* Courses list */
         JSONObject jsonParams = new JSONObject();
         try {
@@ -59,7 +81,7 @@ public class Course extends AppCompatActivity {
                         for(int n = 0; n < jsonArray.length(); n++)
                         {
                             JSONObject object = jsonArray.getJSONObject(n);
-                            lstCourses.add(new Course_Item(Integer.parseInt(object.getString("id")),object.getString("code"),object.getString("description"),username,Integer.parseInt(object.getString("unit")),Integer.parseInt(object.getString("semester")),Integer.parseInt(object.getString("year")),R.drawable.book_edit));
+//                            lstCourses.add(new Course_Item(Integer.parseInt(object.getString("id")),object.getString("code"),object.getString("description"),username,Integer.parseInt(object.getString("unit")),Integer.parseInt(object.getString("semester")),Integer.parseInt(object.getString("year")),R.drawable.book_edit));
                         }
                     } catch (JSONException e) {
                         //todo
