@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import com.example.hcc.abstracts.Database;
 import com.example.hcc.http_request.HttpRequest;
 import com.example.hcc.interfaces.RequestCallback;
+import com.example.hcc.models.Bills;
 import com.example.hcc.models.Schedules;
 import com.example.hcc.models.Students;
 
@@ -47,6 +48,7 @@ public class Course extends AppCompatActivity {
                 startActivity(dashboard);
             }
         });
+        updateSchedule();
         list();
     }
 
@@ -62,12 +64,11 @@ public class Course extends AppCompatActivity {
         list.setAdapter(adapter);
     }
 
-    public void list2() {
+    public void updateSchedule() {
         /* Courses list */
         JSONObject jsonParams = new JSONObject();
         try {
             jsonParams.put("secret_key", "secret_key");
-            jsonParams.put("username", username);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -75,21 +76,17 @@ public class Course extends AppCompatActivity {
             @Override
             public void success(String response, JSONObject jsonObject) {
                 if (response.equals("success")) {
+                    database.schedulesDao().deleteAll();
                     try {
                         JSONArray jsonArray = jsonObject.getJSONArray("results");
-                        lstCourses.clear();
                         for(int n = 0; n < jsonArray.length(); n++)
                         {
                             JSONObject object = jsonArray.getJSONObject(n);
-//                            lstCourses.add(new Course_Item(Integer.parseInt(object.getString("id")),object.getString("code"),object.getString("description"),username,Integer.parseInt(object.getString("unit")),Integer.parseInt(object.getString("semester")),Integer.parseInt(object.getString("year")),R.drawable.book_edit));
+                            database.schedulesDao().insert(new Schedules(object.getString("studentid"),object.getString("subject"),object.getString("course"),object.getString("days"),object.getString("time"),object.getString("room")));
                         }
                     } catch (JSONException e) {
                         //todo
                     }
-                    RecyclerView list = findViewById(R.id.course_holder);
-                    Course_Adapter adapter = new Course_Adapter(getApplicationContext(), lstCourses);
-                    list.setLayoutManager(new GridLayoutManager(getApplicationContext(), 1));
-                    list.setAdapter(adapter);
                 }
             }
         });

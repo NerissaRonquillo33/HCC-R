@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.hcc.abstracts.Database;
+import com.example.hcc.helper.MD5;
 import com.example.hcc.http_request.HttpRequest;
 import com.example.hcc.interfaces.RequestCallback;
 import com.example.hcc.models.Bills;
@@ -126,7 +127,7 @@ public class Admin extends AppCompatActivity {
                             String line = reader.readLine();
                             String[] studentsInfo = line.split(",");
                             if (studentsInfo.length == 8) {
-                                database.studentsDao().insert(new Students(studentsInfo[0],studentsInfo[1],studentsInfo[2],studentsInfo[3],studentsInfo[4],studentsInfo[5],studentsInfo[6],studentsInfo[7],new byte[0]));
+                                database.studentsDao().insert(new Students(studentsInfo[0], new MD5().encrypt(studentsInfo[1]),studentsInfo[2],studentsInfo[3],studentsInfo[4],studentsInfo[5],studentsInfo[6],studentsInfo[7],new byte[0]));
                             }
                         }
                     }catch (FileNotFoundException e) {

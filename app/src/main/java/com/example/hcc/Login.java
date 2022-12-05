@@ -9,9 +9,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.hcc.abstracts.Database;
+import com.example.hcc.helper.MD5;
 import com.example.hcc.http_request.HttpRequest;
 import com.example.hcc.interfaces.RequestCallback;
+import com.example.hcc.models.Students;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -46,7 +49,7 @@ public class Login extends AppCompatActivity {
                     admin.putExtra("username", username.getText().toString());
                     startActivity(admin);
                 } else {
-                    if (database.studentsDao().login(username.getText().toString(), password.getText().toString()) > 0) {
+                    if (database.studentsDao().login(username.getText().toString(), new MD5().encrypt(password.getText().toString())) > 0) {
                         Intent dashboard = new Intent(Login.this, Dashboard.class);
                         dashboard.putExtra("username", username.getText().toString());
                         startActivity(dashboard);
@@ -62,6 +65,34 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 Intent registeration = new Intent(Login.this, Register.class);
                 startActivity(registeration);
+            }
+        });
+        updateStudents();
+    }
+
+    public void updateStudents() {
+        JSONObject jsonParams = new JSONObject();
+        try {
+            jsonParams.put("secret_key", "secret_key");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        new HttpRequest().doPost(Login.this, getResources().getString(R.string.server_path) + "students.php", jsonParams, new RequestCallback() {
+            @Override
+            public void success(String response, JSONObject jsonObject) {
+                if (response.equals("success")) {
+                    database.studentsDao().deleteAll();
+                    try {
+                        JSONArray jsonArray = jsonObject.getJSONArray("results");
+                        for(int n = 0; n < jsonArray.length(); n++)
+                        {
+                            JSONObject object = jsonArray.getJSONObject(n);
+                            database.studentsDao().insert(new Students(object.getString("studentid"),object.getString("password"),object.getString("lastname"),object.getString("firstname"),object.getString("birthday"),object.getString("course"),object.getString("contact"),object.getString("address"),new byte[0]));
+                        }
+                    } catch (JSONException e) {
+                        //todo
+                    }
+                }
             }
         });
     }

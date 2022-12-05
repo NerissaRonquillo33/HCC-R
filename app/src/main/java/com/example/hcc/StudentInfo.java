@@ -18,9 +18,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.hcc.abstracts.Database;
+import com.example.hcc.helper.MD5;
 import com.example.hcc.http_request.HttpRequest;
 import com.example.hcc.interfaces.RequestCallback;
 import com.example.hcc.models.Students;
@@ -250,6 +252,7 @@ public class StudentInfo extends AppCompatActivity {
         TextView status = customView.findViewById(R.id.status);
         Button cancel = customView.findViewById(R.id.cancel);
         Button update = customView.findViewById(R.id.update);
+        ProgressBar progressBar = customView.findViewById(R.id.progress_loader);
         builder.setView(customView);
         alertDialog = builder.create();
         update.setOnClickListener(new View.OnClickListener() {
@@ -257,28 +260,29 @@ public class StudentInfo extends AppCompatActivity {
             public void onClick(View view) {
                 if (newpassword.getText().toString().equals(confirmpassword.getText().toString())) {
                     //todo
-//                    JSONObject jsonParams = new JSONObject();
-//                    try {
-//                        jsonParams.put("secret_key", "secret_key");
-//                        jsonParams.put("username", username);
-//                        jsonParams.put("password", newpassword.getText().toString());
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
-//                    new HttpRequest().doPost(StudentInfo.this, getResources().getString(R.string.server_path) + "update-password.php", jsonParams, new RequestCallback() {
-//                        @Override
-//                        public void success(String response, JSONObject jsonObject) {
-//                            if (response.equals("success")) {
-//                                status.setVisibility(View.VISIBLE);
-//                                status.setText("Successfully updated");
-//                                status.setTextColor(Color.parseColor("#23ba36"));
-//                            }
-//                        }
-//                    });
-                    database.studentsDao().updatePassword(username, newpassword.getText().toString());
-                    status.setVisibility(View.VISIBLE);
-                    status.setText("Successfully updated");
-                    status.setTextColor(Color.parseColor("#23ba36"));
+                    update.setVisibility(View.INVISIBLE);
+                    progressBar.setVisibility(View.VISIBLE);
+                    JSONObject jsonParams = new JSONObject();
+                    try {
+                        jsonParams.put("secret_key", "secret_key");
+                        jsonParams.put("username", username);
+                        jsonParams.put("password", newpassword.getText().toString());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    new HttpRequest().doPost(StudentInfo.this, getResources().getString(R.string.server_path) + "update-password.php", jsonParams, new RequestCallback() {
+                        @Override
+                        public void success(String response, JSONObject jsonObject) {
+                            if (response.equals("success")) {
+                                database.studentsDao().updatePassword(username, new MD5().encrypt(newpassword.getText().toString()));
+                                status.setVisibility(View.VISIBLE);
+                                status.setText("Successfully updated");
+                                status.setTextColor(Color.parseColor("#23ba36"));
+                                update.setVisibility(View.VISIBLE);
+                                progressBar.setVisibility(View.INVISIBLE);
+                            }
+                        }
+                    });
                 }
                 else {
                     status.setVisibility(View.VISIBLE);

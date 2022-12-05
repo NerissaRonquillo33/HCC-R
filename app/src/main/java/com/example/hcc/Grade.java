@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import com.example.hcc.abstracts.Database;
 import com.example.hcc.http_request.HttpRequest;
 import com.example.hcc.interfaces.RequestCallback;
+import com.example.hcc.models.Bills;
 import com.example.hcc.models.Grades;
 import com.example.hcc.models.Schedules;
 
@@ -69,6 +70,7 @@ public class Grade extends AppCompatActivity {
 //                GradesList(username, schoolyr, semtr);
 //            }
 //        });
+        updateGrades();
         GradesSelection();
     }
 
@@ -124,14 +126,11 @@ public class Grade extends AppCompatActivity {
 //        });
     }
 
-    public void GradesList(String username, String schoolyear, String semester) {
+    public void updateGrades() {
         /* Courses list */
         JSONObject jsonParams = new JSONObject();
         try {
             jsonParams.put("secret_key", "secret_key");
-            jsonParams.put("username", username);
-            jsonParams.put("schoolyear", schoolyear);
-            jsonParams.put("semester", semester);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -139,21 +138,17 @@ public class Grade extends AppCompatActivity {
             @Override
             public void success(String response, JSONObject jsonObject) {
                 if (response.equals("success")) {
+                    database.gradesDao().deleteAll();
                     try {
                         JSONArray jsonArray = jsonObject.getJSONArray("results");
-                        lstgrade.clear();
                         for(int n = 0; n < jsonArray.length(); n++)
                         {
                             JSONObject object = jsonArray.getJSONObject(n);
-                            lstgrade.add(new Grade_Item(Integer.parseInt(object.getString("entryid")),object.getString("subject"),object.getString("faculty"),object.getString("prelim"),object.getString("midterm"),object.getString("finals"),object.getString("finalgrades"),object.getString("average"),object.getString("status")));
+                            database.gradesDao().insert(new Grades(object.getString("studentid"),object.getString("subject"),object.getString("faculty"),object.getString("prelim"),object.getString("midterm"),object.getString("finals"),object.getString("finalgrades"),object.getString("average"),object.getString("status")));
                         }
                     } catch (JSONException e) {
                         //todo
                     }
-                    RecyclerView list = findViewById(R.id.grade_holder);
-                    Grade_Adapter adapter = new Grade_Adapter(getApplicationContext(), lstgrade);
-                    list.setLayoutManager(new GridLayoutManager(getApplicationContext(), 1));
-                    list.setAdapter(adapter);
                 }
             }
         });
