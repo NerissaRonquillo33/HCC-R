@@ -213,28 +213,26 @@ public class StudentInfo extends AppCompatActivity {
                         bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImageUri);
                         ByteArrayOutputStream stream = new ByteArrayOutputStream();
                         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-//                        byte[] byteArray = stream.toByteArray();
-//                        String strBase64= Base64.encodeToString(byteArray, 0);
-//                        Log.i("Base64", strBase64);
-//                        JSONObject jsonParams = new JSONObject();
-//                        try {
-//                            jsonParams.put("secret_key", "secret_key");
-//                            jsonParams.put("username", username);
-//                            jsonParams.put("image_base64", strBase64);
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//                        new HttpRequest().doPost(StudentInfo.this, getResources().getString(R.string.server_path) + "upload.php", jsonParams, new RequestCallback() {
-//                            @Override
-//                            public void success(String response, JSONObject jsonObject) {
-//                                if (response.equals("success")) {
-//                                    //todo
-//                                    info();
-//                                }
-//                            }
-//                        });
-                        database.studentsDao().updateImage(username, stream.toByteArray());
-                        info();
+                        byte[] byteArray = stream.toByteArray();
+                        String strBase64= Base64.encodeToString(byteArray, 0);
+                        JSONObject jsonParams = new JSONObject();
+                        try {
+                            jsonParams.put("secret_key", "secret_key");
+                            jsonParams.put("username", username);
+                            jsonParams.put("image_base64", strBase64);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        new HttpRequest().doPost(StudentInfo.this, getResources().getString(R.string.server_path) + "upload.php", jsonParams, new RequestCallback() {
+                            @Override
+                            public void success(String response, JSONObject jsonObject) {
+                                if (response.equals("success")) {
+                                    //todo
+                                    database.studentsDao().updateImage(username, stream.toByteArray());
+                                    info();
+                                }
+                            }
+                        });
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

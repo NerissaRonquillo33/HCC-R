@@ -22,6 +22,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 
@@ -81,20 +82,23 @@ public class Bill extends AppCompatActivity {
     public void BillInfo() {
         Bills bills = database.billsDao().find(username);
         if (bills != null) {
-            tf.setText(bills.getTuitionfee());
-            lai.setText(bills.getLearninginstructional());
-            rf.setText(bills.getRegistrationfee());
-            cpf.setText(bills.getComputerprocsngfee());
-            gac.setText(bills.getGuidancecounseling());
-            sif.setText(bills.getSchoolidfee());
-            sh.setText(bills.getStudenthand());
-            sp.setText(bills.getSchoolpublication());
-            ins.setText(bills.getInsurance());
-            ta.setText(bills.getTotalasses());
-            ds.setText(bills.getLessdiscountscholar());
-            na.setText(bills.getNetassessed());
-            ccp.setText(bills.getLesscashpayment());
-            ob.setText(bills.getOutstandingbal());
+            DecimalFormat decimalFormat = new DecimalFormat("#.##");
+            decimalFormat.setGroupingUsed(true);
+            decimalFormat.setGroupingSize(3);
+            tf.setText(decimalFormat.format(Integer.parseInt(bills.getTuitionfee())));
+            lai.setText(decimalFormat.format(Integer.parseInt(bills.getLearninginstructional())));
+            rf.setText(decimalFormat.format(Integer.parseInt(bills.getRegistrationfee())));
+            cpf.setText(decimalFormat.format(Integer.parseInt(bills.getComputerprocsngfee())));
+            gac.setText(decimalFormat.format(Integer.parseInt(bills.getGuidancecounseling())));
+            sif.setText(decimalFormat.format(Integer.parseInt(bills.getSchoolidfee())));
+            sh.setText(decimalFormat.format(Integer.parseInt(bills.getStudenthand())));
+            sp.setText(decimalFormat.format(Integer.parseInt(bills.getSchoolpublication())));
+            ins.setText(decimalFormat.format(Integer.parseInt(bills.getInsurance())));
+            ta.setText(decimalFormat.format(Integer.parseInt(bills.getTotalasses())));
+            ds.setText(decimalFormat.format(Integer.parseInt(bills.getLessdiscountscholar())));
+            na.setText(decimalFormat.format(Integer.parseInt(bills.getNetassessed())));
+            ccp.setText(decimalFormat.format(Integer.parseInt(bills.getLesscashpayment())));
+            ob.setText(decimalFormat.format(Integer.parseInt(bills.getOutstandingbal())));
         }
     }
 

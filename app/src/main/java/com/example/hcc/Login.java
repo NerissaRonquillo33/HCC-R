@@ -1,8 +1,10 @@
 package com.example.hcc;
 
 import android.content.Intent;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,8 +35,8 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-        EditText username = findViewById(R.id.username);
-        EditText password = findViewById(R.id.password);
+        TextInputEditText username = findViewById(R.id.username);
+        TextInputEditText password = findViewById(R.id.password);
         denied = findViewById(R.id.status);
         TextView register = findViewById(R.id.register);
         Button login = findViewById(R.id.login);
@@ -87,7 +89,7 @@ public class Login extends AppCompatActivity {
                         for(int n = 0; n < jsonArray.length(); n++)
                         {
                             JSONObject object = jsonArray.getJSONObject(n);
-                            database.studentsDao().insert(new Students(object.getString("studentid"),object.getString("password"),object.getString("lastname"),object.getString("firstname"),object.getString("birthday"),object.getString("course"),object.getString("contact"),object.getString("address"),new byte[0]));
+                            database.studentsDao().insert(new Students(object.getString("studentid"),object.getString("password"),object.getString("lastname"),object.getString("firstname"),object.getString("birthday"),object.getString("course"),object.getString("contact"),object.getString("address"), Base64.decode(object.getString("image"), Base64.DEFAULT)));
                         }
                     } catch (JSONException e) {
                         //todo

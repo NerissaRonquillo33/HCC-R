@@ -36,29 +36,43 @@
                 android:background="@drawable/background">
 
                 <ImageView
-                    android:src="@drawable/login_logo"
+                    android:src="@drawable/log"
                     android:layout_gravity="center_vertical"
                     android:layout_width="wrap_content"
+                    android:padding="60dp"
                     android:layout_height="wrap_content"/>
-                <EditText
-                    android:id="@+id/username"
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/etUsernameLayout"
                     android:layout_width="match_parent"
-                    android:layout_gravity="center_vertical"
-                    android:background="@drawable/edittext_border"
-                    android:layout_margin="16dp"
-                    android:padding="10dp"
-                    android:hint="Username"
-                    android:layout_height="wrap_content"/>
-                <EditText
-                    android:id="@+id/password"
+                    android:layout_height="wrap_content"
+                    app:passwordToggleEnabled="true">
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/username"
+                        android:layout_width="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/edittext_border"
+                        android:layout_margin="16dp"
+                        android:padding="10dp"
+                        android:hint="Username"
+                        android:layout_height="wrap_content"/>
+                </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/etPasswordLayout"
                     android:layout_width="match_parent"
-                    android:layout_gravity="center_vertical"
-                    android:background="@drawable/edittext_border"
-                    android:layout_margin="16dp"
-                    android:padding="10dp"
-                    android:inputType="textPassword"
-                    android:hint="Password"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    app:passwordToggleEnabled="true">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/password"
+                        android:layout_width="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/edittext_border"
+                        android:layout_margin="16dp"
+                        android:padding="10dp"
+                        android:inputType="textPassword"
+                        android:hint="Password"
+                        android:layout_height="wrap_content"/>
+                </android.support.design.widget.TextInputLayout>
                 <TextView
                     android:id="@+id/status"
                     android:text="Access denied!"
