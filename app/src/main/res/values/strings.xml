@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">HCC</string>
     <string name="server_path">http://192.168.1.8/api/</string>
-    <string name="server_path2">http://192.168.100.129/api/</string>
+    <string name="server_path2">http://192.168.1.8/api/</string>
 </resources>
