@@ -78,7 +78,7 @@ public class Grade extends AppCompatActivity {
         List<Grades> grades = database.gradesDao().find(username);
         for(int n = 0; n < grades.size(); n++)
         {
-            lstgrade.add(new Grade_Item(grades.get(n).getId(),grades.get(n).getSubject(),grades.get(n).getFaculty(),grades.get(n).getPrelim(),grades.get(n).getMidterm(),grades.get(n).getFinals(),grades.get(n).getFinalgrades(),grades.get(n).getAverage(),grades.get(n).getStatus()));
+            lstgrade.add(new Grade_Item(grades.get(n).getId(),grades.get(n).getSubject(),grades.get(n).getFaculty(),grades.get(n).getPrelim(),grades.get(n).getMidterm(),grades.get(n).getFinals(),grades.get(n).getFinalgrades(),grades.get(n).getAverage(),grades.get(n).getStatus(),grades.get(n).getSchoolyear(),grades.get(n).getSemester()));
         }
         RecyclerView list = findViewById(R.id.grade_holder);
         Grade_Adapter adapter = new Grade_Adapter(getApplicationContext(), lstgrade);
@@ -144,7 +144,7 @@ public class Grade extends AppCompatActivity {
                         for(int n = 0; n < jsonArray.length(); n++)
                         {
                             JSONObject object = jsonArray.getJSONObject(n);
-                            database.gradesDao().insert(new Grades(object.getString("studentid"),object.getString("subject"),object.getString("faculty"),object.getString("prelim"),object.getString("midterm"),object.getString("finals"),object.getString("finalgrades"),object.getString("average"),object.getString("status")));
+                            database.gradesDao().insert(new Grades(object.getString("studentid"),object.getString("subject"),object.getString("faculty"),object.getString("prelim"),object.getString("midterm"),object.getString("finals"),object.getString("finalgrades"),object.getString("average"),object.getString("status"),object.getString("schoolyear"),object.getString("semester")));
                         }
                     } catch (JSONException e) {
                         //todo

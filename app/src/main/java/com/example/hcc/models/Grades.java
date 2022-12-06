@@ -26,8 +26,12 @@ public class Grades {
     private String average;
     @ColumnInfo(name = "status")
     private String status;
+    @ColumnInfo(name = "schoolyear")
+    private String schoolyear;
+    @ColumnInfo(name = "semester")
+    private String semester;
 
-    public Grades(String username, String subject, String faculty, String prelim, String midterm, String finals, String finalgrades, String average, String status) {
+    public Grades(String username, String subject, String faculty, String prelim, String midterm, String finals, String finalgrades, String average, String status, String schoolyear, String semester) {
         this.username = username;
         this.subject = subject;
         this.faculty = faculty;
@@ -37,6 +41,24 @@ public class Grades {
         this.finalgrades = finalgrades;
         this.average = average;
         this.status = status;
+        this.schoolyear = schoolyear;
+        this.semester = semester;
+    }
+
+    public String getSchoolyear() {
+        return schoolyear;
+    }
+
+    public void setSchoolyear(String schoolyear) {
+        this.schoolyear = schoolyear;
+    }
+
+    public String getSemester() {
+        return semester;
+    }
+
+    public void setSemester(String semester) {
+        this.semester = semester;
     }
 
     public int getId() {

@@ -10,8 +10,10 @@ public class Grade_Item {
     private String final_grade;
     private String average;
     private String status;
+    private String schoolyear;
+    private String semester;
 
-    public Grade_Item(int id, String subject, String prof, String prelim, String midterm, String finals, String final_grade, String average, String status) {
+    public Grade_Item(int id, String subject, String prof, String prelim, String midterm, String finals, String final_grade, String average, String status, String schoolyear, String semester) {
         this.id = id;
         this.subject = subject;
         this.prof = prof;
@@ -21,6 +23,24 @@ public class Grade_Item {
         this.final_grade = final_grade;
         this.average = average;
         this.status = status;
+        this.schoolyear = schoolyear;
+        this.semester = semester;
+    }
+
+    public String getSchoolyear() {
+        return schoolyear;
+    }
+
+    public void setSchoolyear(String schoolyear) {
+        this.schoolyear = schoolyear;
+    }
+
+    public String getSemester() {
+        return semester;
+    }
+
+    public void setSemester(String semester) {
+        this.semester = semester;
     }
 
     public void setId(int id) {

@@ -171,7 +171,7 @@ public class Admin extends AppCompatActivity {
                             String line = reader.readLine();
                             String[] grades = line.split(",");
                             if (grades.length == 9) {
-                                database.gradesDao().insert(new Grades(grades[0],grades[1],grades[2],grades[3],grades[4],grades[5],grades[6],grades[7],grades[8]));
+                                database.gradesDao().insert(new Grades(grades[0],grades[1],grades[2],grades[3],grades[4],grades[5],grades[6],grades[7],grades[8],grades[9],grades[10]));
                             }
                         }
                     }catch (FileNotFoundException e) {
