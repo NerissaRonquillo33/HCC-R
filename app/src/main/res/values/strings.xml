@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">HCC</string>
     <string name="server_path">https://sisholycrosscollege.info/api/</string>
-    <string name="server_path2">http://192.168.1.8/api/</string>
+    <string name="server_path2">https://holycross.schedulems.info/student/api/schedule/get/</string>
 </resources>

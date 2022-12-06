@@ -69,16 +69,44 @@ public class Course extends AppCompatActivity {
         JSONObject jsonParams = new JSONObject();
         try {
             jsonParams.put("secret_key", "secret_key");
+            jsonParams.put("username", username);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        new HttpRequest().doPost(Course.this, getResources().getString(R.string.server_path2) + "courses.php", jsonParams, new RequestCallback() {
+        new HttpRequest().doPost(Course.this, getResources().getString(R.string.server_path) + "schedules.php", jsonParams, new RequestCallback() {
             @Override
             public void success(String response, JSONObject jsonObject) {
                 if (response.equals("success")) {
                     database.schedulesDao().deleteAll();
                     try {
                         JSONArray jsonArray = jsonObject.getJSONArray("results");
+                        for(int n = 0; n < jsonArray.length(); n++)
+                        {
+                            JSONObject object = jsonArray.getJSONObject(n);
+                            database.schedulesDao().insert(new Schedules(object.getString("studentid"),object.getString("subject"),object.getString("course"),object.getString("days"),object.getString("time"),object.getString("room")));
+                        }
+                    } catch (JSONException e) {
+                        //todo
+                    }
+                }
+            }
+        });
+    }
+    public void updateOneSchedule(String username) {
+        /* Courses list */
+        JSONObject jsonParams = new JSONObject();
+        try {
+            jsonParams.put("secret_key", "secret_key");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        new HttpRequest().doGet(Course.this, getResources().getString(R.string.server_path2) + username, new RequestCallback() {
+            @Override
+            public void success(String response, JSONObject jsonObject) {
+                if (response.equals("success")) {
+                    database.schedulesDao().deleteAll();
+                    try {
+                        JSONArray jsonArray = jsonObject.getJSONArray("students");
                         for(int n = 0; n < jsonArray.length(); n++)
                         {
                             JSONObject object = jsonArray.getJSONObject(n);
