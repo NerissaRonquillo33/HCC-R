@@ -24,6 +24,6 @@ public interface SchedulesDao {
     void deleteOne(String username);
     @Query("SELECT * FROM schedules")
     List<Schedules> all();
-    @Query("SELECT * FROM schedules WHERE username = :username")
+    @Query("SELECT * FROM schedules WHERE username = :username ORDER BY CASE WHEN days = 'Sunday' THEN 1 WHEN days = 'Monday' THEN 2 WHEN days = 'Tuesday' THEN 3 WHEN days = 'Wednesday' THEN 4 WHEN days = 'Thursday' THEN 5 WHEN days = 'Friday' THEN 6 WHEN days = 'Saturday' THEN 7 END ASC")
     List<Schedules> find(String username);
 }

@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:background="@drawable/background"
     android:weightSum="10"
-    tools:context=".Admin">
+    tools:context=".Login">
 
     <RelativeLayout
         android:layout_weight="2"
@@ -33,8 +33,57 @@
         android:layout_height="0dp"
         android:padding="14dp">
 
+<!--        <android.support.v7.widget.CardView-->
+<!--            android:id="@+id/announcement"-->
+<!--            android:foreground="?android:selectableItemBackground"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_columnWeight="1"-->
+<!--            android:layout_rowWeight="1"-->
+<!--            android:layout_marginBottom="16dp"-->
+<!--            android:layout_marginLeft="16dp"-->
+<!--            android:layout_marginRight="16dp"-->
+<!--            app:cardElevation="8dp"-->
+<!--            app:cardCornerRadius="8dp">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_gravity="center_horizontal|center_vertical"-->
+<!--                android:layout_margin="16dp"-->
+<!--                android:orientation="vertical"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content">-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_gravity="center_vertical|center_horizontal"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content">-->
+<!--                    <ImageView-->
+<!--                        android:src="@drawable/gear_solid"-->
+<!--                        android:layout_gravity="center_horizontal|bottom"-->
+<!--                        android:layout_width="20dp"-->
+<!--                        android:paddingRight="1dp"-->
+<!--                        android:layout_height="20dp"/>-->
+<!--                    <ImageView-->
+<!--                        android:src="@drawable/bullhorn_solid"-->
+<!--                        android:layout_gravity="center_horizontal|center_vertical"-->
+<!--                        android:layout_width="50dp"-->
+<!--                        android:layout_height="50dp"/>-->
+<!--                </LinearLayout>-->
+<!--                <TextView-->
+<!--                    android:text="Announcement"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="24sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"/>-->
+
+<!--            </LinearLayout>-->
+
+<!--        </android.support.v7.widget.CardView>-->
         <android.support.v7.widget.CardView
-            android:id="@+id/bills"
+            android:id="@+id/bill"
             android:foreground="?android:selectableItemBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -53,13 +102,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-                <ImageView
-                    android:src="@drawable/file_invoice_solid"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"/>
+                <LinearLayout
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:src="@drawable/gear_solid"
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:layout_width="20dp"
+                        android:paddingRight="1dp"
+                        android:layout_height="20dp"/>
+                    <ImageView
+                        android:src="@drawable/file_invoice_solid"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"/>
+                </LinearLayout>
                 <TextView
-                    android:text="Import Bills"
+                    android:text="Billing"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="24sp"
@@ -70,9 +131,109 @@
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
+
+<!--        <android.support.v7.widget.CardView-->
+<!--            android:id="@+id/grade"-->
+<!--            android:foreground="?android:selectableItemBackground"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_columnWeight="1"-->
+<!--            android:layout_rowWeight="1"-->
+<!--            android:layout_marginBottom="16dp"-->
+<!--            android:layout_marginLeft="16dp"-->
+<!--            android:layout_marginRight="16dp"-->
+<!--            app:cardElevation="8dp"-->
+<!--            app:cardCornerRadius="8dp">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_gravity="center_horizontal|center_vertical"-->
+<!--                android:layout_margin="16dp"-->
+<!--                android:orientation="vertical"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content">-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_gravity="center_vertical|center_horizontal"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content">-->
+<!--                    <ImageView-->
+<!--                        android:src="@drawable/gear_solid"-->
+<!--                        android:layout_gravity="center_horizontal|bottom"-->
+<!--                        android:layout_width="20dp"-->
+<!--                        android:paddingRight="1dp"-->
+<!--                        android:layout_height="20dp"/>-->
+<!--                    <ImageView-->
+<!--                        android:src="@drawable/chart_simple_solid"-->
+<!--                        android:layout_gravity="center_horizontal|center_vertical"-->
+<!--                        android:layout_width="50dp"-->
+<!--                        android:layout_height="50dp"/>-->
+<!--                </LinearLayout>-->
+<!--                <TextView-->
+<!--                    android:text="Grades"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="24sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"/>-->
+
+<!--            </LinearLayout>-->
+
+<!--        </android.support.v7.widget.CardView>-->
+<!--        <android.support.v7.widget.CardView-->
+<!--            android:foreground="?android:selectableItemBackground"-->
+<!--            android:id="@+id/courses"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_columnWeight="1"-->
+<!--            android:layout_rowWeight="1"-->
+<!--            android:layout_marginBottom="16dp"-->
+<!--            android:layout_marginLeft="16dp"-->
+<!--            android:layout_marginRight="16dp"-->
+<!--            app:cardElevation="8dp"-->
+<!--            app:cardCornerRadius="8dp">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_gravity="center_horizontal|center_vertical"-->
+<!--                android:layout_margin="16dp"-->
+<!--                android:orientation="vertical"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content">-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_gravity="center_vertical|center_horizontal"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content">-->
+<!--                    <ImageView-->
+<!--                        android:src="@drawable/gear_solid"-->
+<!--                        android:layout_gravity="center_horizontal|bottom"-->
+<!--                        android:layout_width="20dp"-->
+<!--                        android:paddingRight="1dp"-->
+<!--                        android:layout_height="20dp"/>-->
+<!--                    <ImageView-->
+<!--                        android:src="@drawable/calendar_days_solid"-->
+<!--                        android:layout_gravity="center_horizontal|center_vertical"-->
+<!--                        android:layout_width="50dp"-->
+<!--                        android:layout_height="50dp"/>-->
+<!--                </LinearLayout>-->
+<!--                <TextView-->
+<!--                    android:text="Schedules"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="24sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"/>-->
+
+<!--            </LinearLayout>-->
+
+<!--        </android.support.v7.widget.CardView>-->
+
         <android.support.v7.widget.CardView
+            android:foreground="?android:selectableItemBackground"
             android:id="@+id/students"
-            android:foreground="?android:selectableItemBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_columnWeight="1"
@@ -90,13 +251,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-                <ImageView
-                    android:src="@drawable/user_solid"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"/>
+                <LinearLayout
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:src="@drawable/gear_solid"
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:layout_width="20dp"
+                        android:paddingRight="1dp"
+                        android:layout_height="20dp"/>
+                    <ImageView
+                        android:src="@drawable/user_solid"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"/>
+                </LinearLayout>
                 <TextView
-                    android:text="Import Students"
+                    android:text="Students"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="24sp"
@@ -108,8 +281,8 @@
 
         </android.support.v7.widget.CardView>
         <android.support.v7.widget.CardView
-            android:id="@+id/schedules"
             android:foreground="?android:selectableItemBackground"
+            android:id="@+id/about"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_columnWeight="1"
@@ -127,89 +300,63 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-                <ImageView
-                    android:src="@drawable/calendar_days_solid"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"/>
-                <TextView
-                    android:text="Import Schedules"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
+                <LinearLayout
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:orientation="horizontal"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
-        <android.support.v7.widget.CardView
-            android:id="@+id/grades"
-            android:foreground="?android:selectableItemBackground"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:layout_marginBottom="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            app:cardElevation="8dp"
-            app:cardCornerRadius="8dp">
-
-            <LinearLayout
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_margin="16dp"
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:src="@drawable/chart_simple_solid"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"/>
-                <TextView
-                    android:text="Import Grades"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
-
-
-        <android.support.v7.widget.CardView
-            android:foreground="?android:selectableItemBackground"
-            android:id="@+id/aboutus"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:layout_marginBottom="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            app:cardElevation="8dp"
-            app:cardCornerRadius="8dp">
-
-            <LinearLayout
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_margin="16dp"
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:src="@drawable/address_card_solid"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"/>
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:src="@drawable/gear_solid"
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:layout_width="20dp"
+                        android:paddingRight="1dp"
+                        android:layout_height="20dp"/>
+                    <ImageView
+                        android:src="@drawable/address_card_solid"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"/>
+                </LinearLayout>
                 <TextView
                     android:text="About"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:id="@+id/schedule"
+            android:foreground="?android:selectableItemBackground"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:visibility="gone"
+            app:cardElevation="8dp"
+            app:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:src="@drawable/me_time"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:text="Schedule"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="24sp"

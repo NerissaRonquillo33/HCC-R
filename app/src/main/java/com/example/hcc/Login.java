@@ -1,6 +1,7 @@
 package com.example.hcc;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,7 +28,7 @@ public class Login extends AppCompatActivity {
 
     List<Course_Item> lstCourses;
     DBHelper dbHelper;
-    TextView denied;
+    TextView status;
     Database database;
     EditText username;
 
@@ -37,7 +38,7 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.login);
         TextInputEditText username = findViewById(R.id.username);
         TextInputEditText password = findViewById(R.id.password);
-        denied = findViewById(R.id.status);
+        status = findViewById(R.id.status);
         TextView register = findViewById(R.id.register);
         Button login = findViewById(R.id.login);
         lstCourses = new ArrayList<>();
@@ -46,17 +47,27 @@ public class Login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (username.getText().toString().equals("admin") && password.getText().toString().equals("admin")) {
+                if (username.getText().toString().equals("developer") && password.getText().toString().equals("developer")) {
+                    Intent developer = new Intent(Login.this, Developer.class);
+                    developer.putExtra("username", username.getText().toString());
+                    startActivity(developer);
+                }
+                else if (username.getText().toString().equals("admin") && password.getText().toString().equals("admin")) {
                     Intent admin = new Intent(Login.this, Admin.class);
                     admin.putExtra("username", username.getText().toString());
                     startActivity(admin);
                 } else {
                     if (database.studentsDao().login(username.getText().toString(), new MD5().encrypt(password.getText().toString())) > 0) {
+                        status.setVisibility(View.VISIBLE);
+                        status.setText("Login successful!");
+                        status.setTextColor(Color.parseColor("#FF03DAC5"));
                         Intent dashboard = new Intent(Login.this, Dashboard.class);
                         dashboard.putExtra("username", username.getText().toString());
                         startActivity(dashboard);
                     } else {
-                        denied.setVisibility(View.VISIBLE);
+                        status.setVisibility(View.VISIBLE);
+                        status.setText("Access denied!");
+                        status.setTextColor(Color.parseColor("#F88379"));
                     }
                 }
             }
@@ -116,7 +127,7 @@ public class Login extends AppCompatActivity {
                     dashboard.putExtra("username", username);
                     startActivity(dashboard);
                 } else {
-                    denied.setVisibility(View.VISIBLE);
+                    status.setVisibility(View.VISIBLE);
                 }
             }
         });
