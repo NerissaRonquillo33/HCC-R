@@ -23,7 +23,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Billing Details"
+            android:text="Insert User"
             android:textColor="@color/white"
             android:textSize="20sp"/>
         <ImageView
@@ -33,7 +33,8 @@
             android:layout_height="wrap_content"
             android:scaleType="fitEnd"
             android:layout_weight="1"
-            android:onClick="showMenuBill"/>
+            android:visibility="invisible"
+            android:onClick="showMenuBillInsert"/>
     </LinearLayout>
     <ProgressBar
         android:id="@+id/progressBar"
@@ -42,234 +43,201 @@
         android:visibility="gone"
         android:layout_height="match_parent" />
     <ScrollView
-        android:id="@+id/billdetails"
+        android:id="@+id/userdetails"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <TextView
-                android:id="@+id/studentname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Fullname"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:layout_marginTop="18dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
-                android:padding="10dp"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="DETAILS"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:layout_marginTop="18dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
-                android:padding="15dp"
-                android:textColor="#fff"
-                android:background="@color/label"/>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp">
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/tf"
+                    android:id="@+id/studentid"
                     android:layout_width="match_parent"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/edittext_border"
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
                     android:padding="10dp"
-                    android:hint="TUITION FEE"
+                    android:hint="STUDENT ID"
                     android:layout_height="wrap_content"/>
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/lai"
+                    android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/edittext_border"
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
                     android:padding="10dp"
-                    android:hint="LEARNING AND INSTRUCTIONAL"
+                    android:hint="PASSWORD"
                     android:layout_height="wrap_content"/>
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/rf"
+                    android:id="@+id/lastname"
                     android:layout_width="match_parent"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/edittext_border"
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
                     android:padding="10dp"
-                    android:hint="REGISTRATION FEE"
+                    android:hint="LASTNAME"
                     android:layout_height="wrap_content"/>
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/cpf"
+                    android:id="@+id/firstname"
                     android:layout_width="match_parent"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/edittext_border"
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
                     android:padding="10dp"
-                    android:hint="COMPUTER PROCESSING FEE"
+                    android:hint="FIRSTNAME"
                     android:layout_height="wrap_content"/>
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/gac"
+                    android:id="@+id/address"
                     android:layout_width="match_parent"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/edittext_border"
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
                     android:padding="10dp"
-                    android:hint="GUIDANCE AND COUNSELING"
+                    android:hint="ADDRESS"
                     android:layout_height="wrap_content"/>
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/sif"
+                    android:id="@+id/contact"
                     android:layout_width="match_parent"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/edittext_border"
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
                     android:padding="10dp"
-                    android:hint="SCHOOL ID FEE"
+                    android:hint="CONTACT"
                     android:layout_height="wrap_content"/>
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/sh"
+                    android:id="@+id/birthday"
                     android:layout_width="match_parent"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/edittext_border"
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
                     android:padding="10dp"
-                    android:hint="STUDENT HANDBOOK"
+                    android:hint="BIRTHDAY"
                     android:layout_height="wrap_content"/>
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/sp"
+                    android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/edittext_border"
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
                     android:padding="10dp"
-                    android:hint="SCHOOL PUBLICATION"
+                    android:hint="EMAIL"
                     android:layout_height="wrap_content"/>
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/ins"
+                    android:id="@+id/course"
                     android:layout_width="match_parent"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/edittext_border"
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
                     android:padding="10dp"
-                    android:hint="INSURANCE"
+                    android:hint="COURSE"
                     android:layout_height="wrap_content"/>
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/ta"
+                    android:id="@+id/year"
                     android:layout_width="match_parent"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/edittext_border"
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
                     android:padding="10dp"
-                    android:hint="TOTAL ASSESSMENT"
+                    android:hint="YEAR"
                     android:layout_height="wrap_content"/>
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/ds"
+                    android:id="@+id/section"
                     android:layout_width="match_parent"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/edittext_border"
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
                     android:padding="10dp"
-                    android:hint="(Less) Discount/Scholar"
+                    android:hint="SECTION"
                     android:layout_height="wrap_content"/>
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/na"
+                    android:id="@+id/role"
                     android:layout_width="match_parent"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/edittext_border"
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
                     android:padding="10dp"
-                    android:hint="NET ASSESSED"
+                    android:hint="ROLE"
                     android:layout_height="wrap_content"/>
             </android.support.design.widget.TextInputLayout>
-            <android.support.design.widget.TextInputLayout
+            <TextView
+                android:id="@+id/status"
+                android:text="a!"
+                android:textColor="@color/lit"
+                android:visibility="gone"
+                android:textStyle="bold"
+                android:padding="10dp"
+                android:textSize="16sp"
+                android:layout_margin="16dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/ccp"
-                    android:layout_width="match_parent"
-                    android:layout_gravity="center_vertical"
-                    android:background="@drawable/edittext_border"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:padding="10dp"
-                    android:hint="(Less) Cash/Cheque Payment"
-                    android:layout_height="wrap_content"/>
-            </android.support.design.widget.TextInputLayout>
-            <android.support.design.widget.TextInputLayout
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/insert"
+                android:background="@drawable/button_custom"
+                android:text="Insert"
+                android:layout_margin="16dp"
+                android:textColor="@color/white"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/ob"
-                    android:layout_width="match_parent"
-                    android:layout_gravity="center_vertical"
-                    android:background="@drawable/edittext_border"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginBottom="20dp"
-                    android:padding="10dp"
-                    android:hint="OUTSTANDING BALANCE"
-                    android:layout_height="wrap_content"/>
-            </android.support.design.widget.TextInputLayout>
+                android:layout_height="wrap_content"/>
         </LinearLayout>
     </ScrollView>
 

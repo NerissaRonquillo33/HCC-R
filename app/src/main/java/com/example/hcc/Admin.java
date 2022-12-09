@@ -2,15 +2,28 @@ package com.example.hcc;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
+import com.example.hcc.admin.About;
 import com.example.hcc.admin.Bill;
+import com.example.hcc.admin.Theme;
+import com.example.hcc.admin.User;
+import com.example.hcc.http_request.HttpRequest;
+import com.example.hcc.interfaces.RequestCallback;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class Admin extends AppCompatActivity {
     @Override
@@ -22,14 +35,42 @@ public class Admin extends AppCompatActivity {
         CardView bill = findViewById(R.id.bill);
 //        CardView grade = findViewById(R.id.grade);
 //        CardView courses = findViewById(R.id.courses);
-        CardView students = findViewById(R.id.students);
+        CardView users = findViewById(R.id.users);
         CardView about = findViewById(R.id.about);
+        CardView theme = findViewById(R.id.theme);
         String username = getIntent().getStringExtra("username");
+        theme();
         /* Bill */
         bill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent announce = new Intent(Admin.this, Bill.class);
+                announce.putExtra("username",username);
+                startActivity(announce);
+            }
+        });
+        /* Users */
+        users.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent announce = new Intent(Admin.this, User.class);
+                startActivity(announce);
+            }
+        });
+        /* About */
+        about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent announce = new Intent(Admin.this, About.class);
+                announce.putExtra("username",username);
+                startActivity(announce);
+            }
+        });
+        /* Theme */
+        theme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent announce = new Intent(Admin.this, Theme.class);
                 announce.putExtra("username",username);
                 startActivity(announce);
             }
@@ -65,6 +106,36 @@ public class Admin extends AppCompatActivity {
 
                 AlertDialog alert = builder.create();
                 alert.show();
+            }
+        });
+    }
+    public void theme() {
+        /* Courses list */
+        JSONObject jsonParams = new JSONObject();
+        try {
+            jsonParams.put("secret_key", "secret_key");
+            jsonParams.put("name", "theme");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        new HttpRequest().doPost(Admin.this, getResources().getString(R.string.server_path) + "settings.php", jsonParams, new RequestCallback() {
+            @Override
+            public void success(String response, JSONObject jsonObject) {
+                if (response.equals("success")) {
+                    try {
+                        String about = jsonObject.getString("value");
+                        if (jsonObject.getString("imageb64").length() > 300) {
+                            byte[] decodedString = Base64.decode(jsonObject.getString("imageb64"), Base64.DEFAULT);
+                            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                            BitmapDrawable bitmapDrawable = new BitmapDrawable(decodedByte);
+                            LinearLayout containerbackgroud = findViewById(R.id.containerbackgroud);
+                            containerbackgroud.setBackgroundDrawable(bitmapDrawable);
+                        }
+
+                    } catch (JSONException e) {
+                        //todo
+                    }
+                }
             }
         });
     }

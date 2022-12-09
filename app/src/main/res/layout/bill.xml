@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:id="@+id/containerbackgroud"
     android:background="@drawable/background">
 
     <LinearLayout
@@ -93,14 +94,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:padding="5dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:background="@drawable/table_border"/>
             <TextView
                 android:id="@+id/tf"
                 android:text="6000"
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:padding="5dp"/>
+                android:padding="5dp"
+                android:background="@drawable/table_border"/>
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
@@ -111,6 +114,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:padding="5dp"
+                android:background="@drawable/table_border"
                 android:textStyle="bold"/>
             <TextView
                 android:id="@+id/lai"
@@ -118,19 +122,22 @@
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:padding="5dp"/>
+                android:padding="5dp"
+                android:background="@drawable/table_border"/>
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
                 android:text="REGISTRATION FEE"
+                android:background="@drawable/table_border"
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:padding="5dp"
                 android:textStyle="bold"/>
             <TextView
+                android:background="@drawable/table_border"
                 android:id="@+id/rf"
                 android:text="3700"
                 android:textColor="@color/black"
@@ -142,6 +149,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
+                android:background="@drawable/table_border"
                 android:text="COMPUTER PROCESSING FEE"
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
@@ -149,6 +157,7 @@
                 android:padding="5dp"
                 android:textStyle="bold"/>
             <TextView
+                android:background="@drawable/table_border"
                 android:id="@+id/cpf"
                 android:text="3700"
                 android:textColor="@color/black"
@@ -160,6 +169,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
+                android:background="@drawable/table_border"
                 android:text="GUIDANCE AND COUNSELING"
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
@@ -167,6 +177,7 @@
                 android:padding="5dp"
                 android:textStyle="bold"/>
             <TextView
+                android:background="@drawable/table_border"
                 android:id="@+id/gac"
                 android:text="3700"
                 android:textColor="@color/black"
@@ -178,6 +189,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
+                android:background="@drawable/table_border"
                 android:text="SCHOOL ID FEE"
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
@@ -185,6 +197,7 @@
                 android:padding="5dp"
                 android:textStyle="bold"/>
             <TextView
+                android:background="@drawable/table_border"
                 android:id="@+id/sif"
                 android:text="3700"
                 android:textColor="@color/black"
@@ -196,6 +209,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
+                android:background="@drawable/table_border"
                 android:text="STUDENT HANDBOOK"
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
@@ -203,6 +217,7 @@
                 android:padding="5dp"
                 android:textStyle="bold"/>
             <TextView
+                android:background="@drawable/table_border"
                 android:id="@+id/sh"
                 android:text="3700"
                 android:textColor="@color/black"
@@ -214,6 +229,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
+                android:background="@drawable/table_border"
                 android:text="SCHOOL PUBLICATION"
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
@@ -221,6 +237,7 @@
                 android:padding="5dp"
                 android:textStyle="bold"/>
             <TextView
+                android:background="@drawable/table_border"
                 android:id="@+id/sp"
                 android:text="3700"
                 android:textColor="@color/black"
@@ -232,6 +249,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
+                android:background="@drawable/table_border"
                 android:text="INSURANCE"
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
@@ -239,6 +257,7 @@
                 android:padding="5dp"
                 android:textStyle="bold"/>
             <TextView
+                android:background="@drawable/table_border"
                 android:id="@+id/ins"
                 android:text="3700"
                 android:textColor="@color/black"
@@ -255,6 +274,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
+                android:background="@drawable/table_border"
                 android:text="TOTAL ASSESSMENT"
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
@@ -262,6 +282,7 @@
                 android:padding="5dp"
                 android:textStyle="bold"/>
             <TextView
+                android:background="@drawable/table_border"
                 android:id="@+id/ta"
                 android:text="3700"
                 android:textColor="@color/black"
@@ -273,6 +294,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
+                android:background="@drawable/table_border"
                 android:text="(Less) Discount/Scholar"
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
@@ -280,6 +302,7 @@
                 android:padding="5dp"
                 android:textStyle="bold"/>
             <TextView
+                android:background="@drawable/table_border"
                 android:id="@+id/ds"
                 android:text="3700"
                 android:textColor="@color/black"
@@ -291,6 +314,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
+                android:background="@drawable/table_border"
                 android:text="NET ASSESSED"
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
@@ -298,6 +322,7 @@
                 android:padding="5dp"
                 android:textStyle="bold"/>
             <TextView
+                android:background="@drawable/table_border"
                 android:id="@+id/na"
                 android:text="3700"
                 android:textColor="@color/black"
@@ -309,6 +334,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
+                android:background="@drawable/table_border"
                 android:text="(Less) Cash/Cheque Payment"
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
@@ -316,6 +342,7 @@
                 android:padding="5dp"
                 android:textStyle="bold"/>
             <TextView
+                android:background="@drawable/table_border"
                 android:id="@+id/ccp"
                 android:text="3700"
                 android:textColor="@color/black"

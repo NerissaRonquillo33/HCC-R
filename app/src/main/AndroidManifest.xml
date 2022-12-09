@@ -55,6 +55,11 @@
         <activity android:name=".admin.Bill" />
         <activity android:name=".admin.Bill_Details" />
         <activity android:name=".admin.Bill_Insert" />
+        <activity android:name=".admin.User" />
+        <activity android:name=".admin.User_Details" />
+        <activity android:name=".admin.User_Insert" />
+        <activity android:name=".admin.About" />
+        <activity android:name=".admin.Theme" />
     </application>
 
 </manifest>

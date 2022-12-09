@@ -2,29 +2,44 @@ package com.example.hcc;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.example.hcc.admin.User;
+import com.example.hcc.admin.User_Adapter;
+import com.example.hcc.admin.User_Item;
 import com.example.hcc.http_request.HttpRequest;
 import com.example.hcc.interfaces.RequestCallback;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Dashboard extends AppCompatActivity {
+    LinearLayout containerbackground;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +52,7 @@ public class Dashboard extends AppCompatActivity {
         CardView bill = findViewById(R.id.bill);
         CardView grade = findViewById(R.id.grade);
         CardView announcement = findViewById(R.id.announcement);
+        containerbackground = findViewById(R.id.containerbackgroud);
         String username = getIntent().getStringExtra("username");
         /* Announcement */
         announcement.setOnClickListener(new View.OnClickListener() {
@@ -96,7 +112,7 @@ public class Dashboard extends AppCompatActivity {
         aboutus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                about();
+                updateAbout();
             }
         });
         /* Logout */
@@ -132,6 +148,7 @@ public class Dashboard extends AppCompatActivity {
                 alert.show();
             }
         });
+        theme();
     }
 
     public void about() {
@@ -139,6 +156,7 @@ public class Dashboard extends AppCompatActivity {
         AlertDialog alertDialog;
         View customView = getLayoutInflater().inflate( R.layout.about, null);
         Button close = customView.findViewById(R.id.close);
+        TextView abouttext = customView.findViewById(R.id.abouttext);
         builder.setView(customView);
         alertDialog = builder.create();
         close.setOnClickListener(new View.OnClickListener() {
@@ -148,5 +166,89 @@ public class Dashboard extends AppCompatActivity {
             }
         });
         alertDialog.show();
+    }
+
+    public void updateAbout() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(Dashboard.this);
+        AlertDialog alertDialog;
+        View customView = getLayoutInflater().inflate( R.layout.about, null);
+        Button close = customView.findViewById(R.id.close);
+        TextView abouttext = customView.findViewById(R.id.abouttext);
+        ImageView aboutlogo = customView.findViewById(R.id.aboutlogo);
+        ProgressBar progressBar = customView.findViewById(R.id.progressBar);
+        ScrollView aboutcontainer = customView.findViewById(R.id.aboutcontainer);
+        progressBar.setVisibility(View.VISIBLE);
+        aboutcontainer.setVisibility(View.GONE);
+        builder.setView(customView);
+        alertDialog = builder.create();
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog.dismiss();
+            }
+        });
+        alertDialog.show();
+        /* Courses list */
+        JSONObject jsonParams = new JSONObject();
+        try {
+            jsonParams.put("secret_key", "secret_key");
+            jsonParams.put("name", "about");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        new HttpRequest().doPost(Dashboard.this, getResources().getString(R.string.server_path) + "settings.php", jsonParams, new RequestCallback() {
+            @Override
+            public void success(String response, JSONObject jsonObject) {
+                Log.i("aaaaaa", response);
+                if (response.equals("success")) {
+                    try {
+                        String about = jsonObject.getString("value");
+                        if (jsonObject.getString("imageb64").length() > 300) {
+                            byte[] decodedString = Base64.decode(jsonObject.getString("imageb64"), Base64.DEFAULT);
+                            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                            aboutlogo.setImageBitmap(decodedByte);
+                            aboutlogo.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                        }
+                        abouttext.setText(about.replaceAll("\\\\n","\n"));
+                        progressBar.setVisibility(View.GONE);
+                        aboutcontainer.setVisibility(View.VISIBLE);
+                    } catch (JSONException e) {
+                        //todo
+                        Log.i("aaaaaa", e.toString());
+                    }
+                }
+            }
+        });
+    }
+    public void theme() {
+        /* Courses list */
+        JSONObject jsonParams = new JSONObject();
+        try {
+            jsonParams.put("secret_key", "secret_key");
+            jsonParams.put("name", "theme");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        new HttpRequest().doPost(Dashboard.this, getResources().getString(R.string.server_path) + "settings.php", jsonParams, new RequestCallback() {
+            @Override
+            public void success(String response, JSONObject jsonObject) {
+                Log.i("aaaaaa", response);
+                if (response.equals("success")) {
+                    try {
+                        String about = jsonObject.getString("value");
+                        if (jsonObject.getString("imageb64").length() > 300) {
+                            byte[] decodedString = Base64.decode(jsonObject.getString("imageb64"), Base64.DEFAULT);
+                            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                            BitmapDrawable bitmapDrawable = new BitmapDrawable(decodedByte);
+                            containerbackground.setBackgroundDrawable(bitmapDrawable);
+                        }
+
+                    } catch (JSONException e) {
+                        //todo
+                        Log.i("aaaaaa", e.toString());
+                    }
+                }
+            }
+        });
     }
 }

@@ -1,16 +1,21 @@
 package com.example.hcc;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import com.example.hcc.abstracts.Database;
@@ -53,6 +58,7 @@ public class Grade extends AppCompatActivity {
 //        dbHelper = new DBHelper(this, lstgrade);
         username = getIntent().getStringExtra("username");
         database = Database.getInstance(Grade.this);
+        theme();
         /* Back to main */
         prev.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,6 +154,38 @@ public class Grade extends AppCompatActivity {
                         }
                     } catch (JSONException e) {
                         //todo
+                    }
+                }
+            }
+        });
+    }
+    public void theme() {
+        /* Courses list */
+        JSONObject jsonParams = new JSONObject();
+        try {
+            jsonParams.put("secret_key", "secret_key");
+            jsonParams.put("name", "theme");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        new HttpRequest().doPost(Grade.this, getResources().getString(R.string.server_path) + "settings.php", jsonParams, new RequestCallback() {
+            @Override
+            public void success(String response, JSONObject jsonObject) {
+                Log.i("aaaaaa", response);
+                if (response.equals("success")) {
+                    try {
+                        String about = jsonObject.getString("value");
+                        if (jsonObject.getString("imageb64").length() > 300) {
+                            byte[] decodedString = Base64.decode(jsonObject.getString("imageb64"), Base64.DEFAULT);
+                            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                            BitmapDrawable bitmapDrawable = new BitmapDrawable(decodedByte);
+                            LinearLayout containerbackgroud = findViewById(R.id.containerbackgroud);
+                            containerbackgroud.setBackgroundDrawable(bitmapDrawable);
+                        }
+
+                    } catch (JSONException e) {
+                        //todo
+                        Log.i("aaaaaa", e.toString());
                     }
                 }
             }

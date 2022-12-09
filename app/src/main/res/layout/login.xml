@@ -7,6 +7,7 @@
     android:orientation="vertical"
     android:background="@drawable/bg"
     android:weightSum="10"
+    android:id="@+id/containerbackgroud"
     tools:context=".Login">
 
     <GridLayout
@@ -28,6 +29,7 @@
             app:cardCornerRadius="8dp">
 
             <LinearLayout
+                android:id="@+id/background"
                 android:layout_gravity="top"
                 android:layout_margin="16dp"
                 android:orientation="vertical"
