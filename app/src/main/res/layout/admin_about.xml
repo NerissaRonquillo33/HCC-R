@@ -56,11 +56,18 @@
                 android:padding="15dp"
                 android:textColor="#fff"
                 android:background="@color/label"/>
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_margin="16dp"
+                android:layout_height="300dp"/>
             <Button
                 android:id="@+id/uploadpic"
                 android:background="@drawable/button_custom"
                 android:text="Select a file"
-                android:layout_margin="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:textColor="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>

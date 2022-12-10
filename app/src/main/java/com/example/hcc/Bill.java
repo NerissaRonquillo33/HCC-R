@@ -3,6 +3,7 @@ package com.example.hcc;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -47,14 +48,16 @@ public class Bill extends AppCompatActivity {
     TextView na;
     TextView ccp;
     TextView ob;
+    TextView nameofstudent;
     Database database;
-    String username;
+    String username,role,studentname;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bill);
         ImageView prev = findViewById(R.id.back2main);
+        nameofstudent = findViewById(R.id.nameofstudent);
         tf = findViewById(R.id.tf);
         lai = findViewById(R.id.lai);
         rf = findViewById(R.id.rf);
@@ -71,16 +74,28 @@ public class Bill extends AppCompatActivity {
         ob = findViewById(R.id.ob);
         database = Database.getInstance(Bill.this);
         username = getIntent().getStringExtra("username");
+        role = getIntent().getStringExtra("role");
+        studentname = getIntent().getStringExtra("nameofstudent");
+        if (role.equals("parent") && studentname != null) {
+            nameofstudent.setText(studentname);
+            nameofstudent.setVisibility(View.VISIBLE);
+        }
         theme();
         /* Back to main */
         prev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent dashboard = new Intent(Bill.this, Dashboard.class);
+                if (role != null && role.equals("parent")) {
+                    dashboard = new Intent(Bill.this, Parent.class);
+                }
                 dashboard.putExtra("username",username);
+                dashboard.putExtra("role",role);
+                dashboard.putExtra("nameofstudent",studentname);
                 startActivity(dashboard);
             }
         });
+        ob.setTextColor(Color.parseColor("#FF0000"));
         updateBilling();
         BillInfo();
     }
@@ -105,6 +120,9 @@ public class Bill extends AppCompatActivity {
             na.setText(decimalFormat.format(Integer.parseInt(bills.getNetassessed())));
             ccp.setText(decimalFormat.format(Integer.parseInt(bills.getLesscashpayment())));
             ob.setText(decimalFormat.format(Integer.parseInt(bills.getOutstandingbal())));
+            if (Integer.parseInt(bills.getOutstandingbal()) <= 0) {
+                ob.setTextColor(Color.parseColor("#4E6EA9"));
+            }
         }
     }
 

@@ -30,53 +30,39 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class User_Insert extends AppCompatActivity {
+public class Parent_Insert extends AppCompatActivity {
     Button insert;
-    TextInputEditText studentid;
-    TextInputEditText lastname;
-    TextInputEditText firstname;
-    TextInputEditText address;
-    TextInputEditText contact;
-    TextInputEditText birthday;
-    TextInputEditText email;
-    TextInputEditText course;
-    TextInputEditText year;
-    TextInputEditText section;
-    TextInputEditText role;
+    TextInputEditText fullname;
+    TextInputEditText student_id;
+    TextInputEditText username;
     TextInputEditText password;
+    TextInputEditText email;
     TextView status;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.admin_user_insert);
+        setContentView(R.layout.admin_parent_insert);
         ImageView prev = findViewById(R.id.back2main);
         insert = findViewById(R.id.insert);
         status = findViewById(R.id.status);
-        studentid = findViewById(R.id.studentid);
-        lastname = findViewById(R.id.lastname);
-        firstname = findViewById(R.id.firstname);
-        address = findViewById(R.id.address);
-        contact = findViewById(R.id.contact);
-        birthday = findViewById(R.id.birthday);
-        email = findViewById(R.id.email);
-        course = findViewById(R.id.course);
-        year = findViewById(R.id.year);
-        section = findViewById(R.id.section);
-        role = findViewById(R.id.role);
+        fullname = findViewById(R.id.fullname);
+        student_id = findViewById(R.id.student_id);
+        username = findViewById(R.id.username);
         password = findViewById(R.id.password);
+        email = findViewById(R.id.email);
         theme();
         /* Back to main */
         prev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent bill = new Intent(User_Insert.this, User.class);
+                Intent bill = new Intent(Parent_Insert.this, Parent.class);
                 startActivity(bill);
             }
         });
         insert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                insertUser();
+                insertParent();
             }
         });
     }
@@ -89,7 +75,7 @@ public class User_Insert extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        new HttpRequest().doPost(User_Insert.this, getResources().getString(R.string.server_path) + "settings.php", jsonParams, new RequestCallback() {
+        new HttpRequest().doPost(Parent_Insert.this, getResources().getString(R.string.server_path) + "settings.php", jsonParams, new RequestCallback() {
             @Override
             public void success(String response, JSONObject jsonObject) {
                 Log.i("aaaaaa", response);
@@ -113,27 +99,20 @@ public class User_Insert extends AppCompatActivity {
         });
     }
 
-    public void insertUser() {
+    public void insertParent() {
         /*  */
         JSONObject jsonParams = new JSONObject();
         try {
             jsonParams.put("secret_key", "secret_key");
-            jsonParams.put("studentid",studentid.getText().toString());
-            jsonParams.put("lastname",lastname.getText().toString());
-            jsonParams.put("firstname",firstname.getText().toString());
-            jsonParams.put("address",address.getText().toString());
-            jsonParams.put("contact",contact.getText().toString());
-            jsonParams.put("birthday",birthday.getText().toString());
-            jsonParams.put("email",email.getText().toString());
-            jsonParams.put("course",course.getText().toString());
-            jsonParams.put("year",year.getText().toString());
-            jsonParams.put("section",section.getText().toString());
-            jsonParams.put("role",role.getText().toString());
+            jsonParams.put("fullname",fullname.getText().toString());
+            jsonParams.put("studentid",student_id.getText().toString());
+            jsonParams.put("username",username.getText().toString());
             jsonParams.put("password",password.getText().toString());
+            jsonParams.put("email",email.getText().toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        new HttpRequest().doPost(User_Insert.this, getResources().getString(R.string.server_path) + "admin/user-insert.php", jsonParams, new RequestCallback() {
+        new HttpRequest().doPost(Parent_Insert.this, getResources().getString(R.string.server_path) + "admin/parent-insert.php", jsonParams, new RequestCallback() {
             @Override
             public void success(String response, JSONObject jsonObject) {
                 Log.i("gggggg", response + " asdsa");

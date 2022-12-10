@@ -23,42 +23,24 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Schedules"
+            android:text="List of Parents"
             android:textColor="@color/white"
             android:textSize="20sp"/>
         <ImageView
             android:id="@+id/dot"
-            android:visibility="invisible"
             android:src="@drawable/menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:scaleType="fitEnd"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="showMenuBillInsert"/>
     </LinearLayout>
 
-    <LinearLayout
-        android:orientation="vertical"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/parents_holder"
+        android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="1dp"
-        android:padding="10dp">
-        <TextView
-            android:id="@+id/nameofstudent"
-            android:text="Fullname"
-            android:textColor="@color/black"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:padding="5dp"
-            android:textSize="25sp"
-            android:textStyle="bold"/>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/course_holder"
-            android:layout_margin="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical"/>
-    </LinearLayout>
+        android:scrollbars="vertical"/>
 
 </LinearLayout>

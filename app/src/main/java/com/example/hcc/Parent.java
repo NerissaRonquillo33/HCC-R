@@ -4,70 +4,64 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.example.hcc.admin.User;
-import com.example.hcc.admin.User_Adapter;
-import com.example.hcc.admin.User_Item;
 import com.example.hcc.http_request.HttpRequest;
 import com.example.hcc.interfaces.RequestCallback;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Dashboard extends AppCompatActivity {
+public class Parent extends AppCompatActivity {
     LinearLayout containerbackground;
+    String role;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dashboard);
+        setContentView(R.layout.parent);
         Button logout = findViewById(R.id.logout);
         CardView aboutus = findViewById(R.id.aboutus);
-        CardView stud_info = findViewById(R.id.stud_info);
         CardView schedule = findViewById(R.id.schedule);
         CardView course = findViewById(R.id.courses);
         CardView bill = findViewById(R.id.bill);
         CardView grade = findViewById(R.id.grade);
         CardView announcement = findViewById(R.id.announcement);
         containerbackground = findViewById(R.id.containerbackgroud);
-        String username = getIntent().getStringExtra("username");
-        String role = getIntent().getStringExtra("role");
+        String username = getIntent().getStringExtra("studentid");
+        String parentusername = getIntent().getStringExtra("username");
+        String fullname = getIntent().getStringExtra("fullname");
+        String nameofstudent = getIntent().getStringExtra("nameofstudent");
         String notification = getIntent().getStringExtra("notification");
+        role = getIntent().getStringExtra("role");
         if (notification != null) {
-            Snackbar snackbar = Snackbar.make(containerbackground, "Welcome Students!", Snackbar.LENGTH_LONG);
+            Snackbar snackbar = Snackbar.make(containerbackground, "Welcome Parents!", Snackbar.LENGTH_LONG);
             snackbar.show();
         }
         /* Announcement */
         announcement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent announce = new Intent(Dashboard.this, Announcement.class);
+                Intent announce = new Intent(Parent.this, Announcement.class);
                 announce.putExtra("username",username);
                 announce.putExtra("role",role);
+                announce.putExtra("nameofstudent",nameofstudent);
                 startActivity(announce);
             }
         });
@@ -75,9 +69,10 @@ public class Dashboard extends AppCompatActivity {
         grade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent grade = new Intent(Dashboard.this, Grade.class);
+                Intent grade = new Intent(Parent.this, Grade.class);
                 grade.putExtra("username",username);
                 grade.putExtra("role",role);
+                grade.putExtra("nameofstudent",nameofstudent);
                 startActivity(grade);
             }
         });
@@ -85,9 +80,10 @@ public class Dashboard extends AppCompatActivity {
         bill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent bill = new Intent(Dashboard.this, Bill.class);
+                Intent bill = new Intent(Parent.this, Bill.class);
                 bill.putExtra("username",username);
                 bill.putExtra("role",role);
+                bill.putExtra("nameofstudent",nameofstudent);
                 startActivity(bill);
             }
         });
@@ -95,8 +91,9 @@ public class Dashboard extends AppCompatActivity {
         course.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent course = new Intent(Dashboard.this, Course.class);
+                Intent course = new Intent(Parent.this, Course.class);
                 course.putExtra("username",username);
+                course.putExtra("nameofstudent",nameofstudent);
                 course.putExtra("role",role);
                 startActivity(course);
             }
@@ -105,20 +102,11 @@ public class Dashboard extends AppCompatActivity {
         schedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent schedule = new Intent(Dashboard.this, Schedule.class);
+                Intent schedule = new Intent(Parent.this, Schedule.class);
                 schedule.putExtra("username",username);
+                schedule.putExtra("nameofstudent",nameofstudent);
                 schedule.putExtra("role",role);
                 startActivity(schedule);
-            }
-        });
-        /* Student info */
-        stud_info.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent student_info = new Intent(Dashboard.this, StudentInfo.class);
-                student_info.putExtra("username",username);
-                student_info.putExtra("role",role);
-                startActivity(student_info);
             }
         });
         /* About us */
@@ -132,7 +120,7 @@ public class Dashboard extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(Dashboard.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(Parent.this);
 
                 builder.setTitle("Confirm");
                 builder.setMessage("Are you sure you want to logout?");
@@ -141,7 +129,7 @@ public class Dashboard extends AppCompatActivity {
 
                     public void onClick(DialogInterface dialog, int which) {
                         // Do nothing but close the dialog
-                        Intent login = new Intent(Dashboard.this, Login.class);
+                        Intent login = new Intent(Parent.this, Login.class);
                         startActivity(login);
                         dialog.dismiss();
                     }
@@ -165,7 +153,7 @@ public class Dashboard extends AppCompatActivity {
     }
 
     public void about() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(Dashboard.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(Parent.this);
         AlertDialog alertDialog;
         View customView = getLayoutInflater().inflate( R.layout.about, null);
         Button close = customView.findViewById(R.id.close);
@@ -182,7 +170,7 @@ public class Dashboard extends AppCompatActivity {
     }
 
     public void updateAbout() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(Dashboard.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(Parent.this);
         AlertDialog alertDialog;
         View customView = getLayoutInflater().inflate( R.layout.about, null);
         Button close = customView.findViewById(R.id.close);
@@ -209,7 +197,7 @@ public class Dashboard extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        new HttpRequest().doPost(Dashboard.this, getResources().getString(R.string.server_path) + "settings.php", jsonParams, new RequestCallback() {
+        new HttpRequest().doPost(Parent.this, getResources().getString(R.string.server_path) + "settings.php", jsonParams, new RequestCallback() {
             @Override
             public void success(String response, JSONObject jsonObject) {
                 Log.i("aaaaaa", response);
@@ -242,7 +230,7 @@ public class Dashboard extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        new HttpRequest().doPost(Dashboard.this, getResources().getString(R.string.server_path) + "settings.php", jsonParams, new RequestCallback() {
+        new HttpRequest().doPost(Parent.this, getResources().getString(R.string.server_path) + "settings.php", jsonParams, new RequestCallback() {
             @Override
             public void success(String response, JSONObject jsonObject) {
                 Log.i("aaaaaa", response);

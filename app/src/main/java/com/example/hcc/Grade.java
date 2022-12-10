@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.hcc.abstracts.Database;
 import com.example.hcc.http_request.HttpRequest;
@@ -41,7 +42,7 @@ public class Grade extends AppCompatActivity {
     List<String> semesterList;
     Spinner spinnerSchoolYr;
     Spinner spinnerSem;
-    String username;
+    String username,role;
     Database database;
 
     @Override
@@ -57,6 +58,13 @@ public class Grade extends AppCompatActivity {
         semesterList = new ArrayList<String>();
 //        dbHelper = new DBHelper(this, lstgrade);
         username = getIntent().getStringExtra("username");
+        role = getIntent().getStringExtra("role");
+        TextView nameofstudent = findViewById(R.id.nameofstudent);
+        String studentname = getIntent().getStringExtra("nameofstudent");
+        if (role.equals("parent") && studentname != null) {
+            nameofstudent.setText(studentname);
+            nameofstudent.setVisibility(View.VISIBLE);
+        }
         database = Database.getInstance(Grade.this);
         theme();
         /* Back to main */
@@ -64,7 +72,12 @@ public class Grade extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent dashboard = new Intent(Grade.this, Dashboard.class);
+                if (role != null && role.equals("parent")) {
+                    dashboard = new Intent(Grade.this, Parent.class);
+                }
                 dashboard.putExtra("username",username);
+                dashboard.putExtra("nameofstudent",studentname);
+                dashboard.putExtra("role",role);
                 startActivity(dashboard);
             }
         });

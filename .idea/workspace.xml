@@ -72,13 +72,13 @@
     <property name="cidr.known.project.marker" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable-hdpi" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/layout" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.import" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Projects\development\android\HCC-R\app\src\main\res\layout" />
-      <recent name="C:\Projects\development\android\HCC-R\app\src\main\res\drawable-hdpi" />
       <recent name="C:\Projects\development\android\HCC-R\app\src\main\res\menu" />
+      <recent name="C:\Projects\development\android\HCC-R\app\src\main\res\drawable-hdpi" />
       <recent name="C:\Projects\development\android\HCC-R\app\src\main\java\com\example\hcc\admin" />
       <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
     </key>
@@ -89,10 +89,10 @@
       <recent name="com.example.hcc" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.hcc" />
       <recent name="com.example.hcc.admin" />
       <recent name="com.example.hcc.interfaces" />
       <recent name="com.example.hcc.models" />
-      <recent name="com.example.hcc" />
     </key>
   </component>
   <component name="RunManager">

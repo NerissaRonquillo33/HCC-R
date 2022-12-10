@@ -77,12 +77,14 @@ public class Bill_Insert extends AppCompatActivity {
         ob = findViewById(R.id.ob);
         list = new ArrayList<String>();
         list2 = new ArrayList<String>();
+        String role = getIntent().getStringExtra("role");
         theme();
         /* Back to main */
         prev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent bill = new Intent(Bill_Insert.this, Bill.class);
+                bill.putExtra("role",role);
                 startActivity(bill);
             }
         });

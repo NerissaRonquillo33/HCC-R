@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
@@ -17,6 +18,7 @@ import android.widget.LinearLayout;
 
 import com.example.hcc.admin.About;
 import com.example.hcc.admin.Bill;
+import com.example.hcc.admin.Parent;
 import com.example.hcc.admin.Theme;
 import com.example.hcc.admin.User;
 import com.example.hcc.http_request.HttpRequest;
@@ -26,6 +28,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Admin extends AppCompatActivity {
+    LinearLayout containerbackground;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,9 +39,17 @@ public class Admin extends AppCompatActivity {
 //        CardView grade = findViewById(R.id.grade);
 //        CardView courses = findViewById(R.id.courses);
         CardView users = findViewById(R.id.users);
+        CardView parents = findViewById(R.id.parents);
         CardView about = findViewById(R.id.about);
         CardView theme = findViewById(R.id.theme);
+        containerbackground = findViewById(R.id.containerbackgroud);
         String username = getIntent().getStringExtra("username");
+        String role = getIntent().getStringExtra("role");
+        String notification = getIntent().getStringExtra("notification");
+        if (notification != null) {
+            Snackbar snackbar = Snackbar.make(containerbackground, "Welcome Admin!", Snackbar.LENGTH_LONG);
+            snackbar.show();
+        }
         theme();
         /* Bill */
         bill.setOnClickListener(new View.OnClickListener() {
@@ -46,6 +57,7 @@ public class Admin extends AppCompatActivity {
             public void onClick(View view) {
                 Intent announce = new Intent(Admin.this, Bill.class);
                 announce.putExtra("username",username);
+                announce.putExtra("role",role);
                 startActivity(announce);
             }
         });
@@ -54,6 +66,16 @@ public class Admin extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent announce = new Intent(Admin.this, User.class);
+                announce.putExtra("role",role);
+                startActivity(announce);
+            }
+        });
+        /* Parents */
+        parents.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent announce = new Intent(Admin.this, Parent.class);
+                announce.putExtra("role",role);
                 startActivity(announce);
             }
         });
@@ -63,6 +85,7 @@ public class Admin extends AppCompatActivity {
             public void onClick(View view) {
                 Intent announce = new Intent(Admin.this, About.class);
                 announce.putExtra("username",username);
+                announce.putExtra("role",role);
                 startActivity(announce);
             }
         });
@@ -72,6 +95,7 @@ public class Admin extends AppCompatActivity {
             public void onClick(View view) {
                 Intent announce = new Intent(Admin.this, Theme.class);
                 announce.putExtra("username",username);
+                announce.putExtra("role",role);
                 startActivity(announce);
             }
         });

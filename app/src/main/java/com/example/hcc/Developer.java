@@ -138,8 +138,8 @@ public class Developer extends AppCompatActivity {
                         while (reader.ready()) {
                             String line = reader.readLine();
                             String[] schedules = line.split(",");
-                            if (schedules.length == 6) {
-                                database.schedulesDao().insert(new Schedules(schedules[0],schedules[1],schedules[2],schedules[3],schedules[4],schedules[5]));
+                            if (schedules.length == 7) {
+                                database.schedulesDao().insert(new Schedules(schedules[0],schedules[1],schedules[2],schedules[3],schedules[4],schedules[5],schedules[6]));
                             }
                         }
                     }catch (FileNotFoundException e) {

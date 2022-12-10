@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,15 +17,10 @@ import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 
 import com.example.hcc.Admin;
-import com.example.hcc.Course;
-import com.example.hcc.Course_Adapter;
 import com.example.hcc.Course_Detail;
-import com.example.hcc.Course_Item;
-import com.example.hcc.Dashboard;
 import com.example.hcc.R;
 import com.example.hcc.http_request.HttpRequest;
 import com.example.hcc.interfaces.RequestCallback;
-import com.example.hcc.models.Schedules;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,26 +29,24 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Bill extends AppCompatActivity {
+public class Parent extends AppCompatActivity {
 
-    String username,role;
-    List<Bill_Item> lstBills;
+    String username;
+    List<Parent_Item> lstBills;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.admin_billing);
+        setContentView(R.layout.admin_parent);
         ImageView prev = findViewById(R.id.back2main);
         lstBills = new ArrayList<>();
         username = getIntent().getStringExtra("username");
-        role = getIntent().getStringExtra("role");
         /* Back to main */
         prev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent dashboard = new Intent(Bill.this, Admin.class);
+                Intent dashboard = new Intent(Parent.this, Admin.class);
                 dashboard.putExtra("username",username);
-                dashboard.putExtra("role",role);
                 startActivity(dashboard);
             }
         });
@@ -70,7 +62,7 @@ public class Bill extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        new HttpRequest().doPost(Bill.this, getResources().getString(R.string.server_path) + "settings.php", jsonParams, new RequestCallback() {
+        new HttpRequest().doPost(Parent.this, getResources().getString(R.string.server_path) + "settings.php", jsonParams, new RequestCallback() {
             @Override
             public void success(String response, JSONObject jsonObject) {
                 Log.i("aaaaaa", response);
@@ -102,22 +94,24 @@ public class Bill extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        new HttpRequest().doPost(Bill.this, getResources().getString(R.string.server_path) + "admin/bills.php", jsonParams, new RequestCallback() {
+        new HttpRequest().doPost(Parent.this, getResources().getString(R.string.server_path) + "admin/parent.php", jsonParams, new RequestCallback() {
             @Override
             public void success(String response, JSONObject jsonObject) {
+
                 if (response.equals("success")) {
                     try {
                         JSONArray jsonArray = jsonObject.getJSONArray("results");
                         for(int n = 0; n < jsonArray.length(); n++)
                         {
                             JSONObject object = jsonArray.getJSONObject(n);
-                            lstBills.add(new Bill_Item(object.getInt("billingid"),object.getString("studentid"),object.getString("tuitionfee"),object.getString("learnandins"),object.getString("regfee"),object.getString("compprossfee"),object.getString("guidandcouns"),object.getString("schoolidfee"),object.getString("studenthand"),object.getString("schoolfab"),object.getString("insurance"),object.getString("totalass"),object.getString("discount"),object.getString("netass"),object.getString("cashcheckpay"),object.getString("balance"),object.getString("lastname") + ", " + object.getString("firstname"),object.getString("course")));
+                            lstBills.add(new Parent_Item(object.getInt("id"),object.getString("student_id"),object.getString("lastname")+", "+object.getString("firstname"),object.getString("fullname"),object.getString("username"),object.getString("password"),object.getString("email")));
+
                         }
                     } catch (JSONException e) {
                         //todo
                     }
-                    RecyclerView list = findViewById(R.id.billing_holder);
-                    Bill_Adapter adapter = new Bill_Adapter(Bill.this, lstBills);
+                    RecyclerView list = findViewById(R.id.parents_holder);
+                    Parent_Adapter adapter = new Parent_Adapter(Parent.this, lstBills);
                     list.setLayoutManager(new GridLayoutManager(getApplicationContext(), 1));
                     list.setAdapter(adapter);
                 }
@@ -133,20 +127,19 @@ public class Bill extends AppCompatActivity {
                 switch (menuItem.getItemId()) {
                     case R.id.add:
                         //todo
-                        addBill();
+                        addParent();
                         return true;
                     default:
                         return false;
                 }
             }
         });
-        popup.inflate(R.menu.bill_insert);
+        popup.inflate(R.menu.parent_insert);
         popup.show();
     }
 
-    public void addBill() {
-        Intent dashboard = new Intent(Bill.this, Bill_Insert.class);
-        dashboard.putExtra("role",role);
+    public void addParent() {
+        Intent dashboard = new Intent(Parent.this, Parent_Insert.class);
         dashboard.putExtra("username",username);
         startActivity(dashboard);
     }

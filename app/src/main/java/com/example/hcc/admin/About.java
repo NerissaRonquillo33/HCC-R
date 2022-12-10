@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
@@ -17,10 +18,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.hcc.Admin;
 import com.example.hcc.Course_Detail;
+import com.example.hcc.Dashboard;
 import com.example.hcc.R;
 import com.example.hcc.StudentInfo;
 import com.example.hcc.http_request.HttpRequest;
@@ -36,6 +40,7 @@ import java.util.ArrayList;
 public class About extends AppCompatActivity {
     Button uploadpic, update;
     EditText description;
+    ImageView image;
     TextView status;
     byte[] imagebytes;
     @Override
@@ -45,15 +50,19 @@ public class About extends AppCompatActivity {
         ImageView prev = findViewById(R.id.back2main);
         uploadpic = findViewById(R.id.uploadpic);
         update = findViewById(R.id.update);
+        image = findViewById(R.id.image);
         description = findViewById(R.id.description);
         status = findViewById(R.id.status);
         imagebytes = new byte[0];
+        String role = getIntent().getStringExtra("role");
+        getAbout();
         theme();
         /* Back to main */
         prev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent dashboard = new Intent(About.this, Admin.class);
+                dashboard.putExtra("role",role);
                 startActivity(dashboard);
             }
         });
@@ -135,6 +144,37 @@ public class About extends AppCompatActivity {
             }
         });
     }
+    public void getAbout() {
+        /* Courses list */
+        JSONObject jsonParams = new JSONObject();
+        try {
+            jsonParams.put("secret_key", "secret_key");
+            jsonParams.put("name", "about");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        new HttpRequest().doPost(About.this, getResources().getString(R.string.server_path) + "settings.php", jsonParams, new RequestCallback() {
+            @Override
+            public void success(String response, JSONObject jsonObject) {
+                Log.i("aaaaaa", response);
+                if (response.equals("success")) {
+                    try {
+                        String about = jsonObject.getString("value");
+                        description.setText(about);
+                        if (jsonObject.getString("imageb64").length() > 300) {
+                            byte[] decodedString = Base64.decode(jsonObject.getString("imageb64"), Base64.DEFAULT);
+                            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                            image.setImageBitmap(decodedByte);
+                            image.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                        }
+                    } catch (JSONException e) {
+                        //todo
+                        Log.i("aaaaaa", e.toString());
+                    }
+                }
+            }
+        });
+    }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -153,7 +193,8 @@ public class About extends AppCompatActivity {
                         ByteArrayOutputStream stream = new ByteArrayOutputStream();
                         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
                         imagebytes = stream.toByteArray();
-
+                        image.setImageBitmap(bitmap);
+                        image.setScaleType(ImageView.ScaleType.CENTER_CROP);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

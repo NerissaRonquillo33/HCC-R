@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
@@ -19,118 +18,65 @@ import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.example.hcc.Course;
 import com.example.hcc.Course_Detail;
-import com.example.hcc.Dashboard;
 import com.example.hcc.R;
 import com.example.hcc.http_request.HttpRequest;
 import com.example.hcc.interfaces.RequestCallback;
-import com.example.hcc.models.Schedules;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Bill_Details extends AppCompatActivity {
-    TextInputEditText tf;
-    TextInputEditText lai;
-    TextInputEditText rf;
-    TextInputEditText cpf;
-    TextInputEditText gac;
-    TextInputEditText sif;
-    TextInputEditText sh;
-    TextInputEditText sp;
-    TextInputEditText ins;
-    TextInputEditText ta;
-    TextInputEditText ds;
-    TextInputEditText na;
-    TextInputEditText ccp;
-    TextInputEditText ob;
-    String studentid;
-    String tuitionfee;
-    String learnandins;
-    String regfee;
-    String compprossfee;
-    String guidandcouns;
-    String schoolidfee;
-    String studenthand;
-    String schoolfab;
-    String insurance;
-    String totalass;
-    String discount;
-    String netass;
-    String cashcheckpay;
-    String balance;
-    String studentname;
-    String course;
-    String role;
+public class Parent_Details extends AppCompatActivity {
+    TextInputEditText fullname;
+    TextInputEditText student_id;
+    TextInputEditText username;
+    TextInputEditText password;
+    TextInputEditText email;
+
+    String fullname1;
+    String student_id1;
+    String username1;
+    String password1;
+    String email1;
     int id;
+    
     ScrollView scrollView;
     ProgressBar progressBar;
     ImageView dot;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.admin_billing_details);
+        setContentView(R.layout.admin_parent_details);
         ImageView prev = findViewById(R.id.back2main);
         dot = findViewById(R.id.dot);
         progressBar = findViewById(R.id.progressBar);
-        scrollView = findViewById(R.id.billdetails);
+        scrollView = findViewById(R.id.parentdetails);
+
         id = getIntent().getIntExtra("id",0);
-        studentid = getIntent().getStringExtra("studentid");
-        tuitionfee = getIntent().getStringExtra("tuitionfee");
-        learnandins = getIntent().getStringExtra("learnandins");
-        regfee = getIntent().getStringExtra("regfee");
-        compprossfee = getIntent().getStringExtra("compprossfee");
-        guidandcouns = getIntent().getStringExtra("guidandcouns");
-        schoolidfee = getIntent().getStringExtra("schoolidfee");
-        studenthand = getIntent().getStringExtra("studenthand");
-        schoolfab = getIntent().getStringExtra("schoolfab");
-        insurance = getIntent().getStringExtra("insurance");
-        totalass = getIntent().getStringExtra("totalass");
-        discount = getIntent().getStringExtra("discount");
-        netass = getIntent().getStringExtra("netass");
-        cashcheckpay = getIntent().getStringExtra("cashcheckpay");
-        balance = getIntent().getStringExtra("balance");
-        studentname = getIntent().getStringExtra("studentname");
-        course = getIntent().getStringExtra("course");
-        role = getIntent().getStringExtra("role");
-        TextView studentnamea = findViewById(R.id.studentname);
-        tf = findViewById(R.id.tf);
-        lai = findViewById(R.id.lai);
-        rf = findViewById(R.id.rf);
-        cpf = findViewById(R.id.cpf);
-        gac = findViewById(R.id.gac);
-        sif = findViewById(R.id.sif);
-        sh = findViewById(R.id.sh);
-        sp = findViewById(R.id.sp);
-        ins = findViewById(R.id.ins);
-        ta = findViewById(R.id.ta);
-        ds = findViewById(R.id.ds);
-        na = findViewById(R.id.na);
-        ccp = findViewById(R.id.ccp);
-        ob = findViewById(R.id.ob);
-        studentnamea.setText(studentname);
-        tf.setText(tuitionfee);
-        lai.setText(learnandins);
-        rf.setText(regfee);
-        cpf.setText(compprossfee);
-        gac.setText(guidandcouns);
-        sif.setText(schoolidfee);
-        sh.setText(studenthand);
-        sp.setText(schoolfab);
-        ins.setText(insurance);
-        ta.setText(totalass);
-        ds.setText(discount);
-        na.setText(netass);
-        ccp.setText(cashcheckpay);
-        ob.setText(balance);
+        fullname1 = getIntent().getStringExtra("fullname");
+        student_id1 = getIntent().getStringExtra("student_id");
+        username1 = getIntent().getStringExtra("username");
+        password1 = getIntent().getStringExtra("password");
+        email1 = getIntent().getStringExtra("email");
+        
+
+        fullname = findViewById(R.id.fullname);
+        student_id = findViewById(R.id.student_id);
+        username = findViewById(R.id.username);
+        password = findViewById(R.id.password);
+        email = findViewById(R.id.email);
+        
+        fullname.setText(fullname1);
+        student_id.setText(student_id1);
+        username.setText(username1);
+        email.setText(email1);
+        
         theme();
         /* Back to main */
         prev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent dashboard = new Intent(Bill_Details.this, Bill.class);
+                Intent dashboard = new Intent(Parent_Details.this, Parent.class);
                 Bundle bundle = getIntent().getExtras();
                 if (bundle != null) {
                     for (String key : bundle.keySet()) {
@@ -143,6 +89,7 @@ public class Bill_Details extends AppCompatActivity {
             }
         });
     }
+
     public void theme() {
         /* Courses list */
         JSONObject jsonParams = new JSONObject();
@@ -152,7 +99,7 @@ public class Bill_Details extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        new HttpRequest().doPost(Bill_Details.this, getResources().getString(R.string.server_path) + "settings.php", jsonParams, new RequestCallback() {
+        new HttpRequest().doPost(Parent_Details.this, getResources().getString(R.string.server_path) + "settings.php", jsonParams, new RequestCallback() {
             @Override
             public void success(String response, JSONObject jsonObject) {
                 Log.i("aaaaaa", response);
@@ -208,26 +155,16 @@ public class Bill_Details extends AppCompatActivity {
         try {
             jsonParams.put("secret_key", "secret_key");
             jsonParams.put("action","update");
-            jsonParams.put("tuitionfee",tf.getText().toString());
-            jsonParams.put("learnandins",lai.getText().toString());
-            jsonParams.put("regfee",rf.getText().toString());
-            jsonParams.put("compprossfee",cpf.getText().toString());
-            jsonParams.put("guidandcouns",gac.getText().toString());
-            jsonParams.put("schoolidfee",sif.getText().toString());
-            jsonParams.put("studenthand",sh.getText().toString());
-            jsonParams.put("schoolfab",sp.getText().toString());
-            jsonParams.put("insurance",ins.getText().toString());
-            jsonParams.put("totalass",ta.getText().toString());
-            jsonParams.put("discount",ds.getText().toString());
-            jsonParams.put("netass",na.getText().toString());
-            jsonParams.put("cashcheckpay",ccp.getText().toString());
-            jsonParams.put("balance",ob.getText().toString());
-            jsonParams.put("studentid",studentid);
-            jsonParams.put("billingid",id);
+            jsonParams.put("fullname",fullname.getText().toString());
+            jsonParams.put("studentid",student_id.getText().toString());
+            jsonParams.put("username",username.getText().toString());
+            jsonParams.put("password",password.getText().toString());
+            jsonParams.put("email",email.getText().toString());
+            jsonParams.put("id",id);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        new HttpRequest().doPost(Bill_Details.this, getResources().getString(R.string.server_path) + "admin/bill-update.php", jsonParams, new RequestCallback() {
+        new HttpRequest().doPost(Parent_Details.this, getResources().getString(R.string.server_path) + "admin/parent-update.php", jsonParams, new RequestCallback() {
             @Override
             public void success(String response, JSONObject jsonObject) {
                 if (response.equals("success")) {
@@ -249,16 +186,16 @@ public class Bill_Details extends AppCompatActivity {
         try {
             jsonParams.put("secret_key", "secret_key");
             jsonParams.put("action", "delete");
-            jsonParams.put("billingid",id);
+            jsonParams.put("id",id);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        new HttpRequest().doPost(Bill_Details.this, getResources().getString(R.string.server_path) + "admin/bill-update.php", jsonParams, new RequestCallback() {
+        new HttpRequest().doPost(Parent_Details.this, getResources().getString(R.string.server_path) + "admin/parent-update.php", jsonParams, new RequestCallback() {
             @Override
             public void success(String response, JSONObject jsonObject) {
                 if (response.equals("success")) {
                     // todo
-                    Intent dashboard = new Intent(Bill_Details.this, Bill.class);
+                    Intent dashboard = new Intent(Parent_Details.this, Parent.class);
                     startActivity(dashboard);
                 }
                 progressBar.setVisibility(View.GONE);

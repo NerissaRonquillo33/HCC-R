@@ -7,14 +7,24 @@ public class Course_Item {
     private String days;
     private String time;
     private String room;
+    private String prof;
 
-    public Course_Item(int id,String course_description, String course, String days, String time, String room) {
+    public Course_Item(int id,String course_description, String course, String days, String time, String room, String prof) {
         this.id = id;
         this.course_description = course_description;
         this.course = course;
         this.days = days;
         this.time = time;
         this.room = room;
+        this.prof = prof;
+    }
+
+    public String getProf() {
+        return prof;
+    }
+
+    public void setProf(String prof) {
+        this.prof = prof;
     }
 
     public int getId() {

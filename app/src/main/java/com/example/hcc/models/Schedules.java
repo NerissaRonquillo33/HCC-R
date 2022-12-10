@@ -20,14 +20,25 @@ public class Schedules {
     private String time;
     @ColumnInfo(name = "room")
     private String room;
+    @ColumnInfo(name = "prof")
+    private String prof;
 
-    public Schedules(String username, String subject, String course, String days, String time, String room) {
+    public Schedules(String username, String subject, String course, String days, String time, String room, String prof) {
         this.username = username;
         this.subject = subject;
         this.course = course;
         this.days = days;
         this.time = time;
         this.room = room;
+        this.prof = prof;
+    }
+
+    public String getProf() {
+        return prof;
+    }
+
+    public void setProf(String prof) {
+        this.prof = prof;
     }
 
     public int getId() {

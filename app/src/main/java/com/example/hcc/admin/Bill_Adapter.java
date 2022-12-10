@@ -66,6 +66,7 @@ public class Bill_Adapter extends RecyclerView.Adapter<Bill_Adapter.MyViewHolder
                 details.putExtra("balance",item.get(i).getBalance());
                 details.putExtra("studentname",item.get(i).getStudentname());
                 details.putExtra("course",item.get(i).getCourse());
+                details.putExtra("role", "admin");
                 context.startActivity(details);
             }
         });

@@ -65,6 +65,8 @@ public class Login extends AppCompatActivity {
                 else if (username.getText().toString().equals("admin") && password.getText().toString().equals("admin")) {
                     Intent admin = new Intent(Login.this, Admin.class);
                     admin.putExtra("username", username.getText().toString());
+                    admin.putExtra("notification", "welcome");
+                    admin.putExtra("role", "admin");
                     startActivity(admin);
                 } else {
                     if (database.studentsDao().login(username.getText().toString(), new MD5().encrypt(password.getText().toString())) > 0) {
@@ -73,11 +75,11 @@ public class Login extends AppCompatActivity {
                         status.setTextColor(Color.parseColor("#FF03DAC5"));
                         Intent dashboard = new Intent(Login.this, Dashboard.class);
                         dashboard.putExtra("username", username.getText().toString());
+                        dashboard.putExtra("notification", "welcome");
+                        dashboard.putExtra("role", "student");
                         startActivity(dashboard);
                     } else {
-                        status.setVisibility(View.VISIBLE);
-                        status.setText("Access denied!");
-                        status.setTextColor(Color.parseColor("#F88379"));
+                        login(username.getText().toString(), password.getText().toString());
                     }
                 }
             }
@@ -133,12 +135,25 @@ public class Login extends AppCompatActivity {
         new HttpRequest().doPost(Login.this, getResources().getString(R.string.server_path) + "login.php", jsonParams, new RequestCallback() {
             @Override
             public void success(String response, JSONObject jsonObject) {
+                Log.i("aaaaaa", response);
                 if (response.equals("success")) {
-                    Intent dashboard = new Intent(Login.this, Dashboard.class);
-                    dashboard.putExtra("username", username);
-                    startActivity(dashboard);
+                    try {
+                        Intent dashboard = new Intent(Login.this, Parent.class);
+                        dashboard.putExtra("username", jsonObject.getString("student_id"));
+                        dashboard.putExtra("parentusername", jsonObject.getString("username"));
+                        dashboard.putExtra("fullname", jsonObject.getString("fullname"));
+                        dashboard.putExtra("nameofstudent", jsonObject.getString("lastname") + ", " + jsonObject.getString("firstname"));
+                        dashboard.putExtra("notification", "welcome");
+                        dashboard.putExtra("role", "parent");
+                        startActivity(dashboard);
+                    } catch (JSONException e) {
+                        //todo
+                        Log.i("vbbbbb", e.toString());
+                    }
                 } else {
                     status.setVisibility(View.VISIBLE);
+                    status.setText("Access denied!");
+                    status.setTextColor(Color.parseColor("#F88379"));
                 }
             }
         });

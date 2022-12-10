@@ -31,7 +31,7 @@ import java.util.List;
 public class Announcement extends AppCompatActivity {
 
     List<Announcement_Item> lstA;
-    String username;
+    String username,role;
     Database database;
     LinearLayout containerbackground;
 
@@ -43,13 +43,20 @@ public class Announcement extends AppCompatActivity {
         containerbackground = findViewById(R.id.containerbackgroud);
         lstA = new ArrayList<>();
         username = getIntent().getStringExtra("username");
+        role = getIntent().getStringExtra("role");
+        String nameofstudent = getIntent().getStringExtra("nameofstudent");
         database = Database.getInstance(Announcement.this);
         /* Back to main */
         prev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent dashboard = new Intent(Announcement.this, Dashboard.class);
+                if (role != null && role.equals("parent")) {
+                    dashboard = new Intent(Announcement.this, Parent.class);
+                }
                 dashboard.putExtra("username",username);
+                dashboard.putExtra("nameofstudent",nameofstudent);
+                dashboard.putExtra("role",role);
                 startActivity(dashboard);
             }
         });

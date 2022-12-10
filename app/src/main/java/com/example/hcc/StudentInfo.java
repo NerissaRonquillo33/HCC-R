@@ -38,7 +38,7 @@ import java.util.Calendar;
 
 public class StudentInfo extends AppCompatActivity {
 
-    String username;
+    String username,role;
     TextView fullname;
     TextView course;
     TextView contact;
@@ -61,6 +61,7 @@ public class StudentInfo extends AppCompatActivity {
         age = findViewById(R.id.age);
         profile = findViewById(R.id.profile);
         username = getIntent().getStringExtra("username");
+        role = getIntent().getStringExtra("role");
         database = Database.getInstance(StudentInfo.this);
         theme();
         info();
@@ -70,7 +71,11 @@ public class StudentInfo extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent dashboard = new Intent(StudentInfo.this, Dashboard.class);
+                if (role != null && role.equals("parent")) {
+                    dashboard = new Intent(StudentInfo.this, Parent.class);
+                }
                 dashboard.putExtra("username",username);
+                dashboard.putExtra("role",role);
                 startActivity(dashboard);
             }
         });

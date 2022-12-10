@@ -13,6 +13,7 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.hcc.abstracts.Database;
 import com.example.hcc.http_request.HttpRequest;
@@ -32,8 +33,9 @@ public class Course extends AppCompatActivity {
 
     List<Course_Item> lstCourses;
     DBHelper dbHelper;
-    String username;
+    String username,role;
     Database database;
+    TextView nameofstudent;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,8 +43,15 @@ public class Course extends AppCompatActivity {
         setContentView(R.layout.course);
         ImageView prev = findViewById(R.id.back2main);
         lstCourses = new ArrayList<>();
+        nameofstudent = findViewById(R.id.nameofstudent);
         dbHelper = new DBHelper(this, lstCourses);
         username = getIntent().getStringExtra("username");
+        role = getIntent().getStringExtra("role");
+        String studentname = getIntent().getStringExtra("nameofstudent");
+        if (role.equals("parent") && studentname != null) {
+            nameofstudent.setText(studentname);
+            nameofstudent.setVisibility(View.VISIBLE);
+        }
         database = Database.getInstance(Course.this);
         theme();
         /* Back to main */
@@ -50,7 +59,12 @@ public class Course extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent dashboard = new Intent(Course.this, Dashboard.class);
+                if (role != null && role.equals("parent")) {
+                    dashboard = new Intent(Course.this, Parent.class);
+                }
                 dashboard.putExtra("username",username);
+                dashboard.putExtra("nameofstudent",studentname);
+                dashboard.putExtra("role",role);
                 startActivity(dashboard);
             }
         });
@@ -62,7 +76,7 @@ public class Course extends AppCompatActivity {
         List<Schedules> schedules = database.schedulesDao().find(username);
         for(int n = 0; n < schedules.size(); n++)
         {
-            lstCourses.add(new Course_Item(schedules.get(n).getId(),schedules.get(n).getSubject(),schedules.get(n).getCourse(),schedules.get(n).getDays(),schedules.get(n).getTime(),schedules.get(n).getRoom()));
+            lstCourses.add(new Course_Item(schedules.get(n).getId(),schedules.get(n).getSubject(),schedules.get(n).getCourse(),schedules.get(n).getDays(),schedules.get(n).getTime(),schedules.get(n).getRoom(),schedules.get(n).getProf()));
         }
         RecyclerView list = findViewById(R.id.course_holder);
         Course_Adapter adapter = new Course_Adapter(getApplicationContext(), lstCourses);
@@ -89,7 +103,7 @@ public class Course extends AppCompatActivity {
                         for(int n = 0; n < jsonArray.length(); n++)
                         {
                             JSONObject object = jsonArray.getJSONObject(n);
-                            database.schedulesDao().insert(new Schedules(object.getString("studentid"),object.getString("subject"),object.getString("course"),object.getString("days"),object.getString("time"),object.getString("room")));
+                            database.schedulesDao().insert(new Schedules(object.getString("studentid"),object.getString("subject"),object.getString("course"),object.getString("days"),object.getString("time"),object.getString("room"),object.getString("prof")));
                         }
                     } catch (JSONException e) {
                         //todo
@@ -116,7 +130,7 @@ public class Course extends AppCompatActivity {
                         for(int n = 0; n < jsonArray.length(); n++)
                         {
                             JSONObject object = jsonArray.getJSONObject(n);
-                            database.schedulesDao().insert(new Schedules(object.getString("studentid"),object.getString("subject"),object.getString("course"),object.getString("days"),object.getString("time"),object.getString("room")));
+                            database.schedulesDao().insert(new Schedules(object.getString("studentid"),object.getString("subject"),object.getString("course"),object.getString("days"),object.getString("time"),object.getString("room"),object.getString("prof")));
                         }
                     } catch (JSONException e) {
                         //todo
