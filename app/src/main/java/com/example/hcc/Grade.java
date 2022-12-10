@@ -44,6 +44,8 @@ public class Grade extends AppCompatActivity {
     Spinner spinnerSem;
     String username,role;
     Database database;
+    TextView firstyear,firstsem,secondsem,firstyear2,firstsem2,secondsem2,firstyear3,firstsem3,secondsem3,firstyear4,firstsem4,secondsem4;
+    RecyclerView grade_firstyrsem_holder,grade_firstyr_second_sem_holder,grade_firstyrsem_holder2,grade_firstyr_second_sem_holder2,grade_firstyrsem_holder3,grade_firstyr_second_sem_holder3,grade_firstyrsem_holder4,grade_firstyr_second_sem_holder4;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,6 +55,29 @@ public class Grade extends AppCompatActivity {
 //        spinnerSchoolYr = findViewById(R.id.schoolyear);
 //        spinnerSem = findViewById(R.id.semester);
 //        Button search = findViewById(R.id.search);
+
+        firstyear = findViewById(R.id.firstyear);
+        firstsem = findViewById(R.id.firstsem);
+        secondsem = findViewById(R.id.secondsem);
+        firstyear2 = findViewById(R.id.firstyear2);
+        firstsem2 = findViewById(R.id.firstsem2);
+        secondsem2 = findViewById(R.id.secondsem2);
+        firstyear3 = findViewById(R.id.firstyear3);
+        firstsem3 = findViewById(R.id.firstsem3);
+        secondsem3 = findViewById(R.id.secondsem3);
+        firstyear4 = findViewById(R.id.firstyear4);
+        firstsem4 = findViewById(R.id.firstsem4);
+        secondsem4 = findViewById(R.id.secondsem4);
+
+        grade_firstyrsem_holder = findViewById(R.id.grade_firstyrsem_holder);
+        grade_firstyr_second_sem_holder = findViewById(R.id.grade_firstyr_second_sem_holder);
+        grade_firstyrsem_holder2 = findViewById(R.id.grade_firstyrsem_holder2);
+        grade_firstyr_second_sem_holder2 = findViewById(R.id.grade_firstyr_second_sem_holder2);
+        grade_firstyrsem_holder3 = findViewById(R.id.grade_firstyrsem_holder3);
+        grade_firstyr_second_sem_holder3 = findViewById(R.id.grade_firstyr_second_sem_holder3);
+        grade_firstyrsem_holder4 = findViewById(R.id.grade_firstyrsem_holder4);
+        grade_firstyr_second_sem_holder4 = findViewById(R.id.grade_firstyr_second_sem_holder4);
+
         lstgrade = new ArrayList<>();
         schoolyearList = new ArrayList<String>();
         semesterList = new ArrayList<String>();
@@ -99,7 +124,7 @@ public class Grade extends AppCompatActivity {
         {
             lstgrade.add(new Grade_Item(grades.get(n).getId(),grades.get(n).getSubject(),grades.get(n).getFaculty(),grades.get(n).getPrelim(),grades.get(n).getMidterm(),grades.get(n).getFinals(),grades.get(n).getFinalgrades(),grades.get(n).getAverage(),grades.get(n).getStatus(),grades.get(n).getSchoolyear(),grades.get(n).getSemester()));
         }
-        RecyclerView list = findViewById(R.id.grade_holder);
+        RecyclerView list = findViewById(R.id.grade_firstyrsem_holder);
         Grade_Adapter adapter = new Grade_Adapter(getApplicationContext(), lstgrade);
         list.setLayoutManager(new GridLayoutManager(getApplicationContext(), 1));
         list.setAdapter(adapter);

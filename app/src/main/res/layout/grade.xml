@@ -35,6 +35,9 @@
             android:scaleType="fitEnd"
             android:layout_weight="1"/>
     </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -96,11 +99,165 @@
             android:padding="5dp"
             android:textSize="25sp"
             android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/firstyear"
+            android:text="First Year"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textSize="25sp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/firstsem"
+            android:text="First Semester"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:textStyle="italic"/>
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/grade_holder"
+            android:id="@+id/grade_firstyrsem_holder"
             android:layout_margin="5dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"/>
+        <TextView
+            android:id="@+id/secondsem"
+            android:text="Second Semester"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:textStyle="italic"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/grade_firstyr_second_sem_holder"
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"/>
+
+        <TextView
+            android:id="@+id/firstyear2"
+            android:text="Second Year"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textSize="25sp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/firstsem2"
+            android:text="First Semester"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:textStyle="italic"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/grade_firstyrsem_holder2"
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"/>
+        <TextView
+            android:id="@+id/secondsem2"
+            android:text="Second Semester"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:textStyle="italic"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/grade_firstyr_second_sem_holder2"
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"/>
+
+        <TextView
+            android:id="@+id/firstyear3"
+            android:text="Third Year"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textSize="25sp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/firstsem3"
+            android:text="First Semester"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:textStyle="italic"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/grade_firstyrsem_holder3"
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"/>
+        <TextView
+            android:id="@+id/secondsem3"
+            android:text="Second Semester"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:textStyle="italic"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/grade_firstyr_second_sem_holder3"
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"/>
+
+        <TextView
+            android:id="@+id/firstyear4"
+            android:text="Fourth Year"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textSize="25sp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/firstsem4"
+            android:text="First Semester"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:textStyle="italic"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/grade_firstyrsem_holder4"
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"/>
+        <TextView
+            android:id="@+id/secondsem4"
+            android:text="Second Semester"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:textStyle="italic"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/grade_firstyr_second_sem_holder4"
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:scrollbars="vertical"/>
     </LinearLayout>
+    </ScrollView>
 </LinearLayout>
