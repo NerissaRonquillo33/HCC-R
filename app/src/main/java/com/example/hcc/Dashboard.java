@@ -55,7 +55,7 @@ public class Dashboard extends AppCompatActivity {
         CardView announcement = findViewById(R.id.announcement);
         containerbackground = findViewById(R.id.containerbackgroud);
         String username = getIntent().getStringExtra("username");
-        String role = getIntent().getStringExtra("role");
+            String role = getIntent().getStringExtra("role");
         String notification = getIntent().getStringExtra("notification");
         if (notification != null) {
             Snackbar snackbar = Snackbar.make(containerbackground, "Welcome Students!", Snackbar.LENGTH_LONG);

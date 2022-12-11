@@ -24,10 +24,12 @@ public class Students {
     private String contact;
     @ColumnInfo(name = "address")
     private String address;
+    @ColumnInfo(name = "role")
+    private String role;
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
     private byte[] image;
 
-    public Students(String username, String password, String lastname, String firstname, String birthdate, String course, String contact, String address, byte[] image) {
+    public Students(String username, String password, String lastname, String firstname, String birthdate, String course, String contact, String address, String role, byte[] image) {
         this.username = username;
         this.password = password;
         this.lastname = lastname;
@@ -36,7 +38,16 @@ public class Students {
         this.course = course;
         this.contact = contact;
         this.address = address;
+        this.role = role;
         this.image = image;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public int getId() {

@@ -26,4 +26,6 @@ public interface GradesDao {
     List<Grades> all();
     @Query("SELECT * FROM grades WHERE username = :username")
     List<Grades> find(String username);
+    @Query("SELECT * FROM grades WHERE username = :username AND schoolyear = :schoolyear AND semester = :semester")
+    List<Grades> findPerSem(String username, String schoolyear, String semester);
 }

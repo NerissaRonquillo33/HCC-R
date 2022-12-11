@@ -36,7 +36,7 @@ import java.util.List;
 
 public class Grade extends AppCompatActivity {
 
-    List<Grade_Item> lstgrade;
+    List<Grade_Item> lstgrade1,lstgrade2,lstgrade3,lstgrade4,lstgrade5,lstgrade6,lstgrade7,lstgrade8;
     DBHelper dbHelper;
     List<String> schoolyearList;
     List<String> semesterList;
@@ -78,7 +78,14 @@ public class Grade extends AppCompatActivity {
         grade_firstyrsem_holder4 = findViewById(R.id.grade_firstyrsem_holder4);
         grade_firstyr_second_sem_holder4 = findViewById(R.id.grade_firstyr_second_sem_holder4);
 
-        lstgrade = new ArrayList<>();
+        lstgrade1 = new ArrayList<>();
+        lstgrade2 = new ArrayList<>();
+        lstgrade3 = new ArrayList<>();
+        lstgrade4 = new ArrayList<>();
+        lstgrade5 = new ArrayList<>();
+        lstgrade6 = new ArrayList<>();
+        lstgrade7 = new ArrayList<>();
+        lstgrade8 = new ArrayList<>();
         schoolyearList = new ArrayList<String>();
         semesterList = new ArrayList<String>();
 //        dbHelper = new DBHelper(this, lstgrade);
@@ -115,19 +122,35 @@ public class Grade extends AppCompatActivity {
 //            }
 //        });
         updateGrades();
-        GradesSelection();
+        GradesSelection("2019/2020","First", R.id.grade_firstyrsem_holder, lstgrade1,firstyear,firstsem,secondsem);
+        GradesSelection("2019/2020","Second", R.id.grade_firstyr_second_sem_holder, lstgrade2,firstyear,firstsem,secondsem);
+        GradesSelection("2020/2021","First", R.id.grade_firstyrsem_holder2, lstgrade3,firstyear2,firstsem2,secondsem2);
+        GradesSelection("2020/2021","Second", R.id.grade_firstyr_second_sem_holder2, lstgrade4,firstyear2,firstsem2,secondsem2);
+        GradesSelection("2021/2022","First", R.id.grade_firstyrsem_holder3, lstgrade5,firstyear3,firstsem3,secondsem3);
+        GradesSelection("2021/2022","Second", R.id.grade_firstyr_second_sem_holder3, lstgrade6,firstyear3,firstsem3,secondsem3);
+        GradesSelection("2022/2023","First", R.id.grade_firstyrsem_holder4, lstgrade7,firstyear4,firstsem4,secondsem4);
+        GradesSelection("2022/2023","Second", R.id.grade_firstyr_second_sem_holder4, lstgrade8,firstyear4,firstsem4,secondsem4);
     }
 
-    public void GradesSelection() {
-        List<Grades> grades = database.gradesDao().find(username);
+    public void GradesSelection(String schoolyear, String semester, int holder, List<Grade_Item> lstgrad, TextView firstyear,TextView firstsem,TextView secondsem) {
+        int ctr = 0;
+        RecyclerView list = findViewById(holder);
+        List<Grades> grades = database.gradesDao().findPerSem(username, schoolyear, semester);
         for(int n = 0; n < grades.size(); n++)
         {
-            lstgrade.add(new Grade_Item(grades.get(n).getId(),grades.get(n).getSubject(),grades.get(n).getFaculty(),grades.get(n).getPrelim(),grades.get(n).getMidterm(),grades.get(n).getFinals(),grades.get(n).getFinalgrades(),grades.get(n).getAverage(),grades.get(n).getStatus(),grades.get(n).getSchoolyear(),grades.get(n).getSemester()));
+            lstgrad.add(new Grade_Item(grades.get(n).getId(),grades.get(n).getSubject(),grades.get(n).getFaculty(),grades.get(n).getPrelim(),grades.get(n).getMidterm(),grades.get(n).getFinals(),grades.get(n).getFinalgrades(),grades.get(n).getAverage(),grades.get(n).getStatus(),grades.get(n).getSchoolyear(),grades.get(n).getSemester()));
+            ctr++;
         }
-        RecyclerView list = findViewById(R.id.grade_firstyrsem_holder);
-        Grade_Adapter adapter = new Grade_Adapter(getApplicationContext(), lstgrade);
-        list.setLayoutManager(new GridLayoutManager(getApplicationContext(), 1));
-        list.setAdapter(adapter);
+        if (ctr > 0) {
+            Grade_Adapter adapter = new Grade_Adapter(getApplicationContext(), lstgrad);
+            list.setLayoutManager(new GridLayoutManager(getApplicationContext(), 1));
+            list.setAdapter(adapter);
+        } else {
+//            firstyear.setVisibility(View.GONE);
+//            firstsem.setVisibility(View.GONE);
+//            secondsem.setVisibility(View.GONE);
+//            list.setVisibility(View.GONE);
+        }
     }
 
     public void GradesSelection2() {

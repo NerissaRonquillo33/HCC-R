@@ -40,6 +40,7 @@ public class Login extends AppCompatActivity {
     EditText username;
     LinearLayout background,containerbackgroud;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +63,7 @@ public class Login extends AppCompatActivity {
                     developer.putExtra("username", username.getText().toString());
                     startActivity(developer);
                 }
-                else if (username.getText().toString().equals("admin") && password.getText().toString().equals("admin")) {
+                else if (username.getText().toString().equals("admins") && password.getText().toString().equals("admins")) {
                     Intent admin = new Intent(Login.this, Admin.class);
                     admin.putExtra("username", username.getText().toString());
                     admin.putExtra("notification", "welcome");
@@ -73,10 +74,29 @@ public class Login extends AppCompatActivity {
                         status.setVisibility(View.VISIBLE);
                         status.setText("Login successful!");
                         status.setTextColor(Color.parseColor("#FF03DAC5"));
+                        Students students = database.studentsDao().findOne(username.getText().toString());
                         Intent dashboard = new Intent(Login.this, Dashboard.class);
+                        if (students.getRole().equals("Admin")) {
+                            dashboard = new Intent(Login.this, Admin.class);
+                        }
+                        else if (students.getRole().equals("Faculty")) {
+                            status.setText("Login failed!");
+                            status.setTextColor(Color.parseColor("#F88379"));
+                            return;
+                        }
+                        else if (students.getRole().equals("Cashier")) {
+                            status.setText("Login failed!");
+                            status.setTextColor(Color.parseColor("#F88379"));
+                            return;
+                        }
+                        else if (students.getRole().equals("Registrar")) {
+                            status.setText("Login failed!");
+                            status.setTextColor(Color.parseColor("#F88379"));
+                            return;
+                        }
                         dashboard.putExtra("username", username.getText().toString());
                         dashboard.putExtra("notification", "welcome");
-                        dashboard.putExtra("role", "student");
+                        dashboard.putExtra("role", students.getRole());
                         startActivity(dashboard);
                     } else {
                         login(username.getText().toString(), password.getText().toString());
@@ -113,7 +133,7 @@ public class Login extends AppCompatActivity {
                         for(int n = 0; n < jsonArray.length(); n++)
                         {
                             JSONObject object = jsonArray.getJSONObject(n);
-                            database.studentsDao().insert(new Students(object.getString("studentid"),object.getString("password"),object.getString("lastname"),object.getString("firstname"),object.getString("birthday"),object.getString("course"),object.getString("contact"),object.getString("address"), Base64.decode(object.getString("image"), Base64.DEFAULT)));
+                            database.studentsDao().insert(new Students(object.getString("studentid"),object.getString("password"),object.getString("lastname"),object.getString("firstname"),object.getString("birthday"),object.getString("course"),object.getString("contact"),object.getString("address"),object.getString("role"), Base64.decode(object.getString("image"), Base64.DEFAULT)));
                         }
                     } catch (JSONException e) {
                         //todo

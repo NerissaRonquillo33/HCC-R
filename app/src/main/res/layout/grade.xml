@@ -116,7 +116,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textSize="20sp"
-            android:textStyle="italic"/>
+            android:textStyle="italic|bold"/>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/grade_firstyrsem_holder"
             android:layout_margin="5dp"
@@ -131,7 +131,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textSize="20sp"
-            android:textStyle="italic"/>
+            android:textStyle="italic|bold"/>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/grade_firstyr_second_sem_holder"
             android:layout_margin="5dp"
@@ -156,7 +156,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textSize="20sp"
-            android:textStyle="italic"/>
+            android:textStyle="italic|bold"/>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/grade_firstyrsem_holder2"
             android:layout_margin="5dp"
@@ -171,7 +171,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textSize="20sp"
-            android:textStyle="italic"/>
+            android:textStyle="italic|bold"/>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/grade_firstyr_second_sem_holder2"
             android:layout_margin="5dp"
@@ -196,7 +196,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textSize="20sp"
-            android:textStyle="italic"/>
+            android:textStyle="italic|bold"/>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/grade_firstyrsem_holder3"
             android:layout_margin="5dp"
@@ -211,7 +211,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textSize="20sp"
-            android:textStyle="italic"/>
+            android:textStyle="italic|bold"/>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/grade_firstyr_second_sem_holder3"
             android:layout_margin="5dp"
@@ -236,7 +236,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textSize="20sp"
-            android:textStyle="italic"/>
+            android:textStyle="italic|bold"/>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/grade_firstyrsem_holder4"
             android:layout_margin="5dp"
@@ -251,7 +251,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textSize="20sp"
-            android:textStyle="italic"/>
+            android:textStyle="italic|bold"/>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/grade_firstyr_second_sem_holder4"
             android:layout_margin="5dp"
