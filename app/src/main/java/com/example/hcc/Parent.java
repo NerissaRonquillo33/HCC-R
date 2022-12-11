@@ -44,8 +44,8 @@ public class Parent extends AppCompatActivity {
         CardView grade = findViewById(R.id.grade);
         CardView announcement = findViewById(R.id.announcement);
         containerbackground = findViewById(R.id.containerbackgroud);
-        String username = getIntent().getStringExtra("studentid");
-        String parentusername = getIntent().getStringExtra("username");
+        String username = getIntent().getStringExtra("username");
+        String parentusername = getIntent().getStringExtra("parentusername");
         String fullname = getIntent().getStringExtra("fullname");
         String nameofstudent = getIntent().getStringExtra("nameofstudent");
         String notification = getIntent().getStringExtra("notification");
