@@ -110,7 +110,7 @@ public class Bill_Details extends AppCompatActivity {
         na = findViewById(R.id.na);
         ccp = findViewById(R.id.ccp);
         ob = findViewById(R.id.ob);
-        studentnamea.setText(studentname);
+        studentnamea.setText(studentname.equals("null, null") ? studentid : studentname);
         tf.setText(tuitionfee);
         lai.setText(learnandins);
         rf.setText(regfee);

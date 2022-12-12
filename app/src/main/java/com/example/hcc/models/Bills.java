@@ -38,8 +38,10 @@ public class Bills {
     private String lesscashpayment;
     @ColumnInfo(name = "outstandingbal")
     private String outstandingbal;
+    @ColumnInfo(name = "datecreated")
+    private int datecreated;
 
-    public Bills(String username, String tuitionfee, String learninginstructional, String registrationfee, String computerprocsngfee, String guidancecounseling, String schoolidfee, String studenthand, String schoolpublication, String insurance, String totalasses, String lessdiscountscholar, String netassessed, String lesscashpayment, String outstandingbal) {
+    public Bills(String username, String tuitionfee, String learninginstructional, String registrationfee, String computerprocsngfee, String guidancecounseling, String schoolidfee, String studenthand, String schoolpublication, String insurance, String totalasses, String lessdiscountscholar, String netassessed, String lesscashpayment, String outstandingbal, int datecreated) {
         this.username = username;
         this.tuitionfee = tuitionfee;
         this.learninginstructional = learninginstructional;
@@ -55,6 +57,15 @@ public class Bills {
         this.netassessed = netassessed;
         this.lesscashpayment = lesscashpayment;
         this.outstandingbal = outstandingbal;
+        this.datecreated = datecreated;
+    }
+
+    public int getDatecreated() {
+        return datecreated;
+    }
+
+    public void setDatecreated(int datecreated) {
+        this.datecreated = datecreated;
     }
 
     public int getId() {

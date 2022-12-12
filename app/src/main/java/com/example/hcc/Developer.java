@@ -183,7 +183,7 @@ public class Developer extends AppCompatActivity {
                             String line = reader.readLine();
                             String[] bill = line.split(",");
                             if (bill.length == 15) {
-                                database.billsDao().insert(new Bills(bill[0],bill[1],bill[2],bill[3],bill[4],bill[5],bill[6],bill[7],bill[8],bill[9],bill[10],bill[11],bill[12],bill[13],bill[14]));
+                                database.billsDao().insert(new Bills(bill[0],bill[1],bill[2],bill[3],bill[4],bill[5],bill[6],bill[7],bill[8],bill[9],bill[10],bill[11],bill[12],bill[13],bill[14],Integer.parseInt(bill[15])));
                             }
                         }
                     }catch (FileNotFoundException e) {

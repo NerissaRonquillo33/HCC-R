@@ -41,8 +41,8 @@ public class Bill_Adapter extends RecyclerView.Adapter<Bill_Adapter.MyViewHolder
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
         decimalFormat.setGroupingUsed(true);
         decimalFormat.setGroupingSize(3);
-        myViewHolder.studentname.setText(item.get(i).getStudentname());
-        myViewHolder.course.setText(item.get(i).getCourse());
+        myViewHolder.studentname.setText("StudentID: "+item.get(i).getStudentid());
+        myViewHolder.course.setText("BillingID: "+String.valueOf(item.get(i).getId()));
         myViewHolder.outsbal.setText("PHP " + decimalFormat.format(Integer.parseInt(item.get(i).getBalance())));
         myViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
