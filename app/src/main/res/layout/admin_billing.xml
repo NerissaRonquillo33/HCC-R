@@ -19,20 +19,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:scaleType="fitStart"
-            android:layout_weight="1"/>
+            android:layout_weight="5"/>
         <TextView
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="List of Bills"
             android:textColor="@color/white"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            android:layout_weight="4"/>
+        <android.support.v7.widget.SearchView
+            android:id="@+id/search"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:closeIcon="@drawable/ic_baseline_close_24"
+            app:searchHintIcon="@drawable/ic_baseline_search_24"
+            app:searchIcon="@drawable/ic_baseline_search_24"
+            android:layout_weight="0.1"/>
         <ImageView
             android:id="@+id/dot"
             android:src="@drawable/menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:scaleType="fitEnd"
-            android:layout_weight="1"
+            android:layout_weight="0.3"
             android:onClick="showMenuBillInsert"/>
     </LinearLayout>
 

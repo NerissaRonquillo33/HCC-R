@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 
 import com.example.hcc.Admin;
 import com.example.hcc.Course;
@@ -38,14 +40,25 @@ import java.util.List;
 public class Bill extends AppCompatActivity {
 
     String username,role;
-    List<Bill_Item> lstBills;
+    List<Bill_Item> lstBills, lstTmp, lstSearch;
+    RecyclerView list;
+    Bill_Adapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_billing);
         ImageView prev = findViewById(R.id.back2main);
+        ImageView dot = findViewById(R.id.dot);
+        TextView title = findViewById(R.id.title);
+        SearchView search = findViewById(R.id.search);
+        list = findViewById(R.id.billing_holder);
         lstBills = new ArrayList<>();
+        lstTmp = new ArrayList<>();
+        lstSearch = new ArrayList<>();
+        adapter = new Bill_Adapter(Bill.this, lstBills);
+        list.setLayoutManager(new GridLayoutManager(getApplicationContext(), 1));
+        list.setAdapter(adapter);
         username = getIntent().getStringExtra("username");
         role = getIntent().getStringExtra("role");
         /* Back to main */
@@ -56,6 +69,48 @@ public class Bill extends AppCompatActivity {
                 dashboard.putExtra("username",username);
                 dashboard.putExtra("role",role);
                 startActivity(dashboard);
+            }
+        });
+        search.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                prev.setVisibility(View.GONE);
+                dot.setVisibility(View.GONE);
+                title.setVisibility(View.GONE);
+            }
+        });
+        search.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                prev.setVisibility(View.VISIBLE);
+                dot.setVisibility(View.VISIBLE);
+                title.setVisibility(View.VISIBLE);
+                lstBills.clear();
+                lstBills.addAll(lstTmp);
+                adapter.notifyDataSetChanged();
+                return false;
+            }
+        });
+        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                lstSearch.clear();
+                lstBills.clear();
+                lstBills.addAll(lstTmp);
+                for (int i = 0; i < lstBills.size(); i++) {
+                    if (lstBills.get(i).getStudentid().contains(s)) {
+                        lstSearch.add(lstBills.get(i));
+                    }
+                }
+                lstBills.clear();
+                lstBills.addAll(lstSearch);
+                adapter.notifyDataSetChanged();
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
             }
         });
         theme();
@@ -116,10 +171,8 @@ public class Bill extends AppCompatActivity {
                     } catch (JSONException e) {
                         //todo
                     }
-                    RecyclerView list = findViewById(R.id.billing_holder);
-                    Bill_Adapter adapter = new Bill_Adapter(Bill.this, lstBills);
-                    list.setLayoutManager(new GridLayoutManager(getApplicationContext(), 1));
-                    list.setAdapter(adapter);
+                    lstTmp.addAll(lstBills);
+                    adapter.notifyDataSetChanged();
                 }
             }
         });

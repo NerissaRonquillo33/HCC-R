@@ -23,7 +23,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$PROJECT_DIR$/../Sdk/icons/material/materialicons/family_restroom/baseline_family_restroom_24.xml" />
+                                      <entry key="url" value="file:/$PROJECT_DIR$/../Sdk/icons/material/materialicons/close/baseline_close_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -33,7 +33,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_baseline_family_restroom_24" />
+                            <entry key="color" value="ffffff" />
+                            <entry key="outputName" value="ic_baseline_close_24" />
                             <entry key="sourceFile" value="C:\Users\dende\Downloads\affiliatetheme.svg" />
                           </map>
                         </option>

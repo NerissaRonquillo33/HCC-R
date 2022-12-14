@@ -51,7 +51,7 @@ public class Parent extends AppCompatActivity {
         String notification = getIntent().getStringExtra("notification");
         role = getIntent().getStringExtra("role");
         if (notification != null) {
-            Snackbar snackbar = Snackbar.make(containerbackground, "Welcome Parents!", Snackbar.LENGTH_LONG);
+            Snackbar snackbar = Snackbar.make(containerbackground, "Welcome Parent!", Snackbar.LENGTH_LONG);
             snackbar.show();
         }
         /* Announcement */

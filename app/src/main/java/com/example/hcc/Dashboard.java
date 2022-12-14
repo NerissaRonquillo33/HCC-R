@@ -58,7 +58,7 @@ public class Dashboard extends AppCompatActivity {
             String role = getIntent().getStringExtra("role");
         String notification = getIntent().getStringExtra("notification");
         if (notification != null) {
-            Snackbar snackbar = Snackbar.make(containerbackground, "Welcome Students!", Snackbar.LENGTH_LONG);
+            Snackbar snackbar = Snackbar.make(containerbackground, "Welcome Student!", Snackbar.LENGTH_LONG);
             snackbar.show();
         }
         /* Announcement */
