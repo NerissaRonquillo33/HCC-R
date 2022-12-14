@@ -14,6 +14,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
@@ -59,6 +60,9 @@ public class Bill extends AppCompatActivity {
         adapter = new Bill_Adapter(Bill.this, lstBills);
         list.setLayoutManager(new GridLayoutManager(getApplicationContext(), 1));
         list.setAdapter(adapter);
+        EditText searchEditText = (EditText) search.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+        searchEditText.setTextColor(getResources().getColor(R.color.white));
+        searchEditText.setHintTextColor(getResources().getColor(R.color.white));
         username = getIntent().getStringExtra("username");
         role = getIntent().getStringExtra("role");
         /* Back to main */
