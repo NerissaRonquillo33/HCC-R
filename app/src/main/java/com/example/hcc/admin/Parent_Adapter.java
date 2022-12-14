@@ -35,7 +35,7 @@ public class Parent_Adapter extends RecyclerView.Adapter<Parent_Adapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull Parent_Adapter.MyViewHolder myViewHolder, int i) {
-        myViewHolder.fullname.setText(item.get(i).getFullname());
+        myViewHolder.fullname.setText(item.get(i).getLastname() + ", "+item.get(i).getFirstname());
         myViewHolder.username.setText(item.get(i).getUsername());
         myViewHolder.studentname.setText(item.get(i).getStudentname());
         myViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +43,8 @@ public class Parent_Adapter extends RecyclerView.Adapter<Parent_Adapter.MyViewHo
             public void onClick(View view) {
                 Intent details = new Intent(context, Parent_Details.class);
                 details.putExtra("id",item.get(i).getId());
-                details.putExtra("fullname",item.get(i).getFullname());
+                details.putExtra("firstname",item.get(i).getFirstname());
+                details.putExtra("lastname",item.get(i).getLastname());
                 details.putExtra("student_id",item.get(i).getStudent_id());
                 details.putExtra("username",item.get(i).getUsername());
                 details.putExtra("password",item.get(i).getPassword());

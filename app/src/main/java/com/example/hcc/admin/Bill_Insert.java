@@ -8,9 +8,11 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -24,6 +26,7 @@ import android.widget.TextView;
 import com.example.hcc.Admin;
 import com.example.hcc.Course_Detail;
 import com.example.hcc.R;
+import com.example.hcc.helper.Validation;
 import com.example.hcc.http_request.HttpRequest;
 import com.example.hcc.interfaces.RequestCallback;
 
@@ -52,6 +55,20 @@ public class Bill_Insert extends AppCompatActivity {
     TextInputEditText na;
     TextInputEditText ccp;
     TextInputEditText ob;
+    TextInputLayout tflayout;
+    TextInputLayout lailayout;
+    TextInputLayout rflayout;
+    TextInputLayout cpflayout;
+    TextInputLayout gaclayout;
+    TextInputLayout siflayout;
+    TextInputLayout shlayout;
+    TextInputLayout splayout;
+    TextInputLayout inslayout;
+    TextInputLayout talayout;
+    TextInputLayout dslayout;
+    TextInputLayout nalayout;
+    TextInputLayout ccplayout;
+    TextInputLayout oblayout;
     TextView status;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +92,20 @@ public class Bill_Insert extends AppCompatActivity {
         na = findViewById(R.id.na);
         ccp = findViewById(R.id.ccp);
         ob = findViewById(R.id.ob);
+        tflayout = findViewById(R.id.tflayout);
+        lailayout = findViewById(R.id.lailayout);
+        rflayout = findViewById(R.id.rflayout);
+        cpflayout = findViewById(R.id.cpflayout);
+        gaclayout = findViewById(R.id.gaclayout);
+        siflayout = findViewById(R.id.siflayout);
+        shlayout = findViewById(R.id.shlayout);
+        splayout = findViewById(R.id.splayout);
+        inslayout = findViewById(R.id.inslayout);
+        talayout = findViewById(R.id.talayout);
+        dslayout = findViewById(R.id.dslayout);
+        nalayout = findViewById(R.id.nalayout);
+        ccplayout = findViewById(R.id.ccplayout);
+        oblayout = findViewById(R.id.oblayout);
         list = new ArrayList<String>();
         list2 = new ArrayList<String>();
         String role = getIntent().getStringExtra("role");
@@ -95,6 +126,20 @@ public class Bill_Insert extends AppCompatActivity {
             }
         });
         listStudents();
+        tf.addTextChangedListener(new Validation(tf,tf,tflayout));
+        lai.addTextChangedListener(new Validation(lai,lai,lailayout));
+        rf.addTextChangedListener(new Validation(rf,rf,rflayout));
+        cpf.addTextChangedListener(new Validation(cpf,cpf,cpflayout));
+        gac.addTextChangedListener(new Validation(gac,gac,gaclayout));
+        sif.addTextChangedListener(new Validation(sif,sif,siflayout));
+        sh.addTextChangedListener(new Validation(sh,sh,shlayout));
+        sp.addTextChangedListener(new Validation(sp,sp,splayout));
+        ins.addTextChangedListener(new Validation(ins,ins,inslayout));
+        ta.addTextChangedListener(new Validation(ta,ta,talayout));
+        ds.addTextChangedListener(new Validation(ds,ds,dslayout));
+        na.addTextChangedListener(new Validation(na,na,nalayout));
+        ccp.addTextChangedListener(new Validation(ccp,ccp,ccplayout));
+        ob.addTextChangedListener(new Validation(ob,ob,oblayout));
     }
     public void theme() {
         /* Courses list */
@@ -137,7 +182,7 @@ public class Bill_Insert extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        new HttpRequest().doPost(Bill_Insert.this, getResources().getString(R.string.server_path) + "students.php", jsonParams, new RequestCallback() {
+        new HttpRequest().doPost(Bill_Insert.this, getResources().getString(R.string.server_path) + "admin/students.php", jsonParams, new RequestCallback() {
             @Override
             public void success(String response, JSONObject jsonObject) {
                 if (response.equals("success")) {
@@ -163,37 +208,40 @@ public class Bill_Insert extends AppCompatActivity {
 
     public void insertBill() {
         /*  */
-        JSONObject jsonParams = new JSONObject();
-        try {
-            jsonParams.put("secret_key", "secret_key");
-            jsonParams.put("tuitionfee",tf.getText().toString());
-            jsonParams.put("learnandins",lai.getText().toString());
-            jsonParams.put("regfee",rf.getText().toString());
-            jsonParams.put("compprossfee",cpf.getText().toString());
-            jsonParams.put("guidandcouns",gac.getText().toString());
-            jsonParams.put("schoolidfee",sif.getText().toString());
-            jsonParams.put("studenthand",sh.getText().toString());
-            jsonParams.put("schoolfab",sp.getText().toString());
-            jsonParams.put("insurance",ins.getText().toString());
-            jsonParams.put("totalass",ta.getText().toString());
-            jsonParams.put("discount",ds.getText().toString());
-            jsonParams.put("netass",na.getText().toString());
-            jsonParams.put("cashcheckpay",ccp.getText().toString());
-            jsonParams.put("balance",ob.getText().toString());
-            jsonParams.put("studentid",list2.get(students.getSelectedItemPosition()));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        new HttpRequest().doPost(Bill_Insert.this, getResources().getString(R.string.server_path) + "admin/bill-insert.php", jsonParams, new RequestCallback() {
-            @Override
-            public void success(String response, JSONObject jsonObject) {
-                if (response.equals("success")) {
-                    // todo
-                    status.setVisibility(View.VISIBLE);
-                    status.setText("Successful insert!");
-                    status.setTextColor(Color.parseColor("#FF03DAC5"));
-                }
+        if (new Validation(tf,tf,tflayout).validateNumber() && new Validation(lai,lai,lailayout).validateNumber() && new Validation(rf,rf,rflayout).validateNumber() && new Validation(cpf,cpf,cpflayout).validateNumber() && new Validation(gac,gac,gaclayout).validateNumber() && new Validation(sif,sif,siflayout).validateNumber() && new Validation(sh,sh,shlayout).validateNumber() && new Validation(sp,sp,splayout).validateNumber() && new Validation(ins,ins,inslayout).validateNumber() && new Validation(ta,ta,talayout).validateNumber() && new Validation(ds,ds,dslayout).validateNumber() && new Validation(na,na,nalayout).validateNumber() && new Validation(ccp,ccp,ccplayout).validateNumber() && new Validation(ob,ob,oblayout).validateNumber() && list2.size() > 0) {
+            JSONObject jsonParams = new JSONObject();
+            try {
+                jsonParams.put("secret_key", "secret_key");
+                jsonParams.put("tuitionfee",tf.getText().toString());
+                jsonParams.put("learnandins",lai.getText().toString());
+                jsonParams.put("regfee",rf.getText().toString());
+                jsonParams.put("compprossfee",cpf.getText().toString());
+                jsonParams.put("guidandcouns",gac.getText().toString());
+                jsonParams.put("schoolidfee",sif.getText().toString());
+                jsonParams.put("studenthand",sh.getText().toString());
+                jsonParams.put("schoolfab",sp.getText().toString());
+                jsonParams.put("insurance",ins.getText().toString());
+                jsonParams.put("totalass",ta.getText().toString());
+                jsonParams.put("discount",ds.getText().toString());
+                jsonParams.put("netass",na.getText().toString());
+                jsonParams.put("cashcheckpay",ccp.getText().toString());
+                jsonParams.put("balance",ob.getText().toString());
+                jsonParams.put("studentid",list2.get(students.getSelectedItemPosition()));
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        });
+            new HttpRequest().doPost(Bill_Insert.this, getResources().getString(R.string.server_path) + "admin/bill-insert.php", jsonParams, new RequestCallback() {
+                @Override
+                public void success(String response, JSONObject jsonObject) {
+                    if (response.equals("success")) {
+                        // todo
+                        status.setVisibility(View.VISIBLE);
+                        status.setText("Successful insert!");
+                        status.setTextColor(Color.parseColor("#FF03DAC5"));
+                    }
+                }
+            });
+        }
+
     }
 }

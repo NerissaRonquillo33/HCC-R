@@ -2,4 +2,27 @@
     <string name="app_name">HCC</string>
     <string name="server_path">https://sisholycrosscollege.info/api/</string>
     <string name="server_path2">https://holycross.schedulems.info/student/api/schedule/get/</string>
+    <string-array name="roles">
+        <item>Select a role.</item>
+        <item>Student</item>
+        <item>Admin</item>
+    </string-array>
+    <string-array name="year">
+        <item>Select a year.</item>
+        <item>First</item>
+        <item>Second</item>
+        <item>Third</item>
+        <item>Fourth</item>
+    </string-array>
+    <string-array name="course">
+        <item>Select a course.</item>
+        <item>BSCS</item>
+        <item>BSED</item>
+        <item>BSCRIM</item>
+        <item>BSHM</item>
+        <item>BSEED</item>
+        <item>BSED</item>
+        <item>BSA</item>
+        <item>BSBA</item>
+    </string-array>
 </resources>

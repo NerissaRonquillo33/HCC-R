@@ -75,7 +75,7 @@ public class Dashboard extends AppCompatActivity {
         grade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent grade = new Intent(Dashboard.this, Grade.class);
+                Intent grade = new Intent(Dashboard.this, Grade_new.class);
                 grade.putExtra("username",username);
                 grade.putExtra("role",role);
                 startActivity(grade);

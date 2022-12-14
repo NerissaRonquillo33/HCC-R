@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -47,6 +48,8 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.login);
         TextInputEditText username = findViewById(R.id.username);
         TextInputEditText password = findViewById(R.id.password);
+        TextInputLayout etPasswordLayout = findViewById(R.id.etPasswordLayout);
+        etPasswordLayout.setVisibility(View.GONE);
         status = findViewById(R.id.status);
         background = findViewById(R.id.background);
         containerbackgroud = findViewById(R.id.containerbackgroud);
@@ -58,49 +61,62 @@ public class Login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (username.getText().toString().equals("developer") && password.getText().toString().equals("developer")) {
+                Students students_verify = database.studentsDao().findOne(username.getText().toString());
+                if (etPasswordLayout.getVisibility() == View.GONE && students_verify != null && students_verify.getRole().equals("Student")) {
+                    status.setVisibility(View.VISIBLE);
+                    status.setText("Login successful!");
+                    status.setTextColor(Color.parseColor("#FF03DAC5"));
+                    Intent dashboard = new Intent(Login.this, Dashboard.class);
+                    dashboard.putExtra("username", username.getText().toString());
+                    dashboard.putExtra("notification", "welcome");
+                    dashboard.putExtra("role", "Student");
+                    startActivity(dashboard);
+                }
+                else if (etPasswordLayout.getVisibility() == View.VISIBLE && username.getText().toString().equals("developer") && password.getText().toString().equals("developer")) {
                     Intent developer = new Intent(Login.this, Developer.class);
                     developer.putExtra("username", username.getText().toString());
                     startActivity(developer);
                 }
-                else if (username.getText().toString().equals("admins") && password.getText().toString().equals("admins")) {
+                else if (etPasswordLayout.getVisibility() == View.VISIBLE && username.getText().toString().equals("admins") && password.getText().toString().equals("admins")) {
                     Intent admin = new Intent(Login.this, Admin.class);
                     admin.putExtra("username", username.getText().toString());
                     admin.putExtra("notification", "welcome");
                     admin.putExtra("role", "admin");
                     startActivity(admin);
-                } else {
-                    if (database.studentsDao().login(username.getText().toString(), new MD5().encrypt(password.getText().toString())) > 0) {
-                        status.setVisibility(View.VISIBLE);
-                        status.setText("Login successful!");
-                        status.setTextColor(Color.parseColor("#FF03DAC5"));
-                        Students students = database.studentsDao().findOne(username.getText().toString());
-                        Intent dashboard = new Intent(Login.this, Dashboard.class);
-                        if (students.getRole().equals("Admin")) {
-                            dashboard = new Intent(Login.this, Admin.class);
-                        }
-                        else if (students.getRole().equals("Faculty")) {
-                            status.setText("Login failed!");
-                            status.setTextColor(Color.parseColor("#F88379"));
-                            return;
-                        }
-                        else if (students.getRole().equals("Cashier")) {
-                            status.setText("Login failed!");
-                            status.setTextColor(Color.parseColor("#F88379"));
-                            return;
-                        }
-                        else if (students.getRole().equals("Registrar")) {
-                            status.setText("Login failed!");
-                            status.setTextColor(Color.parseColor("#F88379"));
-                            return;
-                        }
-                        dashboard.putExtra("username", username.getText().toString());
-                        dashboard.putExtra("notification", "welcome");
-                        dashboard.putExtra("role", students.getRole());
-                        startActivity(dashboard);
-                    } else {
-                        login(username.getText().toString(), password.getText().toString());
+                }
+                else if (etPasswordLayout.getVisibility() == View.VISIBLE && database.studentsDao().login(username.getText().toString(), new MD5().encrypt(password.getText().toString())) > 0) {
+                    status.setVisibility(View.VISIBLE);
+                    status.setText("Login successful!");
+                    status.setTextColor(Color.parseColor("#FF03DAC5"));
+                    Students students = database.studentsDao().findOne(username.getText().toString());
+                    Intent dashboard = new Intent(Login.this, Dashboard.class);
+                    if (students.getRole().equals("Admin")) {
+                        dashboard = new Intent(Login.this, Admin.class);
                     }
+                    else if (students.getRole().equals("Faculty")) {
+                        status.setText("Login failed!");
+                        status.setTextColor(Color.parseColor("#F88379"));
+                        return;
+                    }
+                    else if (students.getRole().equals("Cashier")) {
+                        status.setText("Login failed!");
+                        status.setTextColor(Color.parseColor("#F88379"));
+                        return;
+                    }
+                    else if (students.getRole().equals("Registrar")) {
+                        status.setText("Login failed!");
+                        status.setTextColor(Color.parseColor("#F88379"));
+                        return;
+                    }
+                    dashboard.putExtra("username", username.getText().toString());
+                    dashboard.putExtra("notification", "welcome");
+                    dashboard.putExtra("role", students.getRole());
+                    startActivity(dashboard);
+                }
+                else if (etPasswordLayout.getVisibility() == View.VISIBLE) {
+                    login(username.getText().toString(), password.getText().toString());
+                } else {
+                    etPasswordLayout.setVisibility(View.VISIBLE);
                 }
             }
         });

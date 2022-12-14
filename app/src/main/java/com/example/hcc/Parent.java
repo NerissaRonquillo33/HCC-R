@@ -69,7 +69,7 @@ public class Parent extends AppCompatActivity {
         grade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent grade = new Intent(Parent.this, Grade.class);
+                Intent grade = new Intent(Parent.this, Grade_new.class);
                 grade.putExtra("username",username);
                 grade.putExtra("role",role);
                 grade.putExtra("nameofstudent",nameofstudent);

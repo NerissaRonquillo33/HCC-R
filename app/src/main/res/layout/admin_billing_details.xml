@@ -73,6 +73,7 @@
                 android:textColor="#fff"
                 android:background="@color/label"/>
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/tflayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp">
@@ -85,9 +86,11 @@
                     android:layout_marginLeft="20dp"
                     android:padding="10dp"
                     android:hint="TUITION FEE"
+                    android:inputType="number"
                     android:layout_height="wrap_content"/>
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/lailayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
@@ -98,10 +101,12 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
                     android:padding="10dp"
+                    android:inputType="number"
                     android:hint="LEARNING AND INSTRUCTIONAL"
                     android:layout_height="wrap_content"/>
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/rflayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
@@ -112,10 +117,12 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
                     android:padding="10dp"
+                    android:inputType="number"
                     android:hint="REGISTRATION FEE"
                     android:layout_height="wrap_content"/>
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/cpflayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
@@ -126,10 +133,12 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
                     android:padding="10dp"
+                    android:inputType="number"
                     android:hint="COMPUTER PROCESSING FEE"
                     android:layout_height="wrap_content"/>
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/gaclayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
@@ -140,10 +149,12 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
                     android:padding="10dp"
+                    android:inputType="number"
                     android:hint="GUIDANCE AND COUNSELING"
                     android:layout_height="wrap_content"/>
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/siflayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
@@ -154,10 +165,12 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
                     android:padding="10dp"
+                    android:inputType="number"
                     android:hint="SCHOOL ID FEE"
                     android:layout_height="wrap_content"/>
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/shlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
@@ -168,10 +181,12 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
                     android:padding="10dp"
+                    android:inputType="number"
                     android:hint="STUDENT HANDBOOK"
                     android:layout_height="wrap_content"/>
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/splayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
@@ -182,10 +197,12 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
                     android:padding="10dp"
+                    android:inputType="number"
                     android:hint="SCHOOL PUBLICATION"
                     android:layout_height="wrap_content"/>
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/inslayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
@@ -196,10 +213,12 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
                     android:padding="10dp"
+                    android:inputType="number"
                     android:hint="INSURANCE"
                     android:layout_height="wrap_content"/>
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/talayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
@@ -210,10 +229,12 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
                     android:padding="10dp"
+                    android:inputType="number"
                     android:hint="TOTAL ASSESSMENT"
                     android:layout_height="wrap_content"/>
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/dslayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
@@ -224,10 +245,12 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
                     android:padding="10dp"
+                    android:inputType="number"
                     android:hint="(Less) Discount/Scholar"
                     android:layout_height="wrap_content"/>
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/nalayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
@@ -238,10 +261,12 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
                     android:padding="10dp"
+                    android:inputType="number"
                     android:hint="NET ASSESSED"
                     android:layout_height="wrap_content"/>
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/ccplayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
@@ -252,10 +277,12 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
                     android:padding="10dp"
+                    android:inputType="number"
                     android:hint="(Less) Cash/Cheque Payment"
                     android:layout_height="wrap_content"/>
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/oblayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
@@ -267,6 +294,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginBottom="20dp"
                     android:padding="10dp"
+                    android:inputType="number"
                     android:hint="OUTSTANDING BALANCE"
                     android:layout_height="wrap_content"/>
             </android.support.design.widget.TextInputLayout>

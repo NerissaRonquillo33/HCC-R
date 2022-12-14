@@ -76,6 +76,7 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:text="34,344"
                 android:textColor="#fff"
+                android:textStyle="bold"
                 android:textSize="50sp"/>
         </LinearLayout>
     </LinearLayout>

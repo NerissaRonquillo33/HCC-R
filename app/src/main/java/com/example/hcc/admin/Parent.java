@@ -104,7 +104,7 @@ public class Parent extends AppCompatActivity {
                         for(int n = 0; n < jsonArray.length(); n++)
                         {
                             JSONObject object = jsonArray.getJSONObject(n);
-                            lstBills.add(new Parent_Item(object.getInt("id"),object.getString("student_id"),object.getString("lastname")+", "+object.getString("firstname"),object.getString("fullname"),object.getString("username"),object.getString("password"),object.getString("email")));
+                            lstBills.add(new Parent_Item(object.getInt("id"),object.getString("student_id"),object.getString("slastname")+", "+object.getString("sfirstname"),object.getString("lastname"),object.getString("firstname"),object.getString("username"),object.getString("password"),object.getString("email")));
 
                         }
                     } catch (JSONException e) {

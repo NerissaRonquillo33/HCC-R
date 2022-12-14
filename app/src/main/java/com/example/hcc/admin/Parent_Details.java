@@ -6,34 +6,53 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.hcc.Course_Detail;
 import com.example.hcc.R;
+import com.example.hcc.helper.Validation;
 import com.example.hcc.http_request.HttpRequest;
 import com.example.hcc.interfaces.RequestCallback;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Parent_Details extends AppCompatActivity {
-    TextInputEditText fullname;
-    TextInputEditText student_id;
+    List<String> list,list2;
+    TextInputEditText firstname;
+    TextInputEditText lastname;
     TextInputEditText username;
     TextInputEditText password;
     TextInputEditText email;
 
-    String fullname1;
+    TextInputLayout firstnamelayout;
+    TextInputLayout lastnamelayout;
+    TextInputLayout usernamelayout;
+    TextInputLayout passwordlayout;
+    TextInputLayout emaillayout;
+
+    TextView student_idlayout;
+
+    Spinner student_id;
+
+    String firstname1,lastname1;
     String student_id1;
     String username1;
     String password1;
@@ -53,21 +72,41 @@ public class Parent_Details extends AppCompatActivity {
         scrollView = findViewById(R.id.parentdetails);
 
         id = getIntent().getIntExtra("id",0);
-        fullname1 = getIntent().getStringExtra("fullname");
+        firstname1 = getIntent().getStringExtra("firstname");
+        lastname1 = getIntent().getStringExtra("lastname");
         student_id1 = getIntent().getStringExtra("student_id");
         username1 = getIntent().getStringExtra("username");
         password1 = getIntent().getStringExtra("password");
         email1 = getIntent().getStringExtra("email");
-        
 
-        fullname = findViewById(R.id.fullname);
-        student_id = findViewById(R.id.student_id);
+
+        firstname = findViewById(R.id.firstname);
+        lastname = findViewById(R.id.lastname);
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
         email = findViewById(R.id.email);
-        
-        fullname.setText(fullname1);
-        student_id.setText(student_id1);
+
+        firstnamelayout = findViewById(R.id.firstnamelayout);
+        lastnamelayout = findViewById(R.id.lastnamelayout);
+        usernamelayout = findViewById(R.id.usernamelayout);
+        passwordlayout = findViewById(R.id.passwordlayout);
+        emaillayout = findViewById(R.id.emaillayout);
+
+        student_id = findViewById(R.id.student_id);
+        student_idlayout = findViewById(R.id.student_idlayout);
+
+        firstname.addTextChangedListener(new Validation(firstname,firstname,firstnamelayout));
+        lastname.addTextChangedListener(new Validation(lastname,lastname,lastnamelayout));
+        username.addTextChangedListener(new Validation(username,username,usernamelayout));
+        password.addTextChangedListener(new Validation(password,password,passwordlayout));
+        email.addTextChangedListener(new Validation(email,email,emaillayout));
+
+        list = new ArrayList<String>();
+        list2 = new ArrayList<String>();
+        listStudents();
+
+        firstname.setText(firstname1);
+        lastname.setText(lastname1);
         username.setText(username1);
         email.setText(email1);
         
@@ -148,33 +187,43 @@ public class Parent_Details extends AppCompatActivity {
 
     public void updateBill() {
         /*  */
-        progressBar.setVisibility(View.VISIBLE);
-        scrollView.setVisibility(View.INVISIBLE);
-        dot.setVisibility(View.INVISIBLE);
-        JSONObject jsonParams = new JSONObject();
-        try {
-            jsonParams.put("secret_key", "secret_key");
-            jsonParams.put("action","update");
-            jsonParams.put("fullname",fullname.getText().toString());
-            jsonParams.put("studentid",student_id.getText().toString());
-            jsonParams.put("username",username.getText().toString());
-            jsonParams.put("password",password.getText().toString());
-            jsonParams.put("email",email.getText().toString());
-            jsonParams.put("id",id);
-        } catch (JSONException e) {
-            e.printStackTrace();
+        if (student_id.getSelectedItem().toString().equals("Select a StudentID.")) {
+            //todo
+            student_idlayout.setVisibility(View.VISIBLE);
+        } else {
+            student_idlayout.setVisibility(View.GONE);
         }
-        new HttpRequest().doPost(Parent_Details.this, getResources().getString(R.string.server_path) + "admin/parent-update.php", jsonParams, new RequestCallback() {
-            @Override
-            public void success(String response, JSONObject jsonObject) {
-                if (response.equals("success")) {
-                    // todo
-                }
-                progressBar.setVisibility(View.GONE);
-                scrollView.setVisibility(View.VISIBLE);
-                dot.setVisibility(View.VISIBLE);
+        if (!student_id.getSelectedItem().toString().equals("Select a StudentID.") && new Validation(firstname,firstname,firstnamelayout).validateNames() && new Validation(lastname,lastname,lastnamelayout).validateNames() && new Validation(username,username,usernamelayout).validateUsername() && new Validation(password,password,passwordlayout).validatePassword() && new Validation(email,email,emaillayout).validateEmail()) {
+            progressBar.setVisibility(View.VISIBLE);
+            scrollView.setVisibility(View.INVISIBLE);
+            dot.setVisibility(View.INVISIBLE);
+            JSONObject jsonParams = new JSONObject();
+            try {
+                jsonParams.put("secret_key", "secret_key");
+                jsonParams.put("action","update");
+                jsonParams.put("firstname",firstname.getText().toString());
+                jsonParams.put("lastname",lastname.getText().toString());
+                jsonParams.put("studentid",list2.get(student_id.getSelectedItemPosition()));
+                jsonParams.put("username",username.getText().toString());
+                jsonParams.put("password",password.getText().toString());
+                jsonParams.put("email",email.getText().toString());
+                jsonParams.put("id",id);
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        });
+            new HttpRequest().doPost(Parent_Details.this, getResources().getString(R.string.server_path) + "admin/parent-update.php", jsonParams, new RequestCallback() {
+                @Override
+                public void success(String response, JSONObject jsonObject) {
+                    if (response.equals("success")) {
+                        // todo
+                    }
+                    progressBar.setVisibility(View.GONE);
+                    scrollView.setVisibility(View.VISIBLE);
+                    dot.setVisibility(View.VISIBLE);
+                }
+            });
+        }
+
     }
 
     public void deleteBill() {
@@ -201,6 +250,47 @@ public class Parent_Details extends AppCompatActivity {
                 progressBar.setVisibility(View.GONE);
                 scrollView.setVisibility(View.VISIBLE);
                 dot.setVisibility(View.VISIBLE);
+            }
+        });
+    }
+    public void listStudents() {
+        /* Courses list */
+        list.clear();
+        list2.clear();
+        list.add("Select a StudentID.");
+        list2.add("Select a StudentID.");
+        JSONObject jsonParams = new JSONObject();
+        try {
+            jsonParams.put("secret_key", "secret_key");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        new HttpRequest().doPost(Parent_Details.this, getResources().getString(R.string.server_path) + "admin/students.php", jsonParams, new RequestCallback() {
+            @Override
+            public void success(String response, JSONObject jsonObject) {
+                if (response.equals("success")) {
+                    try {
+                        JSONArray jsonArray = jsonObject.getJSONArray("results");
+                        for(int n = 0; n < jsonArray.length(); n++)
+                        {
+                            JSONObject object = jsonArray.getJSONObject(n);
+                            list.add( object.getString("lastname") + ", " + object.getString("firstname"));
+                            list2.add( object.getString("studentid"));
+                        }
+                    } catch (JSONException e) {
+                        //todo
+                    }
+                    ArrayAdapter<String> adp1 = new ArrayAdapter<String>(Parent_Details.this,
+                            android.R.layout.simple_spinner_item, list);
+                    adp1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    student_id.setAdapter(adp1);
+                    for (int i = 0; i < list2.size(); i++) {
+                        if (list2.get(i).equals(student_id1)) {
+                            student_id.setSelection(i);
+                            break;
+                        }
+                    }
+                }
             }
         });
     }

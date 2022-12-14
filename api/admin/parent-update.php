@@ -7,12 +7,13 @@ if (isset($json["secret_key"])) {
     $secret_key = $json["secret_key"];
 	$action = trim(mysqli_real_escape_string($mysqli,$json["action"]));
 	$studentid = trim(mysqli_real_escape_string($mysqli,$json["studentid"]));
-    $fullname = trim(mysqli_real_escape_string($mysqli,$json["fullname"]));
+    $firstname = trim(mysqli_real_escape_string($mysqli,$json["firstname"]));
+    $lastname = trim(mysqli_real_escape_string($mysqli,$json["lastname"]));
     $email = trim(mysqli_real_escape_string($mysqli,$json["email"]));
     $username = trim(mysqli_real_escape_string($mysqli,$json["username"]));
     $password = md5(trim(mysqli_real_escape_string($mysqli,$json["password"])));
 	$id = trim(mysqli_real_escape_string($mysqli,$json["id"]));
-    $sql = "UPDATE _parents SET fullname = '$fullname', student_id = $studentid, username = '$username'".(strlen($json["password"]) > 0 ? ", password = '$password'" : "").", email = '$email' WHERE id=$id";
+    $sql = "UPDATE _parents SET firstname = '$firstname', lastname = '$lastname', student_id = $studentid, username = '$username'".(strlen($json["password"]) > 0 ? ", password = '$password'" : "").", email = '$email' WHERE id=$id";
     if ($action == "delete") {
     	$sql = "DELETE FROM _parents WHERE id=$id";
     }

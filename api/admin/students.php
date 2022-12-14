@@ -5,7 +5,7 @@ header('Content-Type: application/json; charset=utf-8');
 if (isset($json["secret_key"])) {
     $mysqli = DB();
     $secret_key = $json["secret_key"];
-    $sql = "SELECT _parents.*, students.firstname AS sfirstname, students.lastname AS slastname, students.course FROM _parents LEFT JOIN students ON _parents.student_id=students.studentid";
+    $sql = "SELECT * FROM students";
     $result = $mysqli->query($sql);
     $row = $result->fetch_all(MYSQLI_ASSOC);
     echo json_encode(array("status"=>"success", "results"=>$row));

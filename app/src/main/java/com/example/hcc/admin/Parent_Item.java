@@ -4,19 +4,37 @@ public class Parent_Item {
     private int id;
     private String student_id;
     private String studentname;
-    private String fullname;
+    private String lastname;
+    private String firstname;
     private String username;
     private String password;
     private String email;
 
-    public Parent_Item(int id, String student_id, String studentname, String fullname, String username, String password, String email) {
+    public Parent_Item(int id, String student_id, String studentname, String lastname, String firstname, String username, String password, String email) {
         this.id = id;
         this.student_id = student_id;
         this.studentname = studentname;
-        this.fullname = fullname;
+        this.lastname = lastname;
+        this.firstname = firstname;
         this.username = username;
         this.password = password;
         this.email = email;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
     public String getStudentname() {
@@ -41,14 +59,6 @@ public class Parent_Item {
 
     public void setStudent_id(String student_id) {
         this.student_id = student_id;
-    }
-
-    public String getFullname() {
-        return fullname;
-    }
-
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
     }
 
     public String getUsername() {

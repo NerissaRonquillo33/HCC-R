@@ -95,7 +95,7 @@ public class Bill extends AppCompatActivity {
                 startActivity(dashboard);
             }
         });
-        ob.setTextColor(Color.parseColor("#FF0000"));
+//        ob.setTextColor(Color.parseColor("#FF0000"));
         updateBilling();
         BillInfo();
     }
@@ -120,9 +120,9 @@ public class Bill extends AppCompatActivity {
             na.setText(decimalFormat.format(Integer.parseInt(bills.getNetassessed())));
             ccp.setText(decimalFormat.format(Integer.parseInt(bills.getLesscashpayment())));
             ob.setText(decimalFormat.format(Integer.parseInt(bills.getOutstandingbal())));
-            if (Integer.parseInt(bills.getOutstandingbal()) <= 0) {
-                ob.setTextColor(Color.parseColor("#4E6EA9"));
-            }
+//            if (Integer.parseInt(bills.getOutstandingbal()) <= 0) {
+//                ob.setTextColor(Color.parseColor("#4E6EA9"));
+//            }
         }
     }
 

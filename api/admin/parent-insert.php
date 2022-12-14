@@ -6,11 +6,12 @@ if (isset($json["secret_key"])) {
     $mysqli = DB();
     $secret_key = $json["secret_key"];
 	$studentid = trim(mysqli_real_escape_string($mysqli,$json["studentid"]));
-	$fullname = trim(mysqli_real_escape_string($mysqli,$json["fullname"]));
+    $firstname = trim(mysqli_real_escape_string($mysqli,$json["firstname"]));
+	$lastname = trim(mysqli_real_escape_string($mysqli,$json["lastname"]));
     $email = trim(mysqli_real_escape_string($mysqli,$json["email"]));
 	$username = trim(mysqli_real_escape_string($mysqli,$json["username"]));
 	$password = md5(trim(mysqli_real_escape_string($mysqli,$json["password"])));
-    $sql = "INSERT INTO _parents (fullname, student_id, username, password, email) VALUES ('$fullname', $studentid, '$username', '$password', '$email')";
+    $sql = "INSERT INTO _parents (firstname, lastname, student_id, username, password, email) VALUES ('$firstname','$lastname', $studentid, '$username', '$password', '$email')";
     try {
         if ($mysqli->query($sql)) $status = "success";
         if ($mysqli->errno) $status = "error";
