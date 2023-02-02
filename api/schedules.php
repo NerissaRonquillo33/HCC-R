@@ -1,22 +1,50 @@
 <?php
+include_once(dirname(__FILE__).'/connector.php');
 $json = json_decode(file_get_contents('php://input'), true);
 header('Content-Type: application/json; charset=utf-8');
 if (isset($json["secret_key"]) && isset($json["username"])) {
-	$curl = curl_init();
-	curl_setopt($curl, CURLOPT_URL, "https://holycross.schedulems.info/student/api/schedule/get/".$json["username"]);
-	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-	$response = curl_exec($curl);
-	$decodedData = json_decode($response, true);
-	$row = array();
-	// var_dump($decodedData["students"]["section"]["section_subjects"]);
-	foreach ($decodedData["students"]["section"]["section_subjects"] as $key => $value) {
-		$row[] = array("studentid" => ($json["username"] ?? 'TBA'), "subject" => ($value["subject"]["subject"] ?? 'TBA'), "course" => ($decodedData["students"]["section"]["section_code"] ?? 'TBA'), "days" => ($value["generated_schedules"][0]["day"] ?? 'TBA'), "time" => ($value["generated_schedules"][0]["from"] ?? 'TBA')." - ".($value["generated_schedules"][0]["to"] ?? 'TBA'), "room" => ($value["subject"]["room_no"] ?? 'TBA'), "prof" => ($value["generated_schedules"][0]["professor_subject"]["professor"]["name"] ?? 'TBA'));
-	}
-	curl_close($curl);
-	if (count($row) > 0) {
-		echo json_encode(array("status"=>"success", "results"=>$row));
-	} else {
-		echo json_encode(array("status"=>"none"));
-	}
-	
+    $mysqli = DB();
+    $studentid = trim(mysqli_real_escape_string($mysqli,$json["username"]));
+    $sql = "SELECT * FROM students WHERE studentid = ".$studentid." LIMIT 1";
+    $result = mysqli_query($mysqli,$sql);
+    $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+    $count = mysqli_num_rows($result);
+    $data = array();
+    $cys = $row['course'].$row['year'].$row['section'];
+    $sql = "SELECT faculty.firstname,faculty.lastname,time.time_start,time.time_end,schedule.subject_code,schedule.room,schedule.day FROM schedule LEFT JOIN faculty ON faculty.facultyid = schedule.facultyid LEFT JOIN time ON schedule.time_id = time.time_id WHERE schedule.cys='".$cys."'";
+    $result2 = $mysqli->query($sql);
+    $row2 = $result2->fetch_all(MYSQLI_ASSOC);
+    foreach ($row2 as $key => $value) {
+        $data[] = array("studentid" => ($json["username"] ?? 'TBA'), "subject" => $value['subject_code'], "course" => $row['course'], "days" => abbr2name($value['day']), "time" => $value['time_start']." - ".$value['time_end'], "room" => $value['room'], "prof" => $value['firstname']." ".$value['lastname']);
+    }
+    echo json_encode(array("status"=>"success", "results"=>$data));
+}
+
+function abbr2name($abbr)
+{
+    $name = "";
+    switch ($abbr) {
+        case "m":
+            $name = "Monday";
+            break;
+        case "t":
+            $name = "Tuesday";
+            break;
+        case "w":
+            $name = "Wednesday";
+            break;
+        case "th":
+            $name = "Thursday";
+            break;
+        case "f":
+            $name = "Friday";
+            break;
+        case "s":
+            $name = "Saturday";
+            break;
+        case "sn":
+            $name = "Sunday";
+            break;
+    }
+    return $name;
 }
