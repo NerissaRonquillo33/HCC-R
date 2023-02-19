@@ -2,9 +2,9 @@ package com.example.hcc.admin;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.example.hcc.R;
 
-import java.text.DecimalFormat;
 import java.util.List;
 
 public class Parent_Adapter extends RecyclerView.Adapter<Parent_Adapter.MyViewHolder> {

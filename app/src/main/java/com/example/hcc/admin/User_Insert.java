@@ -7,13 +7,12 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
@@ -21,19 +20,15 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.hcc.Course_Detail;
 import com.example.hcc.R;
 import com.example.hcc.helper.Validation;
 import com.example.hcc.http_request.HttpRequest;
 import com.example.hcc.interfaces.RequestCallback;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 public class User_Insert extends AppCompatActivity {
     Button insert;

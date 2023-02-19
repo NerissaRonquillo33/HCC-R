@@ -83,7 +83,7 @@
 <!--            </LinearLayout>-->
 
 <!--        </android.support.v7.widget.CardView>-->
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:id="@+id/bill"
             android:foreground="?android:selectableItemBackground"
             android:layout_width="0dp"
@@ -131,7 +131,7 @@
 
             </LinearLayout>
 
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
 <!--        <android.support.v7.widget.CardView-->
 <!--            android:id="@+id/grade"-->
@@ -232,7 +232,7 @@
 
 <!--        </android.support.v7.widget.CardView>-->
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:foreground="?android:selectableItemBackground"
             android:id="@+id/users"
             android:layout_width="0dp"
@@ -280,8 +280,8 @@
 
             </LinearLayout>
 
-        </android.support.v7.widget.CardView>
-        <android.support.v7.widget.CardView
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
             android:foreground="?android:selectableItemBackground"
             android:id="@+id/parents"
             android:layout_width="0dp"
@@ -329,8 +329,8 @@
 
             </LinearLayout>
 
-        </android.support.v7.widget.CardView>
-        <android.support.v7.widget.CardView
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
             android:foreground="?android:selectableItemBackground"
             android:id="@+id/theme"
             android:layout_width="0dp"
@@ -378,8 +378,8 @@
 
             </LinearLayout>
 
-        </android.support.v7.widget.CardView>
-        <android.support.v7.widget.CardView
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
             android:foreground="?android:selectableItemBackground"
             android:id="@+id/about"
             android:layout_width="0dp"
@@ -427,8 +427,8 @@
 
             </LinearLayout>
 
-        </android.support.v7.widget.CardView>
-        <android.support.v7.widget.CardView
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
             android:id="@+id/schedule"
             android:foreground="?android:selectableItemBackground"
             android:layout_width="0dp"
@@ -465,7 +465,7 @@
 
             </LinearLayout>
 
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
 
     </GridLayout>

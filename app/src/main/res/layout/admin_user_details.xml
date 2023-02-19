@@ -49,12 +49,12 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/studentidlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp">
-                <android.support.design.widget.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/studentid"
                     android:layout_width="match_parent"
                     android:layout_gravity="center_vertical"
@@ -65,12 +65,12 @@
                     android:inputType="number"
                     android:hint="STUDENT ID"
                     android:layout_height="wrap_content"/>
-            </android.support.design.widget.TextInputLayout>
-            <android.support.design.widget.TextInputLayout
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/passwordlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <android.support.design.widget.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_gravity="center_vertical"
@@ -82,12 +82,12 @@
                     android:hint="PASSWORD"
                     android:inputType="textVisiblePassword"
                     android:layout_height="wrap_content"/>
-            </android.support.design.widget.TextInputLayout>
-            <android.support.design.widget.TextInputLayout
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/lastnamelayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <android.support.design.widget.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/lastname"
                     android:layout_width="match_parent"
                     android:layout_gravity="center_vertical"
@@ -97,12 +97,12 @@
                     android:padding="10dp"
                     android:hint="LASTNAME"
                     android:layout_height="wrap_content"/>
-            </android.support.design.widget.TextInputLayout>
-            <android.support.design.widget.TextInputLayout
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/firstnamelayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <android.support.design.widget.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/firstname"
                     android:layout_width="match_parent"
                     android:layout_gravity="center_vertical"
@@ -112,12 +112,12 @@
                     android:padding="10dp"
                     android:hint="FIRSTNAME"
                     android:layout_height="wrap_content"/>
-            </android.support.design.widget.TextInputLayout>
-            <android.support.design.widget.TextInputLayout
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/addresslayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <android.support.design.widget.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/address"
                     android:layout_width="match_parent"
                     android:layout_gravity="center_vertical"
@@ -127,12 +127,12 @@
                     android:padding="10dp"
                     android:hint="ADDRESS"
                     android:layout_height="wrap_content"/>
-            </android.support.design.widget.TextInputLayout>
-            <android.support.design.widget.TextInputLayout
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/contactlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <android.support.design.widget.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/contact"
                     android:layout_width="match_parent"
                     android:layout_gravity="center_vertical"
@@ -144,12 +144,12 @@
                     android:maxLength="11"
                     android:hint="CONTACT"
                     android:layout_height="wrap_content"/>
-            </android.support.design.widget.TextInputLayout>
-            <android.support.design.widget.TextInputLayout
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/birthdaylayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <android.support.design.widget.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/birthday"
                     android:layout_width="match_parent"
                     android:layout_gravity="center_vertical"
@@ -160,12 +160,12 @@
                     android:padding="10dp"
                     android:hint="BIRTHDAY"
                     android:layout_height="wrap_content"/>
-            </android.support.design.widget.TextInputLayout>
-            <android.support.design.widget.TextInputLayout
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/emaillayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <android.support.design.widget.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_gravity="center_vertical"
@@ -176,7 +176,7 @@
                     android:inputType="textEmailAddress"
                     android:hint="EMAIL"
                     android:layout_height="wrap_content"/>
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
             <Spinner
                 android:id="@+id/course"
                 android:layout_height="wrap_content"
@@ -221,11 +221,11 @@
                 android:text="Year is required."
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/sectionlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <android.support.design.widget.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/section"
                     android:layout_width="match_parent"
                     android:layout_gravity="center_vertical"
@@ -236,7 +236,7 @@
                     android:inputType="text"
                     android:hint="SECTION"
                     android:layout_height="wrap_content"/>
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
             <Spinner
                 android:id="@+id/role"
                 android:layout_height="wrap_content"

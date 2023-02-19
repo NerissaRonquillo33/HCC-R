@@ -49,12 +49,12 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/firstnamelayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp">
-                <android.support.design.widget.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/firstname"
                     android:layout_width="match_parent"
                     android:layout_gravity="center_vertical"
@@ -64,12 +64,12 @@
                     android:padding="10dp"
                     android:hint="FIRSTNAME"
                     android:layout_height="wrap_content"/>
-            </android.support.design.widget.TextInputLayout>
-            <android.support.design.widget.TextInputLayout
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/lastnamelayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <android.support.design.widget.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/lastname"
                     android:layout_width="match_parent"
                     android:layout_gravity="center_vertical"
@@ -79,7 +79,7 @@
                     android:padding="10dp"
                     android:hint="LASTNAME"
                     android:layout_height="wrap_content"/>
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
             <Spinner
                 android:id="@+id/student_id"
                 android:layout_height="wrap_content"
@@ -101,11 +101,11 @@
                 android:text="StudentID is required."
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/usernamelayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <android.support.design.widget.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/username"
                     android:layout_width="match_parent"
                     android:layout_gravity="center_vertical"
@@ -115,12 +115,12 @@
                     android:padding="10dp"
                     android:hint="USERNAME"
                     android:layout_height="wrap_content"/>
-            </android.support.design.widget.TextInputLayout>
-            <android.support.design.widget.TextInputLayout
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/passwordlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <android.support.design.widget.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_gravity="center_vertical"
@@ -130,12 +130,12 @@
                     android:padding="10dp"
                     android:hint="PASSWORD"
                     android:layout_height="wrap_content"/>
-            </android.support.design.widget.TextInputLayout>
-            <android.support.design.widget.TextInputLayout
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/emaillayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <android.support.design.widget.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_gravity="center_vertical"
@@ -146,7 +146,7 @@
                     android:padding="10dp"
                     android:hint="EMAIL"
                     android:layout_height="wrap_content"/>
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
     </ScrollView>
 

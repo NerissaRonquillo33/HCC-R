@@ -5,11 +5,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.SearchView;
 import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
@@ -21,15 +21,9 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.example.hcc.Admin;
-import com.example.hcc.Course;
-import com.example.hcc.Course_Adapter;
-import com.example.hcc.Course_Detail;
-import com.example.hcc.Course_Item;
-import com.example.hcc.Dashboard;
 import com.example.hcc.R;
 import com.example.hcc.http_request.HttpRequest;
 import com.example.hcc.interfaces.RequestCallback;
-import com.example.hcc.models.Schedules;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -60,7 +54,7 @@ public class Bill extends AppCompatActivity {
         adapter = new Bill_Adapter(Bill.this, lstBills);
         list.setLayoutManager(new GridLayoutManager(getApplicationContext(), 1));
         list.setAdapter(adapter);
-        EditText searchEditText = (EditText) search.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+        EditText searchEditText = (EditText) search.findViewById(androidx.appcompat.R.id.search_src_text);
         searchEditText.setTextColor(getResources().getColor(R.color.white));
         searchEditText.setHintTextColor(getResources().getColor(R.color.white));
         username = getIntent().getStringExtra("username");

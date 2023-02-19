@@ -3,13 +3,11 @@ package com.example.hcc;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -21,15 +19,12 @@ import com.example.hcc.abstracts.Database;
 import com.example.hcc.http_request.HttpRequest;
 import com.example.hcc.interfaces.RequestCallback;
 import com.example.hcc.models.Bills;
-import com.example.hcc.models.Schedules;
-import com.example.hcc.models.Students;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
-import java.util.List;
 
 
 public class Bill extends AppCompatActivity {

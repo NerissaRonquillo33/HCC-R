@@ -8,9 +8,9 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -18,15 +18,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.hcc.Admin;
-import com.example.hcc.Course_Detail;
-import com.example.hcc.Dashboard;
 import com.example.hcc.R;
-import com.example.hcc.StudentInfo;
 import com.example.hcc.http_request.HttpRequest;
 import com.example.hcc.interfaces.RequestCallback;
 
@@ -35,7 +30,6 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class About extends AppCompatActivity {
     Button uploadpic, update;

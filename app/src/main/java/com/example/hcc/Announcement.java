@@ -5,21 +5,19 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 
 import com.example.hcc.abstracts.Database;
 import com.example.hcc.http_request.HttpRequest;
 import com.example.hcc.interfaces.RequestCallback;
 import com.example.hcc.models.Announcements;
-import com.example.hcc.models.Grades;
 
 import org.json.JSONArray;
 import org.json.JSONException;

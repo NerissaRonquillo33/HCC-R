@@ -53,7 +53,7 @@
             android:textSize="25sp"
             android:textStyle="bold"/>
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/course_holder"
             android:layout_margin="5dp"
             android:layout_width="match_parent"

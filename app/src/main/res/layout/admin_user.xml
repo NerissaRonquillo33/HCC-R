@@ -36,7 +36,7 @@
             android:onClick="showMenuBillInsert"/>
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/users_holder"
         android:layout_margin="5dp"
         android:layout_width="match_parent"

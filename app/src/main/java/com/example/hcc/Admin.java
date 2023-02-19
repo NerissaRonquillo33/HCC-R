@@ -6,11 +6,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
+
+import com.google.android.material.snackbar.Snackbar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Button;

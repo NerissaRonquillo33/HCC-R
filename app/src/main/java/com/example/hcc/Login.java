@@ -5,25 +5,30 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
-import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.work.Data;
+import androidx.work.ExistingPeriodicWorkPolicy;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
 
 import com.example.hcc.abstracts.Database;
 import com.example.hcc.helper.MD5;
 import com.example.hcc.http_request.HttpRequest;
 import com.example.hcc.interfaces.RequestCallback;
 import com.example.hcc.models.Students;
+import com.example.hcc.workers.Notification;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,6 +36,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class Login extends AppCompatActivity {
 
@@ -41,7 +47,9 @@ public class Login extends AppCompatActivity {
     EditText username;
     LinearLayout background,containerbackgroud;
 
+    PeriodicWorkRequest periodicWorkRequest;
 
+    Data.Builder workerData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +78,10 @@ public class Login extends AppCompatActivity {
                     dashboard.putExtra("username", username.getText().toString());
                     dashboard.putExtra("notification", "welcome");
                     dashboard.putExtra("role", "Student");
+                    workerData = new Data.Builder();
+                    workerData.putString("studentid", username.getText().toString());
+                    periodicWorkRequest = new PeriodicWorkRequest.Builder(Notification.class,15, TimeUnit.MINUTES).setInputData(workerData.build()).build();
+                    WorkManager.getInstance(Login.this).enqueueUniquePeriodicWork("HCC", ExistingPeriodicWorkPolicy.REPLACE, periodicWorkRequest);
                     startActivity(dashboard);
                 }
                 else if (etPasswordLayout.getVisibility() == View.VISIBLE && username.getText().toString().equals("developer") && password.getText().toString().equals("developer")) {

@@ -6,13 +6,11 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
+
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -23,8 +21,6 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.hcc.Admin;
-import com.example.hcc.Course_Detail;
 import com.example.hcc.R;
 import com.example.hcc.helper.Validation;
 import com.example.hcc.http_request.HttpRequest;
