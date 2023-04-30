@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "271093356350",
+    "project_id": "test-project-dende",
+    "storage_bucket": "test-project-dende.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:271093356350:android:06482cec3d08689341fe6f",
+        "android_client_info": {
+          "package_name": "com.example.hcc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "271093356350-1tham8hqpjn7ati0t0jqoi6n59b186ua.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvJMG77MgrIW5qStKD2z5h0G9phH5fUwY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "271093356350-1tham8hqpjn7ati0t0jqoi6n59b186ua.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:271093356350:android:9983f209f2ee698b41fe6f",
+        "android_client_info": {
+          "package_name": "com.lokiteam.signal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "271093356350-1tham8hqpjn7ati0t0jqoi6n59b186ua.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvJMG77MgrIW5qStKD2z5h0G9phH5fUwY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "271093356350-1tham8hqpjn7ati0t0jqoi6n59b186ua.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

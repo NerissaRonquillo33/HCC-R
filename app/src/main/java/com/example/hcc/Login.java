@@ -80,7 +80,7 @@ public class Login extends AppCompatActivity {
                     dashboard.putExtra("role", "Student");
                     workerData = new Data.Builder();
                     workerData.putString("studentid", username.getText().toString());
-                    periodicWorkRequest = new PeriodicWorkRequest.Builder(Notification.class,15, TimeUnit.MINUTES).setInputData(workerData.build()).build();
+                    periodicWorkRequest = new PeriodicWorkRequest.Builder(Notification.class,1, TimeUnit.MINUTES).setInputData(workerData.build()).build();
                     WorkManager.getInstance(Login.this).enqueueUniquePeriodicWork("HCC", ExistingPeriodicWorkPolicy.REPLACE, periodicWorkRequest);
                     startActivity(dashboard);
                 }
