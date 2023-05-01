@@ -19,6 +19,8 @@ import com.example.hcc.R;
 import com.example.hcc.http_request.HttpRequest;
 import com.example.hcc.interfaces.RequestCallback;
 import com.example.hcc.models.Students;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -33,6 +35,10 @@ public class Notifier extends FirebaseMessagingService {
     public void onNewToken(@NonNull String token)
     {
         Log.d(TAG, "Token: " + token);
+//        FirebaseDatabase database = FirebaseDatabase.getInstance();
+//        DatabaseReference myRef = database.getReference("message");
+//
+//        myRef.setValue("tttt " + token);
         sendToken(token);
     }
 
