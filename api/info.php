@@ -17,10 +17,7 @@ try {
             if (count($age) != 3) {
                 $row["age"] = 0;
             } else {
-                $date1 = new DateTime($row['birthday']);
-                $date2 = new DateTime(date("Y-m-d"));
-                $days  = $date2->diff($date1)->format('%a');
-                $age = $days / 365;
+                $age = (date("md", date("U", mktime(0, 0, 0, $age[1], $age[2], $age[0]))) > date("md") ? ((date("Y") - $age[0]) - 1) : (date("Y") - $age[0]));
                 $age = (int)$age;
                 $row["age"] = $age;
             }

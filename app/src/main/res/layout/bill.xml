@@ -74,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal|center_vertical"
-                android:text="34,344"
+                android:text=""
                 android:textColor="#fff"
                 android:textStyle="bold"
                 android:textSize="50sp"/>
@@ -114,7 +114,7 @@
                 android:background="@drawable/table_border"/>
             <TextView
                 android:id="@+id/tf"
-                android:text="6000"
+                android:text=""
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -134,7 +134,7 @@
                 android:background="@drawable/table_border"/>
             <TextView
                 android:id="@+id/lai"
-                android:text="3700"
+                android:text=""
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -154,7 +154,7 @@
                 android:background="@drawable/table_border"/>
             <TextView
                 android:id="@+id/rf"
-                android:text="3700"
+                android:text=""
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -174,7 +174,7 @@
                 android:background="@drawable/table_border"/>
             <TextView
                 android:id="@+id/cpf"
-                android:text="3700"
+                android:text=""
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -194,7 +194,7 @@
                 android:background="@drawable/table_border"/>
             <TextView
                 android:id="@+id/gac"
-                android:text="3700"
+                android:text=""
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -214,7 +214,7 @@
                 android:background="@drawable/table_border"/>
             <TextView
                 android:id="@+id/sif"
-                android:text="3700"
+                android:text=""
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -234,7 +234,7 @@
                 android:background="@drawable/table_border"/>
             <TextView
                 android:id="@+id/sh"
-                android:text="3700"
+                android:text=""
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -254,7 +254,7 @@
                 android:background="@drawable/table_border"/>
             <TextView
                 android:id="@+id/sp"
-                android:text="3700"
+                android:text=""
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -274,7 +274,7 @@
                 android:background="@drawable/table_border"/>
             <TextView
                 android:id="@+id/ins"
-                android:text="3700"
+                android:text=""
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -299,7 +299,7 @@
                 android:background="@drawable/table_border"/>
             <TextView
                 android:id="@+id/ta"
-                android:text="3700"
+                android:text=""
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -319,7 +319,7 @@
                 android:background="@drawable/table_border"/>
             <TextView
                 android:id="@+id/ds"
-                android:text="3700"
+                android:text=""
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -339,7 +339,7 @@
                 android:background="@drawable/table_border"/>
             <TextView
                 android:id="@+id/na"
-                android:text="3700"
+                android:text=""
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -359,7 +359,7 @@
                 android:background="@drawable/table_border"/>
             <TextView
                 android:id="@+id/ccp"
-                android:text="3700"
+                android:text=""
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"

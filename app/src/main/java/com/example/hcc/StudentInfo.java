@@ -88,7 +88,7 @@ public class StudentInfo extends AppCompatActivity {
         contact.setText(students.getContact());
         address.setText(students.getAddress());
         dob.setText(students.getBirthdate());
-        age.setText("23");
+        age.setText(getPerfectAgeInYears(students.getBirthdate()));
         if (students.getImage().length > 300) {
             Bitmap decodedByte = BitmapFactory.decodeByteArray(students.getImage(), 0, students.getImage().length);
             profile.setImageBitmap(decodedByte);
@@ -163,10 +163,10 @@ public class StudentInfo extends AppCompatActivity {
         });
     }
 
-    public static int getPerfectAgeInYears(String birthday) {
+    public static String getPerfectAgeInYears(String birthday) {
         String[] birthdayarr = birthday.split("-");
         if (birthdayarr.length != 3) {
-            return 0;
+            return "0";
         }
         int year = Integer.parseInt(birthdayarr[0]);
         int month = Integer.parseInt(birthdayarr[1]);
@@ -197,7 +197,7 @@ public class StudentInfo extends AppCompatActivity {
 
         }
 
-        return ageInteger;
+        return String.valueOf(ageInteger);
     }
 
     public void showMenu(View view) {

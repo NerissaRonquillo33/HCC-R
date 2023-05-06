@@ -78,10 +78,10 @@ public class Login extends AppCompatActivity {
                     dashboard.putExtra("username", username.getText().toString());
                     dashboard.putExtra("notification", "welcome");
                     dashboard.putExtra("role", "Student");
-                    workerData = new Data.Builder();
-                    workerData.putString("studentid", username.getText().toString());
-                    periodicWorkRequest = new PeriodicWorkRequest.Builder(Notification.class,1, TimeUnit.MINUTES).setInputData(workerData.build()).build();
-                    WorkManager.getInstance(Login.this).enqueueUniquePeriodicWork("HCC", ExistingPeriodicWorkPolicy.REPLACE, periodicWorkRequest);
+//                    workerData = new Data.Builder();
+//                    workerData.putString("studentid", username.getText().toString());
+//                    periodicWorkRequest = new PeriodicWorkRequest.Builder(Notification.class,1, TimeUnit.MINUTES).setInputData(workerData.build()).build();
+//                    WorkManager.getInstance(Login.this).enqueueUniquePeriodicWork("HCC", ExistingPeriodicWorkPolicy.REPLACE, periodicWorkRequest);
                     startActivity(dashboard);
                 }
                 else if (etPasswordLayout.getVisibility() == View.VISIBLE && username.getText().toString().equals("developer") && password.getText().toString().equals("developer")) {

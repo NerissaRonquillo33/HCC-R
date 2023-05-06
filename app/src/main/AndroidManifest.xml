@@ -52,6 +52,7 @@
                 android:value="" />
         </activity>
         <activity android:name=".Dashboard" />
+        <activity android:name=".Announcement_Detail" />
         <activity android:name=".StudentInfo" />
         <activity android:name=".Schedule" />
         <activity android:name=".Schedule_Detail" />

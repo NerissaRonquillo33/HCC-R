@@ -25,4 +25,6 @@ public interface AnnouncementsDao {
     List<Announcements> all();
     @Query("SELECT * FROM announcements WHERE eventid = :eventid")
     List<Announcements> find(String eventid);
+    @Query("SELECT * FROM announcements WHERE eventid = :eventid LIMIT 1")
+    Announcements findOne(int eventid);
 }

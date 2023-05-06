@@ -1,0 +1,1 @@
+curl -X POST https://sisholycrosscollege.info/api/schedules.php -H 'Content-Type: application/json' -d '{"secret_key":"my_login","username":"33832019"}'

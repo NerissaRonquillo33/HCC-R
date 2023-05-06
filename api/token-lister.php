@@ -37,7 +37,7 @@ function BroadcastToAll($token) {
 	   "Content-type: application/json",
 	);
 	curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-	curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode( array( "to"=> $token, "notification" => array("title" => "HCC Portal", "body" => "A new announcement or bill has arrived!") ) ));
+	curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode( array( "to"=> $token, "notification" => array("title" => "HCC App", "body" => "A new announcement or bill has arrived!") ) ));
 	curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
 	curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 

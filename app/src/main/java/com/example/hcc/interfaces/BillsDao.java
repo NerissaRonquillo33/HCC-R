@@ -24,6 +24,6 @@ public interface BillsDao {
     void deleteOne(String username);
     @Query("SELECT * FROM bills")
     List<Bills> all();
-    @Query("SELECT * FROM bills WHERE username = :username ORDER BY datecreated DESC LIMIT 1")
+    @Query("SELECT * FROM bills WHERE username = :username ORDER BY billingid DESC LIMIT 1")
     Bills find(String username);
 }

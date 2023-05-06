@@ -70,7 +70,7 @@ public class Announcement extends AppCompatActivity {
             lstA.add(new Announcement_Item(announcements.get(n).getEventid(),announcements.get(n).getTitle(),announcements.get(n).getCaption(),announcements.get(n).getDuration()));
         }
         RecyclerView list = findViewById(R.id.announcement_holder);
-        Announcement_Adapter adapter = new Announcement_Adapter(getApplicationContext(), lstA);
+        Announcement_Adapter adapter = new Announcement_Adapter(Announcement.this, lstA);
         list.setLayoutManager(new GridLayoutManager(getApplicationContext(), 1));
         list.setAdapter(adapter);
     }

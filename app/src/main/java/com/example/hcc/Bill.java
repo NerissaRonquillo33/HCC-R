@@ -91,7 +91,7 @@ public class Bill extends AppCompatActivity {
             }
         });
 //        ob.setTextColor(Color.parseColor("#FF0000"));
-        updateBilling();
+        updateBilling(username);
         BillInfo();
     }
 
@@ -121,11 +121,13 @@ public class Bill extends AppCompatActivity {
         }
     }
 
-    public void updateBilling() {
+    public void updateBilling(String username) {
         /* Courses list */
         JSONObject jsonParams = new JSONObject();
         try {
             jsonParams.put("secret_key", "secret_key");
+            jsonParams.put("username", username);
+            Log.i("dddddd", username);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -140,7 +142,7 @@ public class Bill extends AppCompatActivity {
                         for(int n = 0; n < jsonArray.length(); n++)
                         {
                             JSONObject object = jsonArray.getJSONObject(n);
-                            database.billsDao().insert(new Bills(object.getString("studentid"),object.getString("tuitionfee"),object.getString("learnandins"),object.getString("regfee"),object.getString("compprossfee"),object.getString("guidandcouns"),object.getString("schoolidfee"),object.getString("studenthand"),object.getString("schoolfab"),object.getString("insurance"),object.getString("totalass"),object.getString("discount"),object.getString("netass"),object.getString("cashcheckpay"),object.getString("balance"),object.getInt("convertedTS")));
+                            database.billsDao().insert(new Bills(object.getString("studentid"),object.getString("tuitionfee"),object.getString("learnandins"),object.getString("regfee"),object.getString("compprossfee"),object.getString("guidandcouns"),object.getString("schoolidfee"),object.getString("studenthand"),object.getString("schoolfab"),object.getString("insurance"),object.getString("totalass"),object.getString("discount"),object.getString("netass"),object.getString("cashcheckpay"),object.getString("balance"),object.getInt("convertedTS"),object.getInt("billingid")));
                         }
                     } catch (JSONException e) {
                         //todo

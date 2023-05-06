@@ -15,7 +15,9 @@ if (isset($json["secret_key"]) && isset($json["username"])) {
     $result2 = $mysqli->query($sql);
     $row2 = $result2->fetch_all(MYSQLI_ASSOC);
     foreach ($row2 as $key => $value) {
-        $data[] = array("studentid" => ($json["username"] ?? 'TBA'), "subject" => $value['subject_code'], "course" => $row['course'], "days" => abbr2name($value['day']), "time" => $value['time_start']." - ".$value['time_end'], "room" => $value['room'], "prof" => $value['firstname']." ".$value['lastname']);
+        if (strlen($value['firstname']." ".$value['lastname']) > 5) {
+            $data[] = array("studentid" => ($json["username"] ?? 'TBA'), "subject" => $value['subject_code'], "course" => $row['course'], "days" => abbr2name($value['day']), "time" => $value['time_start']." - ".$value['time_end'], "room" => $value['room'], "prof" => $value['firstname']." ".$value['lastname']);
+        }
     }
     echo json_encode(array("status"=>"success", "results"=>$data));
 }

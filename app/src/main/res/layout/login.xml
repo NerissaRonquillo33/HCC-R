@@ -43,21 +43,41 @@
                     android:layout_width="wrap_content"
                     android:padding="60dp"
                     android:layout_height="wrap_content"/>
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/etUsernameLayout"
+                <RelativeLayout
+                    android:id="@+id/Relativelayout1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:passwordToggleEnabled="true">
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/username"
+                    android:layout_height="90dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_gravity="center">
+
+                    <ImageView
                         android:layout_width="match_parent"
-                        android:layout_gravity="center_vertical"
-                        android:background="@drawable/edittext_border"
-                        android:layout_margin="16dp"
-                        android:padding="10dp"
-                        android:hint="Username Or StudentID"
-                        android:layout_height="wrap_content"/>
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:layout_height="50dp"
+                        android:layout_marginTop="25dp"
+                        android:background="@drawable/edittext_border"/>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/etUsernameLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="10dp"
+                        android:textColorHint="@color/black"
+                        app:hintTextAppearance="@style/GreenTextInputLayout"
+                        app:passwordToggleEnabled="true">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/username"
+                            android:layout_width="match_parent"
+                            android:layout_gravity="center_vertical"
+                            android:padding="10dp"
+                            android:textColorHint="@color/black"
+                            android:hint="Username Or StudentID"
+                            android:background="@android:color/transparent"
+                            android:layout_height="match_parent"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </RelativeLayout>
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/etPasswordLayout"
                     android:layout_width="match_parent"
@@ -119,7 +139,7 @@
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textAlignment="center"
-                    android:text="HCC Portal © 2022"/>
+                    android:text="HCC App © 2022"/>
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
