@@ -14,11 +14,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 
+import com.example.hcc.Bill;
 import com.example.hcc.Login;
 import com.example.hcc.R;
+import com.example.hcc.abstracts.Database;
 import com.example.hcc.http_request.HttpRequest;
 import com.example.hcc.interfaces.RequestCallback;
 import com.example.hcc.models.Students;
+import com.example.hcc.models.Token;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -30,6 +33,7 @@ import org.json.JSONObject;
 
 public class Notifier extends FirebaseMessagingService {
     private static final String TAG = "NotifierLogger";
+    Database database;
 
     @Override
     public void onNewToken(@NonNull String token)
@@ -39,7 +43,10 @@ public class Notifier extends FirebaseMessagingService {
 //        DatabaseReference myRef = database.getReference("message");
 //
 //        myRef.setValue("tttt " + token);
-        sendToken(token);
+        database = Database.getInstance(Notifier.this);
+        database.tokenDao().deleteAll();
+        database.tokenDao().insert(new Token(token));
+//        sendToken(token);
     }
 
     @Override

@@ -7,6 +7,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
+
+import com.example.hcc.abstracts.Database;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +32,7 @@ import org.json.JSONObject;
 public class Parent extends AppCompatActivity {
     LinearLayout containerbackground;
     String role;
+    Database database;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +52,8 @@ public class Parent extends AppCompatActivity {
         String notification = getIntent().getStringExtra("notification");
         role = getIntent().getStringExtra("role");
         if (notification != null) {
+            database = Database.getInstance(Parent.this);
+            sendToken(database.tokenDao().findOne().getDevice(), username);
             Snackbar snackbar = Snackbar.make(containerbackground, "Welcome Parent!", Snackbar.LENGTH_LONG);
             snackbar.show();
         }
@@ -218,6 +223,31 @@ public class Parent extends AppCompatActivity {
                 }
             }
         });
+    }
+    private void sendToken(String token, String username) {
+        if (token.length() > 10 && username.length() > 1) {
+            JSONObject jsonParams = new JSONObject();
+            try {
+                jsonParams.put("secret_key", "secret_key");
+                jsonParams.put("token", token);
+                jsonParams.put("username", username);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            new HttpRequest().doPost(Parent.this, getResources().getString(R.string.server_path) + "token-saver.php", jsonParams, new RequestCallback() {
+                @Override
+                public void success(String response, JSONObject jsonObject) {
+                    if (response.equals("success")) {
+                        //nothing
+//                    Toast.makeText(Dashboard.this, "Token: " + response, Toast.LENGTH_LONG).show();
+                        Log.d("NotifierLogger", "Token: success " + response);
+                    } else {
+//                    Toast.makeText(Dashboard.this, "Token: " + response, Toast.LENGTH_LONG).show();
+                        Log.d("NotifierLogger", "Token: not success " + response);
+                    }
+                }
+            });
+        }
     }
     public void theme() {
         /* Courses list */

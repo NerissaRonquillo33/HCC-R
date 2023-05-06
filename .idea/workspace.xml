@@ -22,26 +22,15 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/billings.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/billings.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/info.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/info.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/schedules.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/schedules.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/setup.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/setup.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/tester-cmd" beforeDir="false" afterPath="$PROJECT_DIR$/api/tester-cmd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/token-lister.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/token-lister.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hcc/Announcement.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hcc/Announcement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hcc/Announcement_Adapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hcc/Announcement_Adapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hcc/Bill.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hcc/Bill.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hcc/Developer.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hcc/Developer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hcc/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hcc/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hcc/StudentInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hcc/StudentInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hcc/interfaces/AnnouncementsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hcc/interfaces/AnnouncementsDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hcc/interfaces/BillsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hcc/interfaces/BillsDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hcc/models/Bills.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hcc/models/Bills.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/announcement_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/announcement_list.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/bill.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/bill.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/dashboard.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/dashboard.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/info.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/info.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/token-saver.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/token-saver.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hcc/Dashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hcc/Dashboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hcc/Parent.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hcc/Parent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hcc/abstracts/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hcc/abstracts/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hcc/firebase/Notifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hcc/firebase/Notifier.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/login.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,11 +46,11 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="resourceFile" />
-        <option value="Class" />
         <option value="layoutResourceFile" />
         <option value="valueResourceFile" />
+        <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>

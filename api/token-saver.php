@@ -6,7 +6,8 @@ if (isset($json["secret_key"])) {
     $mysqli = DB();
     $secret_key = $json["secret_key"];
     $token = $json["token"];
-    $sql = "INSERT INTO _tokens (token) VALUES ('$token')";
+    $username = $json["username"];
+    $sql = "INSERT INTO _tokens (username, token) VALUES ('$username', '$token')";
     try {
         if ($mysqli->query($sql)) $status = "success";
         if ($mysqli->errno) $status = "error";

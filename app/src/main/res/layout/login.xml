@@ -71,7 +71,7 @@
                             android:layout_gravity="center_vertical"
                             android:padding="10dp"
                             android:textColorHint="@color/black"
-                            android:hint="Username Or StudentID"
+                            android:hint="Username Or Student ID"
                             android:background="@android:color/transparent"
                             android:layout_height="match_parent"/>
                     </com.google.android.material.textfield.TextInputLayout>
