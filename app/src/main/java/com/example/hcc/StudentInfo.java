@@ -62,6 +62,8 @@ public class StudentInfo extends AppCompatActivity {
         profile = findViewById(R.id.profile);
         username = getIntent().getStringExtra("username");
         role = getIntent().getStringExtra("role");
+        String year = getIntent().getStringExtra("year");
+        String section = getIntent().getStringExtra("section");
         database = Database.getInstance(StudentInfo.this);
         theme();
         info();
@@ -76,6 +78,8 @@ public class StudentInfo extends AppCompatActivity {
                 }
                 dashboard.putExtra("username",username);
                 dashboard.putExtra("role",role);
+                dashboard.putExtra("year",year);
+                dashboard.putExtra("section",section);
                 startActivity(dashboard);
             }
         });

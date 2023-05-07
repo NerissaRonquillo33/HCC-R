@@ -65,6 +65,8 @@ public class Grade_new extends AppCompatActivity {
         views.setBackgroundResource(R.drawable.background);
         views.setBackgroundColor(android.graphics.Color.TRANSPARENT);
         String studentname = getIntent().getStringExtra("nameofstudent");
+        String year = getIntent().getStringExtra("year");
+        String section = getIntent().getStringExtra("section");
         if (role.equals("parent") && studentname != null) {
             views_data += "<h1>"+ studentname +"</h1>";
         }
@@ -81,6 +83,8 @@ public class Grade_new extends AppCompatActivity {
                 dashboard.putExtra("username",username);
                 dashboard.putExtra("nameofstudent",studentname);
                 dashboard.putExtra("role",role);
+                dashboard.putExtra("year",year);
+                dashboard.putExtra("section",section);
                 startActivity(dashboard);
             }
         });
@@ -89,41 +93,41 @@ public class Grade_new extends AppCompatActivity {
                 "        <tr><th colspan=\"8\" align=\"left\"><h1>FIRST YEAR</h1></th></tr>\n" +
                 "        <tr><th colspan=\"8\" align=\"left\">First Semester</th></tr>\n" +
                 "        <tr bgcolor=\"white\"><th>Subject</th><th>Faculty</th><th>Prelim</th><th>Midterm</th><th>Finals</th><th>Final Grade</th><th>Average</th><th>Status</th></tr>";
-        views_data += gradesInit("2019/2020","First");
+        views_data += (year.trim().equalsIgnoreCase("1") ? gradesInit("2022/2023","First") : "");
 
         views_data += "<tr><th colspan=\"8\" align=\"left\">Second Semester</th></tr>\n" +
                 "        <tr bgcolor=\"white\"><th>Subject</th><th>Faculty</th><th>Prelim</th><th>Midterm</th><th>Finals</th><th>Final Grade</th><th>Average</th><th>Status</th></tr>";
-        views_data += gradesInit("2019/2020","Second");
+        views_data += (year.trim().equalsIgnoreCase("1") ? gradesInit("2022/2023","Second") : "");
 
         views_data += "<tr><td colspan=\"8\">&nbsp;</td></tr>\n" +
                 "        <tr style=\"margin-top: 10px;\"><th colspan=\"8\" align=\"left\"><h1>SECOND YEAR</h1></th></tr>\n" +
                 "        <tr><th colspan=\"8\" align=\"left\">First Semester</th></tr>\n" +
                 "        <tr bgcolor=\"white\"><th>Subject</th><th>Faculty</th><th>Prelim</th><th>Midterm</th><th>Finals</th><th>Final Grade</th><th>Average</th><th>Status</th></tr>";
-        views_data += gradesInit("2020/2021","First");
+        views_data += (year.trim().equalsIgnoreCase("2") ? gradesInit("2022/2023","First") : "");
 
         views_data += "<tr><th colspan=\"8\" align=\"left\">Second Semester</th></tr>\n" +
                 "        <tr bgcolor=\"white\"><th>Subject</th><th>Faculty</th><th>Prelim</th><th>Midterm</th><th>Finals</th><th>Final Grade</th><th>Average</th><th>Status</th></tr>";
-        views_data += gradesInit("2020/2021","Second");
+        views_data += (year.trim().equalsIgnoreCase("2") ? gradesInit("2022/2023","Second") : "");
 
         views_data += "<tr><td colspan=\"8\">&nbsp;</td></tr>\n" +
                 "        <tr><th colspan=\"8\" align=\"left\"><h1>THIRD YEAR</h1></th></tr>\n" +
                 "        <tr><th colspan=\"8\" align=\"left\">First Semester</th></tr>\n" +
                 "        <tr bgcolor=\"white\"><th>Subject</th><th>Faculty</th><th>Prelim</th><th>Midterm</th><th>Finals</th><th>Final Grade</th><th>Average</th><th>Status</th></tr>";
-        views_data += gradesInit("2021/2022","First");
+        views_data += (year.trim().equalsIgnoreCase("3") ? gradesInit("2022/2023","First") : "");
 
         views_data += "<tr><th colspan=\"8\" align=\"left\">Second Semester</th></tr>\n" +
                 "        <tr bgcolor=\"white\"><th>Subject</th><th>Faculty</th><th>Prelim</th><th>Midterm</th><th>Finals</th><th>Final Grade</th><th>Average</th><th>Status</th></tr>";
-        views_data += gradesInit("2021/2022","Second");
+        views_data += (year.trim().equalsIgnoreCase("3") ? gradesInit("2022/2023","Second") : "");
 
         views_data += "<tr><td colspan=\"8\">&nbsp;</td></tr>\n" +
                 "        <tr><th colspan=\"8\" align=\"left\"><h1>FOURTH YEAR</h1></th></tr>\n" +
                 "        <tr><th colspan=\"8\" align=\"left\">First Semester</th></tr>\n" +
                 "        <tr bgcolor=\"white\"><th>Subject</th><th>Faculty</th><th>Prelim</th><th>Midterm</th><th>Finals</th><th>Final Grade</th><th>Average</th><th>Status</th></tr>";
-        views_data += gradesInit("2022/2023","First");
+        views_data += (year.trim().equalsIgnoreCase("4") ? gradesInit("2022/2023","First") : "");
 
         views_data += "<tr><th colspan=\"8\" align=\"left\">Second Semester</th></tr>\n" +
                 "        <tr bgcolor=\"white\"><th>Subject</th><th>Faculty</th><th>Prelim</th><th>Midterm</th><th>Finals</th><th>Final Grade</th><th>Average</th><th>Status</th></tr>";
-        views_data += gradesInit("2022/2023","Second");
+        views_data += (year.trim().equalsIgnoreCase("4") ? gradesInit("2022/2023","Second") : "");
         views.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
         views.loadData(views_data+="</table>\n" +
                 "</body>\n" +

@@ -51,6 +51,8 @@ public class Dashboard extends AppCompatActivity {
         String username = getIntent().getStringExtra("username");
         String role = getIntent().getStringExtra("role");
         String notification = getIntent().getStringExtra("notification");
+        String year = getIntent().getStringExtra("year");
+        String section = getIntent().getStringExtra("section");
         if (notification != null) {
             database = Database.getInstance(Dashboard.this);
             sendToken(database.tokenDao().findOne().getDevice(), username);
@@ -64,6 +66,8 @@ public class Dashboard extends AppCompatActivity {
                 Intent announce = new Intent(Dashboard.this, Announcement.class);
                 announce.putExtra("username",username);
                 announce.putExtra("role",role);
+                announce.putExtra("year", year);
+                announce.putExtra("section", section);
                 startActivity(announce);
             }
         });
@@ -74,6 +78,8 @@ public class Dashboard extends AppCompatActivity {
                 Intent grade = new Intent(Dashboard.this, Grade_new.class);
                 grade.putExtra("username",username);
                 grade.putExtra("role",role);
+                grade.putExtra("year", year);
+                grade.putExtra("section", section);
                 startActivity(grade);
             }
         });
@@ -84,6 +90,8 @@ public class Dashboard extends AppCompatActivity {
                 Intent bill = new Intent(Dashboard.this, Bill.class);
                 bill.putExtra("username",username);
                 bill.putExtra("role",role);
+                bill.putExtra("year", year);
+                bill.putExtra("section", section);
                 startActivity(bill);
             }
         });
@@ -94,6 +102,8 @@ public class Dashboard extends AppCompatActivity {
                 Intent course = new Intent(Dashboard.this, Course.class);
                 course.putExtra("username",username);
                 course.putExtra("role",role);
+                course.putExtra("year", year);
+                course.putExtra("section", section);
                 startActivity(course);
             }
         });
@@ -104,6 +114,8 @@ public class Dashboard extends AppCompatActivity {
                 Intent schedule = new Intent(Dashboard.this, Schedule.class);
                 schedule.putExtra("username",username);
                 schedule.putExtra("role",role);
+                schedule.putExtra("year", year);
+                schedule.putExtra("section", section);
                 startActivity(schedule);
             }
         });
@@ -114,6 +126,8 @@ public class Dashboard extends AppCompatActivity {
                 Intent student_info = new Intent(Dashboard.this, StudentInfo.class);
                 student_info.putExtra("username",username);
                 student_info.putExtra("role",role);
+                student_info.putExtra("year", year);
+                student_info.putExtra("section", section);
                 startActivity(student_info);
             }
         });

@@ -51,6 +51,8 @@ public class Parent extends AppCompatActivity {
         String nameofstudent = getIntent().getStringExtra("nameofstudent");
         String notification = getIntent().getStringExtra("notification");
         role = getIntent().getStringExtra("role");
+        String year = getIntent().getStringExtra("year");
+        String section = getIntent().getStringExtra("section");
         if (notification != null) {
             database = Database.getInstance(Parent.this);
             sendToken(database.tokenDao().findOne().getDevice(), username);
@@ -65,6 +67,8 @@ public class Parent extends AppCompatActivity {
                 announce.putExtra("username",username);
                 announce.putExtra("role",role);
                 announce.putExtra("nameofstudent",nameofstudent);
+                announce.putExtra("year", year);
+                announce.putExtra("section", section);
                 startActivity(announce);
             }
         });
@@ -76,6 +80,8 @@ public class Parent extends AppCompatActivity {
                 grade.putExtra("username",username);
                 grade.putExtra("role",role);
                 grade.putExtra("nameofstudent",nameofstudent);
+                grade.putExtra("year", year);
+                grade.putExtra("section", section);
                 startActivity(grade);
             }
         });
@@ -87,6 +93,8 @@ public class Parent extends AppCompatActivity {
                 bill.putExtra("username",username);
                 bill.putExtra("role",role);
                 bill.putExtra("nameofstudent",nameofstudent);
+                bill.putExtra("year", year);
+                bill.putExtra("section", section);
                 startActivity(bill);
             }
         });
@@ -98,6 +106,8 @@ public class Parent extends AppCompatActivity {
                 course.putExtra("username",username);
                 course.putExtra("nameofstudent",nameofstudent);
                 course.putExtra("role",role);
+                course.putExtra("year", year);
+                course.putExtra("section", section);
                 startActivity(course);
             }
         });
@@ -109,6 +119,8 @@ public class Parent extends AppCompatActivity {
                 schedule.putExtra("username",username);
                 schedule.putExtra("nameofstudent",nameofstudent);
                 schedule.putExtra("role",role);
+                schedule.putExtra("year", year);
+                schedule.putExtra("section", section);
                 startActivity(schedule);
             }
         });

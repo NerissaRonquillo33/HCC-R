@@ -44,6 +44,8 @@ public class Announcement_Detail extends AppCompatActivity {
         studentname = getIntent().getStringExtra("nameofstudent");
         ImageView prev = findViewById(R.id.back2main);
         String username = getIntent().getStringExtra("username");
+        String year = getIntent().getStringExtra("year");
+        String section = getIntent().getStringExtra("section");
         int id = getIntent().getIntExtra("id",0);
         database = Database.getInstance(Announcement_Detail.this);
         theme();
@@ -56,6 +58,8 @@ public class Announcement_Detail extends AppCompatActivity {
                 announcement.putExtra("username",username);
                 announcement.putExtra("role",role);
                 announcement.putExtra("nameofstudent",studentname);
+                announcement.putExtra("year",year);
+                announcement.putExtra("section",section);
                 startActivity(announcement);
             }
         });

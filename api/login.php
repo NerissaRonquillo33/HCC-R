@@ -10,7 +10,7 @@ try {
         $secret_key = $json["secret_key"];
         $username = trim(mysqli_real_escape_string($mysqli,$json["username"]));
         $password = md5(trim(mysqli_real_escape_string($mysqli,$json["password"])));
-        $sql = "SELECT _parents.*, students.firstname, students.lastname, students.course FROM _parents LEFT JOIN students ON _parents.student_id=students.studentid WHERE username = '$username' AND password = '$password' LIMIT 1";
+        $sql = "SELECT _parents.*, students.firstname, students.lastname, students.course, students.year, students.section FROM _parents LEFT JOIN students ON _parents.student_id=students.studentid WHERE username = '$username' AND password = '$password' LIMIT 1";
         $result = $mysqli->query($sql);
         $row = $result->fetch_all(MYSQLI_ASSOC);
         $row_cnt = $result->num_rows;

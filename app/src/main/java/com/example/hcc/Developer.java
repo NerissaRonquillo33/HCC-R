@@ -117,7 +117,7 @@ public class Developer extends AppCompatActivity {
                             String line = reader.readLine();
                             String[] studentsInfo = line.split(",");
                             if (studentsInfo.length == 8) {
-                                database.studentsDao().insert(new Students(studentsInfo[0], new MD5().encrypt(studentsInfo[1]),studentsInfo[2],studentsInfo[3],studentsInfo[4],studentsInfo[5],studentsInfo[6],studentsInfo[7],studentsInfo[8],new byte[0]));
+                                database.studentsDao().insert(new Students(studentsInfo[0], new MD5().encrypt(studentsInfo[1]),studentsInfo[2],studentsInfo[3],studentsInfo[4],studentsInfo[5],studentsInfo[6],studentsInfo[7],studentsInfo[8],new byte[0],studentsInfo[9],studentsInfo[10]));
                             }
                         }
                     }catch (FileNotFoundException e) {

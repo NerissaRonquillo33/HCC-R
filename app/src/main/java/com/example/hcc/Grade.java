@@ -89,6 +89,8 @@ public class Grade extends AppCompatActivity {
         role = getIntent().getStringExtra("role");
         TextView nameofstudent = findViewById(R.id.nameofstudent);
         String studentname = getIntent().getStringExtra("nameofstudent");
+        String year = getIntent().getStringExtra("year");
+        String section = getIntent().getStringExtra("section");
         if (role.equals("parent") && studentname != null) {
             nameofstudent.setText(studentname);
             nameofstudent.setVisibility(View.VISIBLE);
@@ -106,6 +108,8 @@ public class Grade extends AppCompatActivity {
                 dashboard.putExtra("username",username);
                 dashboard.putExtra("nameofstudent",studentname);
                 dashboard.putExtra("role",role);
+                dashboard.putExtra("year",year);
+                dashboard.putExtra("section",section);
                 startActivity(dashboard);
             }
         });

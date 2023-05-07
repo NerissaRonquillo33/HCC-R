@@ -33,6 +33,8 @@ public class Course_Detail extends AppCompatActivity {
         schedules = (TextView) findViewById(R.id.schedules);
         ImageView prev = findViewById(R.id.back2main);
         String username = getIntent().getStringExtra("username");
+        String year = getIntent().getStringExtra("year");
+        String section = getIntent().getStringExtra("section");
         int id = getIntent().getIntExtra("id",0);
         theme();
         /* Back to main */
@@ -41,6 +43,8 @@ public class Course_Detail extends AppCompatActivity {
             public void onClick(View view) {
                 Intent courses = new Intent(Course_Detail.this, Course.class);
                 courses.putExtra("username",username);
+                courses.putExtra("year",year);
+                courses.putExtra("section",section);
                 startActivity(courses);
             }
         });

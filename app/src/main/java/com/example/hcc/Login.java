@@ -78,6 +78,8 @@ public class Login extends AppCompatActivity {
                     dashboard.putExtra("username", username.getText().toString());
                     dashboard.putExtra("notification", "welcome");
                     dashboard.putExtra("role", "Student");
+                    dashboard.putExtra("year", students_verify.getYear());
+                    dashboard.putExtra("section", students_verify.getSection());
 //                    workerData = new Data.Builder();
 //                    workerData.putString("studentid", username.getText().toString());
 //                    periodicWorkRequest = new PeriodicWorkRequest.Builder(Notification.class,1, TimeUnit.MINUTES).setInputData(workerData.build()).build();
@@ -161,7 +163,7 @@ public class Login extends AppCompatActivity {
                         for(int n = 0; n < jsonArray.length(); n++)
                         {
                             JSONObject object = jsonArray.getJSONObject(n);
-                            database.studentsDao().insert(new Students(object.getString("studentid"),object.getString("password"),object.getString("lastname"),object.getString("firstname"),object.getString("birthday"),object.getString("course"),object.getString("contact"),object.getString("address"),object.getString("role"), Base64.decode(object.getString("image"), Base64.DEFAULT)));
+                            database.studentsDao().insert(new Students(object.getString("studentid"),object.getString("password"),object.getString("lastname"),object.getString("firstname"),object.getString("birthday"),object.getString("course"),object.getString("contact"),object.getString("address"),object.getString("role"), Base64.decode(object.getString("image"), Base64.DEFAULT), object.getString("year"), object.getString("section")));
                         }
                     } catch (JSONException e) {
                         //todo
@@ -193,6 +195,8 @@ public class Login extends AppCompatActivity {
                         dashboard.putExtra("nameofstudent", jsonObject.getString("lastname") + ", " + jsonObject.getString("firstname"));
                         dashboard.putExtra("notification", "welcome");
                         dashboard.putExtra("role", "parent");
+                        dashboard.putExtra("year", jsonObject.getString("year"));
+                        dashboard.putExtra("section", jsonObject.getString("section"));
                         startActivity(dashboard);
                     } catch (JSONException e) {
                         //todo

@@ -71,6 +71,8 @@ public class Bill extends AppCompatActivity {
         username = getIntent().getStringExtra("username");
         role = getIntent().getStringExtra("role");
         studentname = getIntent().getStringExtra("nameofstudent");
+        String year = getIntent().getStringExtra("year");
+        String section = getIntent().getStringExtra("section");
         if (role.equals("parent") && studentname != null) {
             nameofstudent.setText(studentname);
             nameofstudent.setVisibility(View.VISIBLE);
@@ -87,6 +89,8 @@ public class Bill extends AppCompatActivity {
                 dashboard.putExtra("username",username);
                 dashboard.putExtra("role",role);
                 dashboard.putExtra("nameofstudent",studentname);
+                dashboard.putExtra("year",year);
+                dashboard.putExtra("section",section);
                 startActivity(dashboard);
             }
         });

@@ -43,6 +43,8 @@ public class Announcement extends AppCompatActivity {
         username = getIntent().getStringExtra("username");
         role = getIntent().getStringExtra("role");
         String nameofstudent = getIntent().getStringExtra("nameofstudent");
+        String year = getIntent().getStringExtra("year");
+        String section = getIntent().getStringExtra("section");
         database = Database.getInstance(Announcement.this);
         /* Back to main */
         prev.setOnClickListener(new View.OnClickListener() {
@@ -55,6 +57,8 @@ public class Announcement extends AppCompatActivity {
                 dashboard.putExtra("username",username);
                 dashboard.putExtra("nameofstudent",nameofstudent);
                 dashboard.putExtra("role",role);
+                dashboard.putExtra("year",year);
+                dashboard.putExtra("section",section);
                 startActivity(dashboard);
             }
         });

@@ -30,11 +30,15 @@ public class Schedule extends AppCompatActivity {
         setContentView(R.layout.schedule);
         String username = getIntent().getStringExtra("username");
         ImageView prev = findViewById(R.id.back2main);
+        String year = getIntent().getStringExtra("year");
+        String section = getIntent().getStringExtra("section");
         /* Back to main */
         prev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent dashboard = new Intent(Schedule.this, Dashboard.class);
+                dashboard.putExtra("year",year);
+                dashboard.putExtra("section",section);
                 startActivity(dashboard);
             }
         });
