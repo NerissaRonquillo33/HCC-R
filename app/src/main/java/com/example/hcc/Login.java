@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.work.Data;
 import androidx.work.ExistingPeriodicWorkPolicy;
@@ -43,6 +44,7 @@ public class Login extends AppCompatActivity {
     List<Course_Item> lstCourses;
     DBHelper dbHelper;
     TextView status;
+    TextView sync;
     Database database;
     EditText username;
     LinearLayout background,containerbackgroud;
@@ -62,75 +64,81 @@ public class Login extends AppCompatActivity {
         background = findViewById(R.id.background);
         containerbackgroud = findViewById(R.id.containerbackgroud);
         TextView register = findViewById(R.id.register);
+        sync = findViewById(R.id.synch);
         Button login = findViewById(R.id.login);
         lstCourses = new ArrayList<>();
         dbHelper = new DBHelper(this, lstCourses);
         database = Database.getInstance(Login.this);
+        updateStudents();
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Students students_verify = database.studentsDao().findOne(username.getText().toString());
-                if (etPasswordLayout.getVisibility() == View.GONE && students_verify != null && students_verify.getRole().equals("Student")) {
-                    status.setVisibility(View.VISIBLE);
-                    status.setText("Login successful!");
-                    status.setTextColor(Color.parseColor("#FF03DAC5"));
-                    Intent dashboard = new Intent(Login.this, Dashboard.class);
-                    dashboard.putExtra("username", username.getText().toString());
-                    dashboard.putExtra("notification", "welcome");
-                    dashboard.putExtra("role", "Student");
-                    dashboard.putExtra("year", students_verify.getYear());
-                    dashboard.putExtra("section", students_verify.getSection());
+                if (sync.getVisibility() == View.GONE) {
+                    Students students_verify = database.studentsDao().findOne(username.getText().toString());
+                    if (etPasswordLayout.getVisibility() == View.GONE && students_verify != null && students_verify.getRole().equals("Student")) {
+                        status.setVisibility(View.VISIBLE);
+                        status.setText("Login successful!");
+                        status.setTextColor(Color.parseColor("#FF03DAC5"));
+                        Intent dashboard = new Intent(Login.this, Dashboard.class);
+                        dashboard.putExtra("username", username.getText().toString());
+                        dashboard.putExtra("notification", "welcome");
+                        dashboard.putExtra("role", "Student");
+                        dashboard.putExtra("year", students_verify.getYear());
+                        dashboard.putExtra("section", students_verify.getSection());
 //                    workerData = new Data.Builder();
 //                    workerData.putString("studentid", username.getText().toString());
 //                    periodicWorkRequest = new PeriodicWorkRequest.Builder(Notification.class,1, TimeUnit.MINUTES).setInputData(workerData.build()).build();
 //                    WorkManager.getInstance(Login.this).enqueueUniquePeriodicWork("HCC", ExistingPeriodicWorkPolicy.REPLACE, periodicWorkRequest);
-                    startActivity(dashboard);
-                }
-                else if (etPasswordLayout.getVisibility() == View.VISIBLE && username.getText().toString().equals("developer") && password.getText().toString().equals("developer")) {
-                    Intent developer = new Intent(Login.this, Developer.class);
-                    developer.putExtra("username", username.getText().toString());
-                    startActivity(developer);
-                }
-                else if (etPasswordLayout.getVisibility() == View.VISIBLE && username.getText().toString().equals("admins") && password.getText().toString().equals("admins")) {
-                    Intent admin = new Intent(Login.this, Admin.class);
-                    admin.putExtra("username", username.getText().toString());
-                    admin.putExtra("notification", "welcome");
-                    admin.putExtra("role", "admin");
-                    startActivity(admin);
-                }
-                else if (etPasswordLayout.getVisibility() == View.VISIBLE && database.studentsDao().login(username.getText().toString(), new MD5().encrypt(password.getText().toString())) > 0) {
-                    status.setVisibility(View.VISIBLE);
-                    status.setText("Login successful!");
-                    status.setTextColor(Color.parseColor("#FF03DAC5"));
-                    Students students = database.studentsDao().findOne(username.getText().toString());
-                    Intent dashboard = new Intent(Login.this, Dashboard.class);
-                    if (students.getRole().equals("Admin")) {
-                        dashboard = new Intent(Login.this, Admin.class);
+                        startActivity(dashboard);
                     }
-                    else if (students.getRole().equals("Faculty")) {
-                        status.setText("Login failed!");
-                        status.setTextColor(Color.parseColor("#F88379"));
-                        return;
+                    else if (etPasswordLayout.getVisibility() == View.VISIBLE && username.getText().toString().equals("developer") && password.getText().toString().equals("developer")) {
+                        Intent developer = new Intent(Login.this, Developer.class);
+                        developer.putExtra("username", username.getText().toString());
+                        startActivity(developer);
                     }
-                    else if (students.getRole().equals("Cashier")) {
-                        status.setText("Login failed!");
-                        status.setTextColor(Color.parseColor("#F88379"));
-                        return;
+                    else if (etPasswordLayout.getVisibility() == View.VISIBLE && username.getText().toString().equals("admins") && password.getText().toString().equals("admins")) {
+                        Intent admin = new Intent(Login.this, Admin.class);
+                        admin.putExtra("username", username.getText().toString());
+                        admin.putExtra("notification", "welcome");
+                        admin.putExtra("role", "admin");
+                        startActivity(admin);
                     }
-                    else if (students.getRole().equals("Registrar")) {
-                        status.setText("Login failed!");
-                        status.setTextColor(Color.parseColor("#F88379"));
-                        return;
+                    else if (etPasswordLayout.getVisibility() == View.VISIBLE && database.studentsDao().login(username.getText().toString(), new MD5().encrypt(password.getText().toString())) > 0) {
+                        status.setVisibility(View.VISIBLE);
+                        status.setText("Login successful!");
+                        status.setTextColor(Color.parseColor("#FF03DAC5"));
+                        Students students = database.studentsDao().findOne(username.getText().toString());
+                        Intent dashboard = new Intent(Login.this, Dashboard.class);
+                        if (students.getRole().equals("Admin")) {
+                            dashboard = new Intent(Login.this, Admin.class);
+                        }
+                        else if (students.getRole().equals("Faculty")) {
+                            status.setText("Login failed!");
+                            status.setTextColor(Color.parseColor("#F88379"));
+                            return;
+                        }
+                        else if (students.getRole().equals("Cashier")) {
+                            status.setText("Login failed!");
+                            status.setTextColor(Color.parseColor("#F88379"));
+                            return;
+                        }
+                        else if (students.getRole().equals("Registrar")) {
+                            status.setText("Login failed!");
+                            status.setTextColor(Color.parseColor("#F88379"));
+                            return;
+                        }
+                        dashboard.putExtra("username", username.getText().toString());
+                        dashboard.putExtra("notification", "welcome");
+                        dashboard.putExtra("role", students.getRole());
+                        startActivity(dashboard);
                     }
-                    dashboard.putExtra("username", username.getText().toString());
-                    dashboard.putExtra("notification", "welcome");
-                    dashboard.putExtra("role", students.getRole());
-                    startActivity(dashboard);
-                }
-                else if (etPasswordLayout.getVisibility() == View.VISIBLE) {
-                    login(username.getText().toString(), password.getText().toString());
+                    else if (etPasswordLayout.getVisibility() == View.VISIBLE) {
+                        login(username.getText().toString(), password.getText().toString());
+                    } else {
+                        etPasswordLayout.setVisibility(View.VISIBLE);
+                    }
                 } else {
-                    etPasswordLayout.setVisibility(View.VISIBLE);
+                    Toast.makeText(getApplicationContext(),"Please wait for data synchronization to complete.",Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -142,7 +150,6 @@ public class Login extends AppCompatActivity {
                 startActivity(registeration);
             }
         });
-        updateStudents();
         theme();
     }
 
@@ -165,9 +172,15 @@ public class Login extends AppCompatActivity {
                             JSONObject object = jsonArray.getJSONObject(n);
                             database.studentsDao().insert(new Students(object.getString("studentid"),object.getString("password"),object.getString("lastname"),object.getString("firstname"),object.getString("birthday"),object.getString("course"),object.getString("contact"),object.getString("address"),object.getString("role"), Base64.decode(object.getString("image"), Base64.DEFAULT), object.getString("year"), object.getString("section")));
                         }
+                        sync.setVisibility(View.GONE);
                     } catch (JSONException e) {
                         //todo
+                        sync.setText("It seems connection timeout occurred. Please restart the app.");
+                        sync.setTextColor(Color.parseColor("#F44336"));
                     }
+                } else {
+                    sync.setText("It seems connection timeout occurred. Please restart the app.");
+                    sync.setTextColor(Color.parseColor("#F44336"));
                 }
             }
         });

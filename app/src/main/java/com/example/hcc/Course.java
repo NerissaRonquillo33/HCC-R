@@ -71,11 +71,22 @@ public class Course extends AppCompatActivity {
             }
         });
         updateSchedule();
-        list();
+//        list();
     }
 
     public void list() {
         List<Schedules> schedules = database.schedulesDao().find(username);
+        for(int n = 0; n < schedules.size(); n++)
+        {
+            lstCourses.add(new Course_Item(schedules.get(n).getId(),schedules.get(n).getSubject(),schedules.get(n).getCourse(),schedules.get(n).getDays(),schedules.get(n).getTime(),schedules.get(n).getRoom(),schedules.get(n).getProf()));
+        }
+        RecyclerView list = findViewById(R.id.course_holder);
+        Course_Adapter adapter = new Course_Adapter(getApplicationContext(), lstCourses);
+        list.setLayoutManager(new GridLayoutManager(getApplicationContext(), 1));
+        list.setAdapter(adapter);
+    }
+
+    public void list2(List<Schedules> schedules) {
         for(int n = 0; n < schedules.size(); n++)
         {
             lstCourses.add(new Course_Item(schedules.get(n).getId(),schedules.get(n).getSubject(),schedules.get(n).getCourse(),schedules.get(n).getDays(),schedules.get(n).getTime(),schedules.get(n).getRoom(),schedules.get(n).getProf()));
@@ -102,11 +113,14 @@ public class Course extends AppCompatActivity {
                     database.schedulesDao().deleteAll();
                     try {
                         JSONArray jsonArray = jsonObject.getJSONArray("results");
+                        List<Schedules> schedules = new ArrayList<>();
                         for(int n = 0; n < jsonArray.length(); n++)
                         {
                             JSONObject object = jsonArray.getJSONObject(n);
-                            database.schedulesDao().insert(new Schedules(object.getString("studentid"),object.getString("subject"),object.getString("course"),object.getString("days"),object.getString("time"),object.getString("room"),object.getString("prof")));
+//                            database.schedulesDao().insert(new Schedules(object.getString("studentid"),object.getString("subject"),object.getString("course"),object.getString("days"),object.getString("time"),object.getString("room"),object.getString("prof")));
+                            schedules.add(new Schedules(object.getString("studentid"),object.getString("subject"),object.getString("course"),object.getString("days"),object.getString("time"),object.getString("room"),object.getString("prof")));
                         }
+                        list2(schedules);
                     } catch (JSONException e) {
                         //todo
                     }
